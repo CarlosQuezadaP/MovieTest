@@ -77,6 +77,8 @@ dependencies {
     api(appdependencies.Libs.Koin.koinViewModel)
 
 
+    api(appdependencies.Libs.Core.navigationFragmentKtx)
+    api(appdependencies.Libs.Core.navigationUiKtx)
     api(appdependencies.Libs.Common.coroutinesmanager)
 
     testImplementation(appdependencies.Libs.Tests.junit)
