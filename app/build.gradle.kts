@@ -131,6 +131,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.0.1")
     api(project(":CORE"))
     api(project(":provide"))
+    api(project(":infraestructura"))
     testImplementation(Libs.Tests.junit)
     androidTestImplementation(Libs.Tests.runner)
     androidTestImplementation(Libs.Tests.espresso)

@@ -22,4 +22,6 @@ data class MovieDto(
     val status: String?,
     val tagline: String?,
     val budget: Long?
-)
+){
+    fun getImagePath() = poster_path ?: backdrop_path.orEmpty()
+}

@@ -1,4 +1,4 @@
-package com.rasalexman.providers.network.handlers
+package com.merqueo.co.provide.network.handlers
 
 import com.merqueo.co.core.CustomException
 import com.merqueo.co.core.common.extensions.toErrorResult
