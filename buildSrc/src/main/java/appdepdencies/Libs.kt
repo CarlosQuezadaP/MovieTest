@@ -39,6 +39,21 @@ object Libs {
             "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.savedstate}"
     }
 
+    object Common {
+
+
+        // COROUTINES MANAGER
+        const val coroutinesmanager = "com.rasalexman.coroutinesmanager:coroutinesmanager:${Versions.coroutinesManager}"
+
+
+    }
+
+    object Retrofit {
+        const val core = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+        const val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+        const val logging = ("com.github.ihsanbal:LoggingInterceptor:${Versions.retrofitLogging}")
+    }
+
     object Core {
         const val appcompat = "androidx.appcompat:appcompat:${Versions.appCompatX}"
         const val coreKtx = "androidx.core:core-ktx:${Versions.appCoreX}"

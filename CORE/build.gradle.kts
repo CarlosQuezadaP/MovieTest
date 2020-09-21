@@ -71,6 +71,14 @@ dependencies {
     api(appdependencies.Libs.Lifecycle.extensions)
     api(appdependencies.Libs.Lifecycle.common)
 
+    api(appdependencies.Libs.Koin.koin)
+    api(appdependencies.Libs.Koin.koinCore)
+    api(appdependencies.Libs.Koin.koinScope)
+    api(appdependencies.Libs.Koin.koinViewModel)
+
+
+    api(appdependencies.Libs.Common.coroutinesmanager)
+
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)
     androidTestImplementation(appdependencies.Libs.Tests.espresso)
