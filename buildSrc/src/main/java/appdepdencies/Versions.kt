@@ -8,6 +8,9 @@ object Versions {
     const val google = "4.3.3"
     const val navisafe = "2.1.0"
 
+    const val koin = "2.0.1"
+
+
     /* test */
     const val junit = "4.12"
     const val runner = "1.0.2"
