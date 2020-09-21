@@ -1,3 +1,2 @@
-include(":infraestructura")
-include(":app",":CORE")
+include(":app",":CORE",":infraestructura")
 rootProject.name = "MerqueoPrueba"

@@ -60,6 +60,17 @@ dependencies {
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
 
 
+    api(appdependencies.Libs.Core.paging)
+
+    api(appdependencies.Libs.Room.runtime)
+    api(appdependencies.Libs.Room.ktx)
+
+    api(appdependencies.Libs.Lifecycle.livedataKtx)
+    api(appdependencies.Libs.Lifecycle.viewmodelKtx)
+    api(appdependencies.Libs.Lifecycle.savedStateViewModel)
+    api(appdependencies.Libs.Lifecycle.extensions)
+    api(appdependencies.Libs.Lifecycle.common)
+
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)
     androidTestImplementation(appdependencies.Libs.Tests.espresso)

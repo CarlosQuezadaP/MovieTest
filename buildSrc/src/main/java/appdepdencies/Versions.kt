@@ -10,6 +10,22 @@ object Versions {
 
     const val koin = "2.0.1"
 
+    const val room = "2.2.3"
+    const val lifecycle = "2.2.0-rc03"
+    const val savedstate = "1.0.0-rc01"
+
+    const val appCompatX = "1.1.0"
+    const val appCoreX = "1.1.0"
+    const val constraintLayout = "1.1.3"
+    const val material = "1.2.0-alpha01"
+    const val viewPager2 = "1.0.0"
+    const val swipeRefresh = "1.0.0"
+    const val paging = "2.1.1"
+
+    object Navigation {
+        const val fragment = "2.2.0-rc02"
+        const val ui = "2.2.0-rc02"
+    }
 
     /* test */
     const val junit = "4.12"
