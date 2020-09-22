@@ -7,8 +7,8 @@ import com.merqueo.co.provide.db.converters.FromListOfIntToStringConverter
 import com.merqueo.co.provide.db.converters.FromListOfStringsToStringConverter
 import com.merqueo.co.provide.db.dao.IGenresDao
 import com.merqueo.co.provide.db.dao.IMoviesDao
-import com.merqueo.co.provide.db.entities.GenreEntity
-import com.merqueo.co.provide.db.entities.MovieEntity
+import com.merqueo.co.models.entities.GenreEntity
+import com.merqueo.co.models.entities.MovieEntity
 @Database(
     entities = [
         GenreEntity::class,

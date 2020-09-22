@@ -1,17 +1,17 @@
-package com.merqueo.co.infraestructura.repository.remote
+package com.merqueo.co.infraestructura.source.remote
 
 import com.merqueo.co.core.BuildConfig
 import com.merqueo.co.core.models.SuperResult
 import com.merqueo.co.infraestructura.network.api.IMovieApi
 import com.merqueo.co.models.dto.GenreDto
-import com.merqueo.co.provide.db.entities.GenreEntity
+import com.merqueo.co.models.entities.GenreEntity
 import com.merqueo.co.provide.network.handlers.errorResultCatchBlock
 import com.merqueo.co.provide.network.responses.getResult
 import com.rasalexman.coroutinesmanager.doWithTryCatchAsync
 
-class GenresRemoteRepository(
+class GenresRemoteSource(
     private val moviesApi: IMovieApi
-) : IGenresRemoteRepository {
+) : IGenresRemoteSource {
 
     private val addedImages by lazy { mutableSetOf<String>() }
 

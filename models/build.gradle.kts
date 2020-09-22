@@ -53,6 +53,7 @@ android {
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
+    implementation(project(mapOf("path" to ":CORE")))
 
 
     testImplementation(appdependencies.Libs.Tests.junit)

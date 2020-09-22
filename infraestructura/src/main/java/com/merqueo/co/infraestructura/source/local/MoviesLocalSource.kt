@@ -1,15 +1,15 @@
-package com.merqueo.co.infraestructura.repository.local
+package com.merqueo.co.infraestructura.source.local
 
 import androidx.paging.DataSource
 import com.merqueo.co.core.common.extensions.emptyResult
 import com.merqueo.co.core.common.extensions.successResult
 import com.merqueo.co.core.models.SuperResult
 import com.merqueo.co.provide.db.dao.IMoviesDao
-import com.merqueo.co.provide.db.entities.MovieEntity
+import com.merqueo.co.models.entities.MovieEntity
 
-class MoviesLocalRepository(
+class MoviesLocalSource(
     private val moviesDao: IMoviesDao
-) : IMoviesLocalRepository {
+) : IMoviesLocalSource {
 
     override suspend fun getMoviesByGenreDataSourceFactory(genreId: Int): DataSource.Factory<Int, MovieEntity> =
         moviesDao.getAllByGenreId(genreId)

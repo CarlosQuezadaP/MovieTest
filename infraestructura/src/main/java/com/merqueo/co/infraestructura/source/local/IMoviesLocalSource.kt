@@ -1,11 +1,11 @@
-package com.merqueo.co.infraestructura.repository.local
+package com.merqueo.co.infraestructura.source.local
 
 import androidx.paging.DataSource
 import com.merqueo.co.core.base.ILocalDataSource
 import com.merqueo.co.core.models.SuperResult
-import com.merqueo.co.provide.db.entities.MovieEntity
+import com.merqueo.co.models.entities.MovieEntity
 
-interface IMoviesLocalRepository : ILocalDataSource {
+interface IMoviesLocalSource : ILocalDataSource {
 
     suspend fun getMoviesByGenreDataSourceFactory(genreId: Int): DataSource.Factory<Int, MovieEntity>
     suspend fun getPopularMoviesDataSourceFactory(): DataSource.Factory<Int, MovieEntity>

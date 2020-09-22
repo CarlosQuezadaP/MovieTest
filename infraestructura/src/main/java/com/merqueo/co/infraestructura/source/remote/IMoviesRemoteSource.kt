@@ -1,4 +1,4 @@
-package com.merqueo.co.infraestructura.repository.remote
+package com.merqueo.co.infraestructura.source.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,11 +9,12 @@ import com.merqueo.co.core.typealiases.FlowResultList
 import com.merqueo.co.core.typealiases.ResultList
 import com.merqueo.co.models.dto.MovieDto
 
-interface IMoviesRemoteRepository : IRemoteDataSource {
+interface IMoviesRemoteSource : IRemoteDataSource {
     suspend fun getSearchDataSource(
         query: String,
         resultLiveData: MutableLiveData<SuperResult<Any>>
     ): DataSource.Factory<Int, MovieDto>
+
     suspend fun getByGenreId(genreId: Int, lastReleaseDate: Long?): ResultList<MovieDto>
     suspend fun getMovieDetails(movieId: Int): SuperResult<MovieDto>
     suspend fun getNewMoviesByGenreId(genreId: Int): ResultList<MovieDto>

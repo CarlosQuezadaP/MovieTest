@@ -1,20 +1,20 @@
 package com.merqueo.co.infraestructura.di_modules
 
-import com.merqueo.co.infraestructura.repository.remote.GenresRemoteRepository
-import com.merqueo.co.infraestructura.repository.remote.IGenresRemoteRepository
-import com.merqueo.co.infraestructura.repository.remote.IMoviesRemoteRepository
-import com.merqueo.co.infraestructura.repository.remote.MoviesRemoteRepository
+import com.merqueo.co.infraestructura.source.remote.GenresRemoteSource
+import com.merqueo.co.infraestructura.source.remote.IGenresRemoteSource
+import com.merqueo.co.infraestructura.source.remote.IMoviesRemoteSource
+import com.merqueo.co.infraestructura.source.remote.MoviesRemoteSource
 import org.koin.dsl.module
 
 
 val repositoryRemoteModule = module {
 
-    single<IGenresRemoteRepository> {
-        GenresRemoteRepository(get())
+    single<IGenresRemoteSource> {
+        GenresRemoteSource(get())
     }
 
-    single<IMoviesRemoteRepository> {
-        MoviesRemoteRepository(get())
+    single<IMoviesRemoteSource> {
+        MoviesRemoteSource(get())
     }
 
 

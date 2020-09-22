@@ -1,9 +1,9 @@
-package com.merqueo.co.infraestructura.repository
+package com.merqueo.co.infraestructura.source
 
 import androidx.paging.DataSource
 import com.merqueo.co.core.typealiases.AnyResultMutableLiveData
 import com.merqueo.co.infraestructura.network.api.IMovieApi
-import com.merqueo.co.infraestructura.repository.remote.SearchRemoteRepository
+import com.merqueo.co.infraestructura.source.remote.SearchRemoteSource
 import com.merqueo.co.models.dto.MovieDto
 
 class SearchDataSourceFactory(
@@ -12,7 +12,7 @@ class SearchDataSourceFactory(
     private val resultLiveData: AnyResultMutableLiveData
 ) : DataSource.Factory<Int, MovieDto>() {
     override fun create(): DataSource<Int, MovieDto> {
-        return SearchRemoteRepository(
+        return SearchRemoteSource(
             movieApi,
             query,
             resultLiveData

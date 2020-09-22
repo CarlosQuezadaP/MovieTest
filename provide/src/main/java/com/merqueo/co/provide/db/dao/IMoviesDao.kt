@@ -3,7 +3,7 @@ package com.merqueo.co.provide.db.dao
 import androidx.room.Dao
 import androidx.room.Query
 import com.merqueo.co.provide.db.dao.base.IBaseDao
-import com.merqueo.co.provide.db.entities.MovieEntity
+import com.merqueo.co.models.entities.MovieEntity
 
 @Dao
 interface IMoviesDao : IBaseDao<MovieEntity> {

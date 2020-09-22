@@ -1,4 +1,4 @@
-package com.merqueo.co.infraestructura.repository.remote
+package com.merqueo.co.infraestructura.source.remote
 
 import androidx.paging.PageKeyedDataSource
 import com.merqueo.co.core.common.extensions.anyResult
@@ -16,7 +16,7 @@ import com.rasalexman.coroutinesmanager.ICoroutinesManager
 import com.rasalexman.coroutinesmanager.doWithTryCatchAsync
 import com.rasalexman.coroutinesmanager.launchOnUI
 
-class SearchRemoteRepository(
+class SearchRemoteSource(
     private val movieApi: IMovieApi,
     private val query: String,
     private val resultLiveData: AnyResultMutableLiveData

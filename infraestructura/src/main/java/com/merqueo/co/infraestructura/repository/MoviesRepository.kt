@@ -1,0 +1,75 @@
+package com.rasalexman.data.repository
+
+import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
+import com.merqueo.co.core.common.extensions.mapIfSuccessSuspend
+import com.merqueo.co.core.common.extensions.mapListTo
+import com.merqueo.co.core.common.extensions.toSuccessResult
+import com.merqueo.co.core.models.SuperResult
+import com.merqueo.co.core.typealiases.ResultList
+import com.merqueo.co.core.typealiases.ResultMutableLiveData
+import com.merqueo.co.infraestructura.source.local.IMoviesLocalSource
+import com.merqueo.co.infraestructura.source.remote.IMoviesRemoteSource
+import com.merqueo.co.models.entities.MovieEntity
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+
+class MoviesRepository(
+    override val localDataSource: IMoviesLocalSource,
+    override val remoteDataSource: IMoviesRemoteSource
+) : IMoviesRepository {
+
+    override suspend fun getMoviesByGenreDataSource(genreId: Int): DataSource.Factory<Int, MovieEntity> {
+        return localDataSource.getMoviesByGenreDataSourceFactory(genreId)
+    }
+
+    override suspend fun getPopularMoviesDataSource(): DataSource.Factory<Int, MovieEntity> {
+        return localDataSource.getPopularMoviesDataSourceFactory()
+    }
+
+    override suspend fun getPopularMoviesCount(): Int {
+        return localDataSource.getPopularMoviesCount()
+    }
+
+    override suspend fun getRemoteSearchDataSource(
+        query: String,
+        resultLiveData: ResultMutableLiveData<Any>
+    ): DataSource.Factory<Int, MovieEntity> {
+        return remoteDataSource.getSearchDataSource(query, resultLiveData).map { it.convertTo() }
+    }
+
+    override suspend fun getRemotePopularMovies(page: Int): ResultList<MovieEntity> {
+        return remoteDataSource.getPopularMovies(page).mapListTo().mapIfSuccessSuspend {
+            this.map { it.apply { isPopular = true } }.toSuccessResult()
+        }
+    }
+
+    override suspend fun getRemoteTopRatedMovies(pageLiveData: LiveData<Int>): Flow<ResultList<MovieEntity>> {
+        return remoteDataSource.getTopRatedMovies(pageLiveData).map {
+            it.mapListTo()
+        }
+    }
+
+    override suspend fun getRemoteUpcomingMovies(page: Int): ResultList<MovieEntity> {
+        return remoteDataSource.getUpcomingMovies(page).mapListTo()
+    }
+
+    override suspend fun getRemoteMovies(
+        genreId: Int,
+        lastReleaseDate: Long?
+    ): ResultList<MovieEntity> {
+        return remoteDataSource
+            .getByGenreId(genreId, lastReleaseDate)
+            .mapListTo()
+    }
+
+    override suspend fun saveMoviesList(data: List<MovieEntity>) {
+        localDataSource.insertAll(data)
+    }
+
+    override suspend fun saveMovie(data: MovieEntity) = localDataSource.insert(data)
+
+    override suspend fun getMovieById(movieId: Int): SuperResult<MovieEntity> {
+        return localDataSource.getById(movieId)
+    }
+}

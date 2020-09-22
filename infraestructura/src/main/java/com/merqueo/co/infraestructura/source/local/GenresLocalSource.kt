@@ -1,14 +1,14 @@
-package com.merqueo.co.infraestructura.repository.local
+package com.merqueo.co.infraestructura.source.local
 
 import com.merqueo.co.core.common.extensions.toSuccessResult
 import com.merqueo.co.core.models.SuperResult
 import com.merqueo.co.provide.db.dao.IGenresDao
-import com.merqueo.co.provide.db.entities.GenreEntity
+import com.merqueo.co.models.entities.GenreEntity
 
 
-class GenresLocalRepository(
+class GenresLocalSource(
     private val genresDao: IGenresDao
-) : IGenresLocalRepository {
+) : IGenresLocalSource {
 
     override suspend fun getGenresList(): SuperResult<List<GenreEntity>> {
         return genresDao.getAll().toSuccessResult()

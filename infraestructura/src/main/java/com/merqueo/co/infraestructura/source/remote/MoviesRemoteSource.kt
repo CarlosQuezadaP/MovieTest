@@ -1,4 +1,4 @@
-package com.merqueo.co.infraestructura.repository.remote
+package com.merqueo.co.infraestructura.source.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import com.merqueo.co.core.common.extensions.loadingResult
 import com.merqueo.co.core.models.SuperResult
 import com.merqueo.co.core.typealiases.ResultList
 import com.merqueo.co.infraestructura.network.api.IMovieApi
-import com.merqueo.co.infraestructura.repository.SearchDataSourceFactory
+import com.merqueo.co.infraestructura.source.SearchDataSourceFactory
 import com.merqueo.co.models.dto.MovieDto
 import com.merqueo.co.provide.network.handlers.asErrorResult
 import com.merqueo.co.provide.network.handlers.errorResultCatchBlock
@@ -22,9 +22,9 @@ import kotlinx.coroutines.flow.flowOn
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MoviesRemoteRepository(
+class MoviesRemoteSource(
     private val moviesApi: IMovieApi
-) : IMoviesRemoteRepository {
+) : IMoviesRemoteSource {
 
     override suspend fun getSearchDataSource(
         query: String,
