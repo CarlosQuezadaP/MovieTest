@@ -132,6 +132,10 @@ dependencies {
     api(project(":CORE"))
     api(project(":provide"))
     api(project(":infraestructura"))
+    api(project(":home"))
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
+
     testImplementation(Libs.Tests.junit)
     androidTestImplementation(Libs.Tests.runner)
     androidTestImplementation(Libs.Tests.espresso)

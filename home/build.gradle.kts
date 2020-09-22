@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-android")
 }
 
 android {
@@ -56,8 +57,8 @@ dependencies {
 
 
     api(project(":CORE"))
-    api(project(":infraestructura"))
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    api(project(":infraestructura"))
 
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)
