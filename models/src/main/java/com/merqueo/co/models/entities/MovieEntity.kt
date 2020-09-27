@@ -4,7 +4,7 @@ import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.merqueo.co.core.base.IConvertableTo
+import com.merqueo.co.core.IConvertableTo
 import com.merqueo.co.models.ui.MovieItemUI
 import java.text.SimpleDateFormat
 import java.util.*
@@ -76,3 +76,4 @@ data class MovieEntity(
         )
     }
 }
+
