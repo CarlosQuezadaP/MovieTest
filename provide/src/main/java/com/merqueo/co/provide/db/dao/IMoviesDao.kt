@@ -1,12 +1,22 @@
 package com.merqueo.co.provide.db.dao
 
-import androidx.room.Dao
-import androidx.room.Query
-import com.merqueo.co.provide.db.dao.base.IBaseDao
+import androidx.room.*
 import com.merqueo.co.models.entities.MovieEntity
 
 @Dao
-interface IMoviesDao : IBaseDao<MovieEntity> {
+interface IMoviesDao {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(list: List<MovieEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(data: MovieEntity)
+
+    @Update
+    suspend fun update(data: MovieEntity)
+
+    @Delete
+    suspend fun delete(data: MovieEntity)
 
     @Query("SELECT * FROM MovieEntity WHERE genreIds LIKE '%' || :genreId  || '%' ORDER BY releaseDate DESC")
     fun getAllByGenreId(genreId: Int): androidx.paging.DataSource.Factory<Int, MovieEntity>
