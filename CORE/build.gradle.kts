@@ -50,7 +50,8 @@ android {
 
     androidExtensions {
         isExperimental = true
-        defaultCacheImplementation = org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
+        defaultCacheImplementation =
+            org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
     }
 
 }
@@ -59,11 +60,13 @@ dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
 
-
     api(appdependencies.Libs.Core.paging)
+    api(appdependencies.Libs.Core.constraintlayout)
+    api(appdependencies.Libs.Core.appcompat)
 
     api(appdependencies.Libs.Room.runtime)
-    api(appdependencies.Libs.Room.ktx)
+    kapt(appdependencies.Libs.Room.kaptcompiler)
+
 
     api(appdependencies.Libs.Lifecycle.livedataKtx)
     api(appdependencies.Libs.Lifecycle.viewmodelKtx)
@@ -71,15 +74,22 @@ dependencies {
     api(appdependencies.Libs.Lifecycle.extensions)
     api(appdependencies.Libs.Lifecycle.common)
 
-    api(appdependencies.Libs.Koin.koin)
-    api(appdependencies.Libs.Koin.koinCore)
-    api(appdependencies.Libs.Koin.koinScope)
-    api(appdependencies.Libs.Koin.koinViewModel)
-
+    api(appdependencies.Libs.ImageLoading.coil)
 
     api(appdependencies.Libs.Core.navigationFragmentKtx)
     api(appdependencies.Libs.Core.navigationUiKtx)
-    api(appdependencies.Libs.Common.coroutinesmanager)
+
+    api(appdependencies.Libs.Retrofit.core)
+    api(appdependencies.Libs.Retrofit.adapter)
+    api(appdependencies.Libs.Retrofit.gson)
+
+    api(appdependencies.Libs.Okhttp.okhttp)
+    api(appdependencies.Libs.Okhttp.logging)
+
+    api(appdependencies.Libs.Koin.koin)
+    api(appdependencies.Libs.Koin.koinViewModel)
+    api(appdependencies.Libs.Koin.koinFragment)
+    api(appdependencies.Libs.Koin.koinScope)
 
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)

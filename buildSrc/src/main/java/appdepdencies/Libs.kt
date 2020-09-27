@@ -3,23 +3,25 @@ package appdependencies
 
 object Libs {
 
+
     object Tests {
         const val junit = "junit:junit:${Versions.junit}"
         const val runner = "com.android.support.test:runner:${Versions.runner}"
         const val espresso = "com.android.support.test.espresso:espresso-core:${Versions.espresso}"
     }
 
-    object Koin {
-        const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
-        const val koin = "org.koin:koin-android:${Versions.koin}"
-        const val koinCore = "org.koin:koin-core:${Versions.koin}"
-        const val koinScope = "org.koin:koin-android-scope:${Versions.koin}"
+    object Room {
+        const val ktx = "androidx.room:room-ktx:${Versions.room}"
+        const val runtime = "androidx.room:room-runtime:${Versions.room}"
+        const val compiler = "androidx.room:room-compiler:${Versions.room}"
+        const val kaptcompiler = "androidx.room:room-compiler:${Versions.room}"
     }
 
-    object Room {
-        const val runtime = "androidx.room:room-runtime:${Versions.room}"
-        const val ktx = "androidx.room:room-ktx:${Versions.room}"
-        const val kapt = "androidx.room:room-compiler:${Versions.room}"
+    object Koin {
+        const val koin = "org.koin:koin-android:${Versions.koin}"
+        const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+        const val koinFragment = "org.koin:koin-androidx-fragment:${Versions.koin}"
+        const val koinScope = "org.koin:koin-androidx-scope:${Versions.koin}"
     }
 
     object Lifecycle {
@@ -39,26 +41,24 @@ object Libs {
             "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.savedstate}"
     }
 
-    object Common {
-
-
-        // COROUTINES MANAGER
-        const val coroutinesmanager = "com.rasalexman.coroutinesmanager:coroutinesmanager:${Versions.coroutinesManager}"
-
-
-    }
-
     object Retrofit {
         const val core = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-        const val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
-        const val logging = ("com.github.ihsanbal:LoggingInterceptor:${Versions.retrofitLogging}")
+        const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+        const val adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
     }
+
+    object Okhttp {
+        const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
+        const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
+    }
+
 
     object Core {
         const val appcompat = "androidx.appcompat:appcompat:${Versions.appCompatX}"
-        const val coreKtx = "androidx.core:core-ktx:${Versions.appCoreX}"
+        const val legacy_ = "androidx.legacy:legacy-support-v4:1.0.0:${Versions.legacy}"
         const val constraintlayout =
             "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+        const val coreKtx = "androidx.core:core-ktx:${Versions.appCoreX}"
         const val navigationFragmentKtx =
             "androidx.navigation:navigation-fragment-ktx:${Versions.Navigation.fragment}"
         const val navigationUiKtx =
@@ -68,6 +68,10 @@ object Libs {
         const val swipeRefreshLayout =
             "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefresh}"
         const val paging = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
+    }
+
+    object ImageLoading {
+        const val coil = "io.coil-kt:coil:${Versions.coil}"
     }
 
 

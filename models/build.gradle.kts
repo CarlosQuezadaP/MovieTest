@@ -45,7 +45,8 @@ android {
 
     androidExtensions {
         isExperimental = true
-        defaultCacheImplementation = org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
+        defaultCacheImplementation =
+            org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
     }
 
 }

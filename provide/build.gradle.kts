@@ -57,11 +57,6 @@ dependencies {
     api(project(":CORE"))
     api(project(":models"))
 
-
-    api(appdependencies.Libs.Retrofit.core)
-    api(appdependencies.Libs.Retrofit.moshi)
-    api(appdependencies.Libs.Retrofit.logging)
-
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)
     androidTestImplementation(appdependencies.Libs.Tests.espresso)

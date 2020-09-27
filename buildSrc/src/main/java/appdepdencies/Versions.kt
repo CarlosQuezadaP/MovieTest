@@ -2,22 +2,21 @@ package appdependencies
 
 object Versions {
 
+    const val legacy = "1.0.0"
     const val gradle = "3.5.2"
     const val kotlin = "1.3.61"
     const val kotlinGradle = "1.3.2"
     const val google = "4.3.3"
     const val navisafe = "2.1.0"
+    const val koin = "2.1.6"
 
-    const val koin = "2.0.1"
-
-    const val room = "2.2.3"
+    const val room = "2.2.5"
     const val lifecycle = "2.2.0-rc03"
     const val savedstate = "1.0.0-rc01"
 
-    const val coroutinesManager = "1.2.32"
-
     const val retrofit = "2.7.1"
-    const val retrofitLogging = "3.0.0"
+
+    const val okhttp3 = "4.3.1"
 
     const val appCompatX = "1.1.0"
     const val appCoreX = "1.1.0"
@@ -26,6 +25,8 @@ object Versions {
     const val viewPager2 = "1.0.0"
     const val swipeRefresh = "1.0.0"
     const val paging = "2.1.1"
+
+    const val coil = "0.9.1"
 
     object Navigation {
         const val fragment = "2.2.0-rc02"
