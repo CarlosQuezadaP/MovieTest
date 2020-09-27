@@ -3,10 +3,11 @@ package com.merqueo.co.home.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.merqueo.co.home.R
-import com.merqueo.co.models.ui.MovieItemUI
+import com.merqueo.co.models.dto.upcoming.MovieDto
 
-class MovieAdapter : ListAdapter<MovieItemUI, MovieViewHolder>(MovieItemDiffCallback()) {
+class MovieAdapter : ListAdapter<MovieDto, RecyclerView.ViewHolder>(MovieItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): MovieViewHolder {
         return MovieViewHolder(
@@ -15,7 +16,7 @@ class MovieAdapter : ListAdapter<MovieItemUI, MovieViewHolder>(MovieItemDiffCall
         )
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bindTo(getItem(position))
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as MovieViewHolder).bindTo(getItem(position))
     }
 }

@@ -25,7 +25,7 @@ class MovieViewModel(
     override fun getDataRemote() {
         showLoading.set(true)
         viewModelScope.launch {
-            val result = iServiceMovie.getAllCountries()
+            val result = iServiceMovie.getAllMovies()
 
             showLoading.set(false)
             when (result) {

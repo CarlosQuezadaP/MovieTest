@@ -5,5 +5,5 @@ import com.merqueo.co.models.dto.upcoming.UpcomingResponse
 
 
 interface IServiceMovie {
-    suspend fun getAllCountries(): AppResult<UpcomingResponse>
+    suspend fun getAllMovies(): AppResult<UpcomingResponse>
 }

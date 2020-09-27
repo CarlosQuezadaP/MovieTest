@@ -8,7 +8,7 @@ class ServiceMovie(
     private val remoteSource: IMoviesRemoteSource
 ) : IServiceMovie {
 
-    override suspend fun getAllCountries(): AppResult<UpcomingResponse> {
+    override suspend fun getAllMovies(): AppResult<UpcomingResponse> {
         return remoteSource.getUpcomingMovies(1)
     }
 
