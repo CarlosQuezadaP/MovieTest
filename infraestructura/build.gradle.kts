@@ -45,7 +45,8 @@ android {
 
     androidExtensions {
         isExperimental = true
-        defaultCacheImplementation = org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
+        defaultCacheImplementation =
+            org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
     }
 
 }
@@ -56,7 +57,6 @@ dependencies {
 
     api(project(":CORE"))
     api(project(":provide"))
-
 
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)
