@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_movie_layout.view.*
 
 class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    var isPlaceHolder: Boolean = false
+    private var isPlaceHolder: Boolean = false
 
     fun bindTo(movie: MovieDto) {
         itemView.titleTextView.text = movie.title

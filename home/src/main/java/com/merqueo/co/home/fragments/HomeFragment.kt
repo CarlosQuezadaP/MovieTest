@@ -11,18 +11,19 @@ import com.merqueo.co.home.adapter.MovieAdapter
 import com.merqueo.co.home.databinding.FragmentHomeBinding
 import com.merqueo.co.home.viewModel.MovieViewModel
 import com.merqueo.co.models.dto.upcoming.MovieDto
+import com.merqueo.co.provide.db.MerqueoDatabase
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class HomeFragment : Fragment() {
 
-    lateinit var content: View
-    lateinit var homeBinding: FragmentHomeBinding
-    lateinit var mRootView: View
-
-
-    val moviesViewModel: MovieViewModel by viewModel()
+    private lateinit var content: View
+    private lateinit var homeBinding: FragmentHomeBinding
+    private lateinit var mRootView: View
+    private val moviesViewModel: MovieViewModel by viewModel()
+    private val movieDao: MerqueoDatabase by inject()
     private lateinit var movieAdapter: MovieAdapter
 
 
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
         mRootView = homeBinding.root
         homeBinding.lifecycleOwner = this
         setView()
+
         return mRootView
     }
 

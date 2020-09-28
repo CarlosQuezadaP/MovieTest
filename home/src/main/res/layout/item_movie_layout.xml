@@ -1,91 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:elevation="5dp">
 
-    <FrameLayout
-        android:id="@+id/imageFrameLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size_8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <ProgressBar
-            android:id="@+id/imageProgressBar"
+        <FrameLayout
+            android:id="@+id/imageFrameLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminateDrawable="@drawable/spinner"
-            android:visibility="gone" />
-
-        <ImageView
-            android:id="@+id/movieImageView"
-            android:layout_width="@dimen/image_width"
-            android:layout_height="@dimen/image_height"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="@dimen/size_8dp"
+            app:layout_constraintBottom_toBottomOf="@id/guideline3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/imageProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminateDrawable="@drawable/spinner"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/movieImageView"
+                android:layout_width="@dimen/image_width"
+                android:layout_height="@dimen/image_height"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/voteAverageTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|start"
+                android:background="@color/gray_alpha_60"
+                android:padding="@dimen/size_8dp"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_size_14sp"
+                tools:text="7.6" />
+        </FrameLayout>
+
 
         <TextView
-            android:id="@+id/voteAverageTextView"
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_8dp"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageFrameLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="MovieImageView Title" />
+
+        <TextView
+            android:id="@+id/releaseTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8dp"
+            android:layout_marginEnd="@dimen/size_8dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageFrameLayout"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+            tools:text="MovieImageView Title" />
+
+        <TextView
+            android:id="@+id/overviewTextView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/size_8dp"
+            android:layout_marginBottom="@dimen/size_16dp"
+            android:ellipsize="end"
+            android:maxLines="7"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintBottom_toBottomOf="@id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageFrameLayout"
+            app:layout_constraintTop_toBottomOf="@+id/releaseTextView"
+            tools:text="MovieImageView Title" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top|start"
-            android:background="@color/gray_alpha_60"
-            android:padding="@dimen/size_8dp"
-            android:textColor="@color/color_white"
-            android:textSize="@dimen/text_size_14sp"
-            tools:text="7.6" />
-    </FrameLayout>
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
 
 
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size_8dp"
-        android:textColor="@color/text_primary"
-        android:textSize="@dimen/text_size_18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageFrameLayout"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="MovieImageView Title" />
+        <include
+            layout="@layout/layout_options"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
-    <TextView
-        android:id="@+id/releaseTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_8dp"
-        android:layout_marginEnd="@dimen/size_8dp"
-        android:textColor="@color/text_secondary"
-        android:textSize="@dimen/text_size_14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageFrameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-        tools:text="MovieImageView Title" />
 
-    <TextView
-        android:id="@+id/overviewTextView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="@dimen/size_8dp"
-        android:layout_marginBottom="@dimen/size_16dp"
-        android:ellipsize="end"
-        android:maxLines="7"
-        android:textColor="@color/text_secondary"
-        android:textSize="@dimen/text_size_16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageFrameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/releaseTextView"
-        tools:text="MovieImageView Title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
