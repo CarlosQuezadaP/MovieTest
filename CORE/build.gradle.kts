@@ -47,11 +47,14 @@ android {
     }
 
     dataBinding { isEnabled = true }
-
     androidExtensions {
         isExperimental = true
         defaultCacheImplementation =
             org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
+    }
+
+    buildFeatures {
+        dataBinding = true
     }
 
 }
@@ -64,15 +67,14 @@ dependencies {
     api(appdependencies.Libs.Core.constraintlayout)
     api(appdependencies.Libs.Core.appcompat)
 
-    api(appdependencies.Libs.Room.runtime)
-    kapt(appdependencies.Libs.Room.kaptcompiler)
-
-
+    kapt(appdependencies.Libs.Lifecycle.kapt_compiler)
     api(appdependencies.Libs.Lifecycle.livedataKtx)
     api(appdependencies.Libs.Lifecycle.viewmodelKtx)
     api(appdependencies.Libs.Lifecycle.savedStateViewModel)
     api(appdependencies.Libs.Lifecycle.extensions)
     api(appdependencies.Libs.Lifecycle.common)
+    api(appdependencies.Libs.Lifecycle.runtime)
+
 
     api(appdependencies.Libs.ImageLoading.coil)
 

@@ -18,6 +18,7 @@ plugins {
 }
 
 android {
+    compileOptions.incremental = false
     compileSdkVersion(COMPILE_VERSION)
     buildToolsVersion = BUILD_TOOLS
     defaultConfig {
@@ -27,7 +28,6 @@ android {
         versionCode = appdependencies.Builds.App.VERSION_CODE
         versionName = appdependencies.Builds.App.VERSION_NAME
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-
         javaCompileOptions.annotationProcessorOptions {
             includeCompileClasspath = true
         }
@@ -123,12 +123,16 @@ android {
         isExperimental = true
         defaultCacheImplementation = org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
     }
+
+
 }
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", Versions.kotlin))
     api(project(":home"))
+    api(project(":detailMovie"))
+    api(project(":shoppingCart"))
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation(Libs.Tests.junit)
     androidTestImplementation(Libs.Tests.runner)

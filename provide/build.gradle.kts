@@ -54,9 +54,11 @@ dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
 
-    api(project(":CORE"))
     api(project(":models"))
-
+    api(project(":support"))
+    implementation("androidx.room:room-runtime:2.2.5")
+    kapt("androidx.room:room-compiler:2.2.5")
+    implementation("androidx.room:room-ktx:2.2.5")
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)
     androidTestImplementation(appdependencies.Libs.Tests.espresso)

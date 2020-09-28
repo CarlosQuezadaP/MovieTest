@@ -11,7 +11,6 @@ object Libs {
     }
 
     object Room {
-        const val ktx = "androidx.room:room-ktx:${Versions.room}"
         const val runtime = "androidx.room:room-runtime:${Versions.room}"
         const val compiler = "androidx.room:room-compiler:${Versions.room}"
         const val kaptcompiler = "androidx.room:room-compiler:${Versions.room}"
@@ -26,6 +25,8 @@ object Libs {
 
     object Lifecycle {
         const val extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+        const val kapt_compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+        const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
 
         //const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle}"
         const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
