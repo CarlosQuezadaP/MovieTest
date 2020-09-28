@@ -1,9 +1,9 @@
 package com.merqueo.co.infraestructura.source.local
 
-import com.merqueo.co.provide.db.dao.IMoviesDao
 import com.merqueo.co.models.entities.MovieEntity
+import com.merqueo.co.provide.db.dao.IMoviesDao
 
-class MoviesLocalSource (
+class MoviesLocalSource(
     private val moviesDao: IMoviesDao
 ) : IMoviesLocalSource {
 
