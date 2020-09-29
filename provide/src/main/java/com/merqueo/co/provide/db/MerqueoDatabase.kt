@@ -10,7 +10,7 @@ import com.merqueo.co.models.entities.MovieEntity
 @Database(
     entities = [
         MovieEntity::class
-    ], version = 1
+    ], version = 3
 )
 @TypeConverters(FromListOfIntToStringConverter::class, FromListOfStringsToStringConverter::class)
 abstract class MerqueoDatabase : RoomDatabase() {

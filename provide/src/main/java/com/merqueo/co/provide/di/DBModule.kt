@@ -7,7 +7,10 @@ import org.koin.dsl.module
 
 val databaseModule = module {
 
-    single { Room.databaseBuilder(androidApplication(), MerqueoDatabase::class.java, "db").build() }
+    single {
+        Room.databaseBuilder(androidApplication(), MerqueoDatabase::class.java, "db")
+            .fallbackToDestructiveMigration().build()
+    }
 
     factory { get<MerqueoDatabase>().getMoviesDao() }
 

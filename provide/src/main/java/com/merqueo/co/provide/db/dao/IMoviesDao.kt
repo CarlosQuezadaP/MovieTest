@@ -2,21 +2,24 @@ package com.merqueo.co.provide.db.dao
 
 import androidx.room.*
 import com.merqueo.co.models.entities.MovieEntity
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 @Dao
 interface IMoviesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(list: List<MovieEntity>)
+    fun insertAll(list: List<MovieEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(data: MovieEntity)
+    fun insert(data: MovieEntity)
 
     @Update
-    suspend fun update(data: MovieEntity)
+    fun update(data: MovieEntity): Int
 
     @Delete
-    suspend fun delete(data: MovieEntity)
+    fun delete(data: MovieEntity)
 
     @Query("SELECT * FROM MovieEntity WHERE genreIds LIKE '%' || :genreId  || '%' ORDER BY releaseDate DESC")
     fun getAllByGenreId(genreId: Int): androidx.paging.DataSource.Factory<Int, MovieEntity>
@@ -25,11 +28,18 @@ interface IMoviesDao {
     fun getAllByPopular(isPopular: Boolean = true): androidx.paging.DataSource.Factory<Int, MovieEntity>
 
     @Query("SELECT COUNT(*) FROM MovieEntity WHERE genreIds LIKE '%' || :genreId  || '%' ORDER BY releaseDate DESC")
-    suspend fun getCount(genreId: Int): Int
+    fun getCount(genreId: Int): Int
 
     @Query("SELECT * FROM MovieEntity WHERE id = :movieId LIMIT 1")
-    suspend fun getById(movieId: Int): MovieEntity?
+    fun getById(movieId: Int): MovieEntity
 
     @Query("SELECT COUNT(*) FROM MovieEntity WHERE isPopular = :isPopular")
-    suspend fun getPopularCount(isPopular: Boolean = true): Int
+    fun getPopularCount(isPopular: Boolean = true): Int
+
+    @Query("SELECT * FROM MovieEntity")
+    fun getAll(): Flow<List<MovieEntity>>
+
+    @ExperimentalCoroutinesApi
+    fun getMovieDistinctUntilChanged() =
+        getAll().distinctUntilChanged()
 }
