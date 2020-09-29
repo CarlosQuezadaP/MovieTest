@@ -1,12 +1,15 @@
 package com.merqueo.co.infraestructura.source.local
 
-import com.merqueo.co.models.entities.MovieEntity
+import androidx.lifecycle.LiveData
+import com.merqueo.co.models.ui.MovieItemDomain
+import kotlinx.coroutines.flow.Flow
 
-interface IMoviesLocalSource  {
+interface IMoviesLocalSource {
 
-    suspend fun insertAll(data: List<MovieEntity>)
-    suspend fun getAll(data: List<MovieEntity>)
-    suspend fun insert(data: MovieEntity)
+    suspend fun insertAll(data: List<MovieItemDomain>)
+    suspend fun getAll(): Flow<List<MovieItemDomain>>
+    suspend fun insert(data: MovieItemDomain)
+    suspend fun updateMovieState(movie: MovieItemDomain): Boolean
 
 
 }

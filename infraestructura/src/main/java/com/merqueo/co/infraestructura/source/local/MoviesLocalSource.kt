@@ -1,20 +1,44 @@
 package com.merqueo.co.infraestructura.source.local
 
 import com.merqueo.co.models.entities.MovieEntity
+import com.merqueo.co.models.ui.MovieItemDomain
 import com.merqueo.co.provide.db.dao.IMoviesDao
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class MoviesLocalSource(
     private val moviesDao: IMoviesDao
 ) : IMoviesLocalSource {
 
-    override suspend fun insertAll(data: List<MovieEntity>) {
-        moviesDao.insertAll(data)
+    override suspend fun insertAll(data: List<MovieItemDomain>) {
+        val dataa = data.map {
+            it.convertTo()
+        }
+        moviesDao.insertAll(dataa)
     }
 
-    override suspend fun getAll(data: List<MovieEntity>) {
+    @ExperimentalCoroutinesApi
+    override suspend fun getAll(): Flow<List<MovieItemDomain>> {
+        val movies = moviesDao.getMovieDistinctUntilChanged().map {
+            it.map {
+                it.convertTo()
+            }
+        }
+        return movies
     }
 
-    override suspend fun insert(data: MovieEntity) {
-        moviesDao.insert(data)
+    override suspend fun insert(data: MovieItemDomain) {
+        moviesDao.insert(data.convertTo())
     }
+
+    override suspend fun updateMovieState(movie: MovieItemDomain): Boolean {
+        return (moviesDao.update(getMovie(movie)) != 0)
+    }
+
+    private fun getMovie(movie: MovieItemDomain): MovieEntity {
+        return moviesDao.getById(movie.id)
+    }
+
+
 }
