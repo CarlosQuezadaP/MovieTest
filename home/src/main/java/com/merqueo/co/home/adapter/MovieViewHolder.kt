@@ -1,23 +1,30 @@
 package com.merqueo.co.home.adapter
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.merqueo.co.core.BuildConfig
 import com.merqueo.co.core.hide
 import com.merqueo.co.core.show
+import com.merqueo.co.home.ClickListener
 import com.merqueo.co.home.R
-import com.merqueo.co.models.dto.upcoming.MovieDto
+import com.merqueo.co.home.databinding.ItemMovieLayoutBinding
+import com.merqueo.co.models.ui.MovieItemDomain
 import kotlinx.android.synthetic.main.item_movie_layout.view.*
 
-class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class MovieViewHolder(
+    private val itemViewBinding: ItemMovieLayoutBinding,
+    private val clickListener: ClickListener
+) :
+    RecyclerView.ViewHolder(itemViewBinding.root) {
 
     private var isPlaceHolder: Boolean = false
 
-    fun bindTo(movie: MovieDto) {
-        itemView.titleTextView.text = movie.title
-        itemView.releaseTextView.text = movie.releaseDate
-        itemView.overviewTextView.text = movie.overview
+    fun bindTo(movie: MovieItemDomain) {
+
+        val row = movie
+        itemViewBinding.movie = row
+        itemViewBinding.movieClickInterface = clickListener
+
         setVoteAverage(movie)
         fullPosterUrl(movie).takeIf {
             !isPlaceHolder
@@ -39,12 +46,12 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }
 
-    private fun fullPosterUrl(movie: MovieDto): String {
+    private fun fullPosterUrl(movie: MovieItemDomain): String {
         return "${BuildConfig.IMAGES_URL}${movie.posterPath}"
     }
 
 
-    private fun setVoteAverage(item: MovieDto) {
+    private fun setVoteAverage(item: MovieItemDomain) {
         if (item.voteAverage > 0.0) {
             itemView.voteAverageTextView.show()
             itemView.voteAverageTextView.text = item.voteAverage.toString()

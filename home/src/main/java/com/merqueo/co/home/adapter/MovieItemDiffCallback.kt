@@ -1,13 +1,13 @@
 package com.merqueo.co.home.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.merqueo.co.models.dto.upcoming.MovieDto
+import com.merqueo.co.models.ui.MovieItemDomain
 
-class MovieItemDiffCallback : DiffUtil.ItemCallback<MovieDto>() {
+class MovieItemDiffCallback : DiffUtil.ItemCallback<MovieItemDomain>() {
 
-    override fun areItemsTheSame(oldItem: MovieDto, newItem: MovieDto): Boolean =
+    override fun areItemsTheSame(oldItem: MovieItemDomain, newItem: MovieItemDomain): Boolean =
         oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: MovieDto, newItem: MovieDto): Boolean =
+    override fun areContentsTheSame(oldItem: MovieItemDomain, newItem: MovieItemDomain): Boolean =
         oldItem == newItem
 }
