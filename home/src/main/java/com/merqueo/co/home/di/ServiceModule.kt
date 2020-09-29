@@ -5,5 +5,5 @@ import com.merqueo.co.home.domain.ServiceMovie
 import org.koin.dsl.module
 
 val serviceMovieModule = module {
-    single<IServiceMovie> { ServiceMovie(get(), get()) }
+    single<IServiceMovie> { ServiceMovie(get(), get(), get()) }
 }
