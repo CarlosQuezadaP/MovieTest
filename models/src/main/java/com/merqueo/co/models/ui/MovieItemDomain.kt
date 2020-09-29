@@ -1,27 +1,11 @@
-package com.merqueo.co.models.entities
+package com.merqueo.co.models.ui
 
 import androidx.annotation.Keep
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
 import com.merqueo.co.core.IConvertableTo
-import com.merqueo.co.models.ui.MovieItemDomain
+import com.merqueo.co.models.entities.MovieEntity
 
 @Keep
-@Entity(
-    indices = [
-        Index(
-            value = ["title"],
-            unique = true
-        ),
-        Index(
-            value = ["id"],
-            unique = true
-        )
-    ]
-)
-data class MovieEntity(
-    @PrimaryKey
+data class MovieItemDomain(
     val id: Int,
     val voteCount: Int,
     val voteAverage: Double,
@@ -35,15 +19,11 @@ data class MovieEntity(
     val backdropPath: String,
     val releaseDate: String,
     val adult: Boolean,
-    val overview: String,
-    val onStore: Boolean = false,
-    var hasDetails: Boolean = false,
-    var isPopular: Boolean = false,
-    var isTopRated: Boolean = false,
-    var isUpComing: Boolean = false
-) : IConvertableTo<MovieItemDomain> {
-    override fun convertTo(): MovieItemDomain {
-        return MovieItemDomain(
+    var onStore: Boolean,
+    val overview: String
+) : IConvertableTo<MovieEntity> {
+    override fun convertTo(): MovieEntity {
+        return MovieEntity(
             id = id,
             voteCount = voteCount,
             voteAverage = voteAverage,
@@ -62,4 +42,3 @@ data class MovieEntity(
         )
     }
 }
-
