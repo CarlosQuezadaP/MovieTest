@@ -1,8 +1,9 @@
 package com.merqueo.co.infraestructura.source.remote
 
 import com.merqueo.co.infraestructura.network.api.IMovieApi
-import com.merqueo.co.infraestructura.source.remote.Utils.handleApiError
-import com.merqueo.co.infraestructura.source.remote.Utils.handleSuccess
+import com.merqueo.co.infraestructura.source.remote.response.AppResult
+import com.merqueo.co.infraestructura.source.remote.response.Utils.handleApiError
+import com.merqueo.co.infraestructura.source.remote.response.Utils.handleSuccess
 import com.merqueo.co.models.dto.upcoming.UpcomingResponse
 
 class MoviesRemoteSource(
