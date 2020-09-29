@@ -6,18 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.merqueo.co.home.ClickListener
 import com.merqueo.co.home.R
 import com.merqueo.co.home.adapter.MovieAdapter
 import com.merqueo.co.home.databinding.FragmentHomeBinding
 import com.merqueo.co.home.viewModel.MovieViewModel
-import com.merqueo.co.models.dto.upcoming.MovieDto
+import com.merqueo.co.models.ui.MovieItemDomain
 import com.merqueo.co.provide.db.MerqueoDatabase
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class HomeFragment : Fragment() {
+@InternalCoroutinesApi
+@ExperimentalCoroutinesApi
+class HomeFragment : Fragment(), ClickListener {
 
     private lateinit var content: View
     private lateinit var homeBinding: FragmentHomeBinding
@@ -44,22 +51,28 @@ class HomeFragment : Fragment() {
 
 
     private fun setView() {
-        movieAdapter = MovieAdapter()
+        movieAdapter = MovieAdapter(this)
         mRootView.recyclerview.adapter = movieAdapter
     }
 
 
-    private fun showData(movies: List<MovieDto>) {
+    private fun showData(movies: List<MovieItemDomain>) {
         movieAdapter.submitList(movies)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         homeBinding.viewModel = moviesViewModel
-        moviesViewModel.getDataRemote()
         moviesViewModel.movieList.observe(viewLifecycleOwner, {
             showData(it)
         })
+    }
+
+    override fun onItemClick(movieItemDomain: MovieItemDomain, type: Boolean) {
+        movieItemDomain.onStore = type
+        GlobalScope.launch {
+            moviesViewModel.updateMovieState(movieItemDomain)
+        }
     }
 
 

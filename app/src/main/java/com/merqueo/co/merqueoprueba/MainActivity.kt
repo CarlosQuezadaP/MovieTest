@@ -12,7 +12,7 @@ import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 
 class MainActivity : AppCompatActivity() {
 
-    var textCartItemCount: TextView? = null
+    lateinit var textCartItemCount: TextView
     var mCartItemCount = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBadge() {
-        textCartItemCount!!.text = "10"
+        textCartItemCount.text = "0"
     }
 
 
