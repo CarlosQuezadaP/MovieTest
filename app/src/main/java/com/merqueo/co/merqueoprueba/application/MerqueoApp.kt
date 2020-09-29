@@ -4,16 +4,19 @@ import android.app.Application
 import com.merqueo.co.home.di.homeFragmentModule
 import com.merqueo.co.home.di.serviceMovieModule
 import com.merqueo.co.home.di.viewModelMovie
+import com.merqueo.co.infraestructura.source.di.connectivityModule
 import com.merqueo.co.infraestructura.source.di.moduleLocalSource
 import com.merqueo.co.infraestructura.source.di.moduleRemoteSource
 import com.merqueo.co.provide.di.databaseModule
 import com.merqueo.co.provide.di.networkModule
+import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.koin.fragmentFactory
 import org.koin.core.context.startKoin
 
 class
 MerqueoApp : Application() {
+    @InternalCoroutinesApi
     override fun onCreate() {
         super.onCreate()
 
@@ -28,7 +31,8 @@ MerqueoApp : Application() {
                     moduleRemoteSource,
                     moduleLocalSource,
                     serviceMovieModule,
-                    viewModelMovie
+                    viewModelMovie,
+                    connectivityModule
                 )
             )
         }
