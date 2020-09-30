@@ -5,6 +5,7 @@ import coil.api.load
 import com.merqueo.co.core.BuildConfig
 import com.merqueo.co.core.hide
 import com.merqueo.co.core.show
+import com.merqueo.co.home.AddRemoveListener
 import com.merqueo.co.home.ClickListener
 import com.merqueo.co.home.R
 import com.merqueo.co.home.databinding.ItemMovieLayoutBinding
@@ -13,7 +14,8 @@ import kotlinx.android.synthetic.main.item_movie_layout.view.*
 
 class MovieViewHolder(
     private val itemViewBinding: ItemMovieLayoutBinding,
-    private val clickListener: ClickListener
+    private val addRemoveListener: AddRemoveListener,
+    private val clickListener: ClickListener,
 ) :
     RecyclerView.ViewHolder(itemViewBinding.root) {
 
@@ -23,7 +25,8 @@ class MovieViewHolder(
 
         val row = movie
         itemViewBinding.movie = row
-        itemViewBinding.movieClickInterface = clickListener
+        itemViewBinding.movieClickInterface = addRemoveListener
+        itemViewBinding.clickInterface = clickListener
 
         setVoteAverage(movie)
         fullPosterUrl(movie).takeIf {

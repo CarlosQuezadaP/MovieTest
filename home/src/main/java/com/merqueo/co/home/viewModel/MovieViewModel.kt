@@ -27,7 +27,6 @@ class MovieViewModel(
         CoroutineExceptionHandler { coroutineContext, throwable -> onError("Exception: ${throwable.localizedMessage}") }
     var coroutineScope = CoroutineScope(Dispatchers.IO + excepcionHandler)
     val showLoading = ObservableBoolean()
-    val totalCart = ObservableInt()
     val showError = SingleLiveEvent<String>()
     var movieList = MutableLiveData<List<MovieItemDomain>>()
 

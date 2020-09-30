@@ -13,7 +13,13 @@
 
         <variable
             name="movieClickInterface"
+            type="com.merqueo.co.home.AddRemoveListener" />
+
+
+        <variable
+            name="clickInterface"
             type="com.merqueo.co.home.ClickListener" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -142,13 +148,12 @@
 
                     <Button
                         android:id="@+id/button_add"
-                        changeBackgroundSuccess="@{false}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:background="@{movie.adult ? @drawable/button_bordered_green : @drawable/button_bordered_blue}"
-                        android:onClick="@{() -> movieClickInterface.onItemClick(movie, true)}"
+                        android:onClick="@{() -> movieClickInterface.onItemClickOnButton(movie, true)}"
                         android:text="Agregar"
                         android:textColor="#ffffff"
                         android:textSize="12dp" />
@@ -160,8 +165,21 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:background="@{movie.adult ? @drawable/button_bordered_gray : @drawable/button_bordered_red}"
-                        android:onClick="@{() -> movieClickInterface.onItemClick(movie, false)}"
+                        android:onClick="@{() -> movieClickInterface.onItemClickOnButton(movie, false)}"
                         android:text="Eliminar"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12dp" />
+
+
+                    <Button
+                        android:id="@+id/button_viewDetail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@{movie.adult ? @drawable/button_bordered_gray : @drawable/button_bordered_red}"
+                        android:onClick="@{() -> clickInterface.onClick(movie)}"
+                        android:text="Detalle"
                         android:textColor="#FFFFFF"
                         android:textSize="12dp" />
 

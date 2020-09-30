@@ -1,53 +1,75 @@
 package com.merqueo.co.merqueoprueba
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.merqueo.co.merqueoprueba.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var textCartItemCount: TextView
-    var mCartItemCount = 10
+    var mainBinding: ActivityMainBinding? = null
+    private val mainViewModel: MainViewModel by viewModel()
+
+    private val appBarConfiguration: AppBarConfiguration by lazy {
+        AppBarConfiguration.Builder(
+            setOf(
+                R.id.homeFragment,
+            )
+        ).build()
+    }
+
+    private val navController: NavController by lazy { findNavController(R.id.fragment_nav_host) }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setupKoinFragmentFactory()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+
+        mainBinding = ActivityMainBinding.inflate(layoutInflater)
+
+        setContentView(mainBinding!!.root)
+        setSupportActionBar(tlb_main)
 
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
+        btm_nav_main.setupWithNavController(navController)
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
-        val menuItem: MenuItem = menu.findItem(R.id.action_shopping)
-        val actionView: View = menuItem.actionView
-
-        textCartItemCount = actionView.findViewById(R.id.cart_badge) as TextView
-        setupBadge()
-        actionView.setOnClickListener {
-            onOptionsItemSelected(menuItem)
-        }
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_shopping -> {
-                Toast.makeText(this@MainActivity, "Action", Toast.LENGTH_SHORT).show()
-                return true
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment -> btm_nav_main.visibility =
+                    View.VISIBLE
+                else -> btm_nav_main.visibility = View.GONE
             }
         }
-        return super.onOptionsItemSelected(item)
+
+        mainViewModel.totalCart.observe(this, {
+            setupBadge(it)
+        })
+
     }
 
-    private fun setupBadge() {
-        textCartItemCount.text = "0"
+    private fun setupBadge(count: Int) {
+        mainBinding!!.btmNavMain.getOrCreateBadge(R.id.nav_store).apply {
+            number = count
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mainBinding = null
     }
 
 

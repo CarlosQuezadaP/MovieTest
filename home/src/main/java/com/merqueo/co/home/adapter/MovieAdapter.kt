@@ -4,25 +4,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
+import com.merqueo.co.home.AddRemoveListener
 import com.merqueo.co.home.ClickListener
 import com.merqueo.co.home.R
 import com.merqueo.co.home.databinding.ItemMovieLayoutBinding
 import com.merqueo.co.models.ui.MovieItemDomain
 
-class MovieAdapter(private val clickListener: ClickListener) :
-    ListAdapter<MovieItemDomain, RecyclerView.ViewHolder>(MovieItemDiffCallback()) {
+class MovieAdapter(
+    private val addRemoveListener: AddRemoveListener,
+    private val clickListener: ClickListener
+) :
+    ListAdapter<MovieItemDomain, MovieViewHolder>(MovieItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): MovieViewHolder {
-        val layout: ItemMovieLayoutBinding = DataBindingUtil.inflate(
+        val layout = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             R.layout.item_movie_layout, parent, false
-        )
+        ) as ItemMovieLayoutBinding
 
-        return MovieViewHolder(layout, clickListener)
+        return MovieViewHolder(layout, addRemoveListener, clickListener)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as MovieViewHolder).bindTo(getItem(position))
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        holder.bindTo(getItem(position))
     }
 }
