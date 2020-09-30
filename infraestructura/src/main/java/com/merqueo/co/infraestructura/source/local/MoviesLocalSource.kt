@@ -36,8 +36,18 @@ class MoviesLocalSource(
         return (moviesDao.update(getMovie(movie)) != 0)
     }
 
+    override suspend fun getCountStoreCart(): Int {
+        return moviesDao.getOnStoreCount()
+    }
+
     private fun getMovie(movie: MovieItemDomain): MovieEntity {
-        return moviesDao.getById(movie.id)
+        val movie = moviesDao.getById(movie.id)
+        movie.onStore = movie.onStore
+        return movie
+    }
+
+    private fun onstore(movie: MovieItemDomain): Int {
+        return moviesDao.getOnStoreCount()
     }
 
 

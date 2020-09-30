@@ -10,6 +10,7 @@ interface IMoviesLocalSource {
     suspend fun getAll(): Flow<List<MovieItemDomain>>
     suspend fun insert(data: MovieItemDomain)
     suspend fun updateMovieState(movie: MovieItemDomain): Boolean
+    suspend fun getCountStoreCart():Int
 
 
 }

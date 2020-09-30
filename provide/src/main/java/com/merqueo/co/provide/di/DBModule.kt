@@ -9,7 +9,7 @@ val databaseModule = module {
 
     single {
         Room.databaseBuilder(androidApplication(), MerqueoDatabase::class.java, "db")
-            .fallbackToDestructiveMigration().build()
+            .build()
     }
 
     factory { get<MerqueoDatabase>().getMoviesDao() }

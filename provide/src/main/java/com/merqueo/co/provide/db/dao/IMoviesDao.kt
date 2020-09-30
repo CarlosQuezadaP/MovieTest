@@ -4,19 +4,21 @@ import androidx.room.*
 import com.merqueo.co.models.entities.MovieEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.distinctUntilChanged
 
 @Dao
 interface IMoviesDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(list: List<MovieEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(data: MovieEntity)
 
     @Update
     fun update(data: MovieEntity): Int
+
+    @Query("SELECT COUNT(*) FROM MovieEntity WHERE onStore = :onStore")
+    fun getOnStoreCount(onStore: Boolean = true): Int
 
     @Delete
     fun delete(data: MovieEntity)
@@ -41,5 +43,5 @@ interface IMoviesDao {
 
     @ExperimentalCoroutinesApi
     fun getMovieDistinctUntilChanged() =
-        getAll().distinctUntilChanged()
+        getAll()
 }

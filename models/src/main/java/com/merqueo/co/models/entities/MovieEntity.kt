@@ -36,7 +36,7 @@ data class MovieEntity(
     val releaseDate: String,
     val adult: Boolean,
     val overview: String,
-    val onStore: Boolean = false,
+    var onStore: Boolean = false,
     var hasDetails: Boolean = false,
     var isPopular: Boolean = false,
     var isTopRated: Boolean = false,
