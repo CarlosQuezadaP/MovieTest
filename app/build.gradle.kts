@@ -13,7 +13,6 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
-    id("androidx.navigation.safeargs.kotlin")
     id("kotlin-android")
 }
 
@@ -117,11 +116,17 @@ android {
         }
     }
 
-    dataBinding { isEnabled = true }
+
 
     androidExtensions {
         isExperimental = true
-        defaultCacheImplementation = org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
+        defaultCacheImplementation =
+            org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
+    }
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
     }
 
 

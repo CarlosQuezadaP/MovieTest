@@ -4,6 +4,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
     id("kotlin-android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -41,9 +42,10 @@ android {
             "-XXLanguage:+InlineClasses"
         )
     }
-
-    dataBinding { isEnabled = true }
-
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
     androidExtensions {
         isExperimental = true
         defaultCacheImplementation =
@@ -58,6 +60,7 @@ dependencies {
 
     api(project(":CORE"))
     api(project(":infraestructura"))
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)
     androidTestImplementation(appdependencies.Libs.Tests.espresso)

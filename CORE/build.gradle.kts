@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -46,7 +47,6 @@ android {
         )
     }
 
-    dataBinding { isEnabled = true }
     androidExtensions {
         isExperimental = true
         defaultCacheImplementation =
@@ -75,11 +75,11 @@ dependencies {
     api(appdependencies.Libs.Lifecycle.common)
     api(appdependencies.Libs.Lifecycle.runtime)
 
-
     api(appdependencies.Libs.ImageLoading.coil)
 
     api(appdependencies.Libs.Core.navigationFragmentKtx)
     api(appdependencies.Libs.Core.navigationUiKtx)
+    api(appdependencies.Libs.Core.material)
 
     api(appdependencies.Libs.Retrofit.core)
     api(appdependencies.Libs.Retrofit.adapter)
