@@ -17,21 +17,11 @@ android {
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "IMAGES_URL", "\"https://image.tmdb.org/t/p/w500\"")
         buildConfigField("String", "SERVER_URL", "\"https://api.themoviedb.org/3/\"")
+        buildConfigField("String", "IMAGES_BACKDROP_URL", "\"https://image.tmdb.org/t/p/original\"")
         buildConfigField("String", "ApiKey", "\"026a257e7842ac9cac1fa627496b1468\"")
 
     }
 
-    buildTypes {
-        getByName("debug") {
-            isMinifyEnabled = false
-            isDebuggable = true
-        }
-
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-        }
-    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -51,10 +41,6 @@ android {
         isExperimental = true
         defaultCacheImplementation =
             org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
-    }
-
-    buildFeatures {
-        dataBinding = true
     }
 
 }
@@ -92,6 +78,8 @@ dependencies {
     api(appdependencies.Libs.Koin.koinViewModel)
     api(appdependencies.Libs.Koin.koinFragment)
     api(appdependencies.Libs.Koin.koinScope)
+
+    api(appdependencies.Libs.toasty)
 
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)

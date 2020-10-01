@@ -136,7 +136,6 @@ dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", Versions.kotlin))
     api(project(":home"))
-    api(project(":detailMovie"))
     api(project(":shoppingCart"))
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation(Libs.Tests.junit)

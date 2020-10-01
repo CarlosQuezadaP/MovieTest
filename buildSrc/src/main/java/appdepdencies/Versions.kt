@@ -35,6 +35,7 @@ object Versions {
 
     /* test */
     const val junit = "4.12"
+    const val toasty = "1.5.0"
     const val runner = "1.0.2"
     const val espresso = "3.0.2"
 

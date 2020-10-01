@@ -15,18 +15,6 @@ android {
         versionName = appdependencies.Builds.Core.VERSION_NAME
     }
 
-    buildTypes {
-        getByName("debug") {
-            isMinifyEnabled = false
-            isDebuggable = true
-        }
-
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-        }
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -41,7 +29,6 @@ android {
         )
     }
 
-    dataBinding { isEnabled = true }
 
     androidExtensions {
         isExperimental = true

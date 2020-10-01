@@ -41,7 +41,6 @@ android {
         )
     }
 
-    dataBinding { isEnabled = true }
 
     androidExtensions {
         isExperimental = true

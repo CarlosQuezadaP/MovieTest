@@ -76,4 +76,5 @@ object Libs {
     }
 
 
+    const val toasty = "com.github.GrenderG:Toasty:${Versions.toasty}"
 }
