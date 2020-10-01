@@ -14,23 +14,19 @@ interface IMoviesDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(data: MovieEntity)
 
-    @Update
-    fun update(data: MovieEntity): Int
+    @Query("UPDATE MovieEntity SET onStore=:onStore WHERE id = :id")
+    fun update(onStore: Boolean, id: Int): Int
+
+    @Query("UPDATE MovieEntity SET onStore=:onStore WHERE id = :id")
+    fun updateToFailStore(onStore: Boolean = false, id: Int): Int
 
     @Query("SELECT COUNT(*) FROM MovieEntity WHERE onStore = :onStore")
-    fun getOnStoreCount(onStore: Boolean = true): Int
+    fun getOnStoreCount(onStore: Boolean = true): Flow<Int>
+
 
     @Delete
     fun delete(data: MovieEntity)
 
-    @Query("SELECT * FROM MovieEntity WHERE genreIds LIKE '%' || :genreId  || '%' ORDER BY releaseDate DESC")
-    fun getAllByGenreId(genreId: Int): androidx.paging.DataSource.Factory<Int, MovieEntity>
-
-    @Query("SELECT * FROM MovieEntity WHERE isPopular = :isPopular ORDER BY popularity DESC")
-    fun getAllByPopular(isPopular: Boolean = true): androidx.paging.DataSource.Factory<Int, MovieEntity>
-
-    @Query("SELECT COUNT(*) FROM MovieEntity WHERE genreIds LIKE '%' || :genreId  || '%' ORDER BY releaseDate DESC")
-    fun getCount(genreId: Int): Int
 
     @Query("SELECT * FROM MovieEntity WHERE id = :movieId LIMIT 1")
     fun getById(movieId: Int): MovieEntity
@@ -38,10 +34,18 @@ interface IMoviesDao {
     @Query("SELECT COUNT(*) FROM MovieEntity WHERE isPopular = :isPopular")
     fun getPopularCount(isPopular: Boolean = true): Int
 
+    @Query("SELECT * FROM MovieEntity  WHERE onStore = :onStore")
+    fun getAllByStore(onStore: Boolean = true): Flow<List<MovieEntity>>
+
     @Query("SELECT * FROM MovieEntity")
     fun getAll(): Flow<List<MovieEntity>>
 
     @ExperimentalCoroutinesApi
     fun getMovieDistinctUntilChanged() =
         getAll()
+
+    @ExperimentalCoroutinesApi
+    fun getMovieStoreDistinctUntilChanged() =
+        getAllByStore()
+
 }
