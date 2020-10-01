@@ -20,7 +20,7 @@ Provee el repositorio de datos local y remoto.
 * infraestructura
 Obtiene el acceso a los datos remotos y los datos locales. 
 
-![alt_text](img/merqueo prueba.png)
+![Scheme](images/scheme.png)
 
 
 
