@@ -16,6 +16,7 @@ import com.merqueo.co.home.adapter.MovieAdapter
 import com.merqueo.co.home.databinding.FragmentHomeBinding
 import com.merqueo.co.home.viewModel.MovieViewModel
 import com.merqueo.co.models.ui.MovieItemDomain
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -66,6 +67,15 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener {
         homeBinding.viewModel = moviesViewModel
         moviesViewModel.movieList.observe(viewLifecycleOwner, {
             showData(it)
+        })
+        moviesViewModel.movieChangeState.observe(viewLifecycleOwner, {
+            if (it) {
+                Toasty.success(requireActivity(), "se realizo el cambio de estado.").show()
+            } else {
+
+                Toasty.error(requireActivity(), "No es posible realizar este cambio de estado")
+                    .show()
+            }
         })
     }
 

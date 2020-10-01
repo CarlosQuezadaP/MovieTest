@@ -11,14 +11,6 @@
             name="movie"
             type="com.merqueo.co.models.ui.MovieItemDomain" />
 
-        <variable
-            name="movieClickInterface"
-            type="com.merqueo.co.home.AddRemoveListener" />
-
-
-        <variable
-            name="clickInterface"
-            type="com.merqueo.co.home.ClickListener" />
 
     </data>
 
@@ -37,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/size_8dp"
-                app:layout_constraintBottom_toBottomOf="@id/guideline3"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -108,92 +100,11 @@
                 android:text="@{movie.overview}"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_size_16sp"
-                app:layout_constraintBottom_toBottomOf="@id/guideline3"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageFrameLayout"
                 app:layout_constraintTop_toBottomOf="@+id/releaseTextView"
                 tools:text="MovieImageView Title" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.7" />
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline3">
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="3"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-
-                    <Button
-                        android:id="@+id/button_add"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@{movie.onStore ? @drawable/button_bordered_green : @drawable/button_bordered_blue}"
-                        android:onClick="@{() -> movieClickInterface.onItemClickOnButton(movie, true)}"
-                        android:text="Agregar"
-                        android:textColor="#ffffff"
-                        android:textSize="12dp" />
-
-                    <Button
-                        android:id="@+id/button_delete"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@{movie.onStore ? @drawable/button_bordered_gray : @drawable/button_bordered_red}"
-                        android:onClick="@{() -> movieClickInterface.onItemClickOnButton(movie, false)}"
-                        android:text="Eliminar"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12dp" />
-
-
-                    <Button
-                        android:id="@+id/button_viewDetail"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:background="@{movie.onStore ? @drawable/button_bordered_gray : @drawable/button_bordered_red}"
-                        android:onClick="@{() -> clickInterface.onClick(movie)}"
-                        android:text="Detalle"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12dp" />
-
-
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.70" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
