@@ -1,5 +1,6 @@
 package com.merqueo.co.home.di
 
+import com.merqueo.co.home.viewModel.DetailViewModel
 import com.merqueo.co.home.viewModel.MovieViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -11,5 +12,11 @@ import org.koin.dsl.module
 val viewModelMovie = module {
     viewModel {
         MovieViewModel(get())
+    }
+}
+
+val viewModelDetailMovie = module {
+    viewModel {
+        DetailViewModel(get())
     }
 }

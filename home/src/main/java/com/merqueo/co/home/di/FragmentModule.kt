@@ -1,5 +1,6 @@
 package com.merqueo.co.home.di
 
+import com.merqueo.co.home.fragments.DetailFragment
 import com.merqueo.co.home.fragments.HomeFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -10,4 +11,8 @@ import org.koin.dsl.module
 @InternalCoroutinesApi
 val homeFragmentModule = module {
     fragment { HomeFragment() }
+}
+
+val detailFragmentModule = module {
+    fragment { DetailFragment() }
 }
