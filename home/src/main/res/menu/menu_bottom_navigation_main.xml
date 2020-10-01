@@ -4,6 +4,7 @@
         android:id="@+id/nav_movies"
         android:icon="@drawable/ic_movie_black_24dp"
         android:title="Movies" />
+
     <item
         android:id="@+id/nav_store"
         android:icon="@drawable/ic_shopping_cart_black_18dp"

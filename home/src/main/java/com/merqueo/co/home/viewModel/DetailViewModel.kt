@@ -1,23 +1,20 @@
 package com.merqueo.co.home.viewModel
 
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.merqueo.co.home.SingleLiveEvent
-import com.merqueo.co.home.domain.IServiceMovie
+import com.merqueo.co.home.domain.IserviceDetail
 import com.merqueo.co.models.ui.MovieItemDomain
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 
-
 @ExperimentalCoroutinesApi
-@InternalCoroutinesApi
-class MovieViewModel(
-    private val iServiceMovie: IServiceMovie
+class DetailViewModel(
+    private val iserviceDetail: IserviceDetail
 ) :
-    ViewModel(), IMovieViewModel {
+    ViewModel() {
 
     var job: Job? = null
 
@@ -25,40 +22,22 @@ class MovieViewModel(
     val showLoading = ObservableBoolean()
     val movieChangeState = SingleLiveEvent<Boolean>()
     val showError = SingleLiveEvent<String>()
-    var movieList = MutableLiveData<List<MovieItemDomain>>()
 
+    var movie = SingleLiveEvent<MovieItemDomain>()
 
-    init {
-        showData()
-    }
-
-    override fun showData() {
+    fun getMovie(idMovie: Int) {
         showLoading.set(true)
         job = coroutineScope.launch {
-            val response = iServiceMovie.getMovies()
+            val response = iserviceDetail.getMovie(idMovie)
             showLoading.set(false)
             withContext(Dispatchers.Main) {
                 flowOf(response)
                     .catch { throwable ->
                         showError.value = throwable.localizedMessage
-                    }.collect { result ->
-                        result.collect {
-                            showError.value = null
-                            movieList.value = it
-                        }
+                    }.collect {
+                        movie.value = it
                     }
             }
-        }
-    }
-
-
-    suspend fun updateMovieState(movieItemDomain: MovieItemDomain) {
-        coroutineScope.launch {
-            val value = iServiceMovie.updateMovieState(movieItemDomain.id, movieItemDomain.onStore)
-            withContext(Dispatchers.Main) {
-                movieChangeState.value = value
-            }
-
         }
     }
 

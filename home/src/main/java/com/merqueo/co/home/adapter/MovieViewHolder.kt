@@ -10,7 +10,6 @@ import com.merqueo.co.home.ClickListener
 import com.merqueo.co.home.R
 import com.merqueo.co.home.databinding.ItemMovieLayoutBinding
 import com.merqueo.co.models.ui.MovieItemDomain
-import kotlinx.android.synthetic.main.item_movie_layout.view.*
 
 class MovieViewHolder(
     private val itemViewBinding: ItemMovieLayoutBinding,
@@ -32,16 +31,16 @@ class MovieViewHolder(
         fullPosterUrl(movie).takeIf {
             !isPlaceHolder
         }?.let { imageUrl ->
-            itemView.movieImageView.load(imageUrl) {
+            itemViewBinding.movieImageView.load(imageUrl) {
                 placeholder(R.drawable.ic_cloud_off_black_24dp)
                 target(onStart = {
-                    itemView.imageProgressBar.show()
+                    itemViewBinding.imageProgressBar.show()
                 }, onSuccess = {
-                    itemView.movieImageView.setImageDrawable(it)
-                    itemView.imageProgressBar.hide(true)
+                    itemViewBinding.movieImageView.setImageDrawable(it)
+                    itemViewBinding.imageProgressBar.hide(true)
                 }, onError = {
-                    itemView.movieImageView.setImageResource(R.drawable.ic_cloud_off_black_24dp)
-                    itemView.imageProgressBar.hide(true)
+                    itemViewBinding.movieImageView.setImageResource(R.drawable.ic_cloud_off_black_24dp)
+                    itemViewBinding.imageProgressBar.hide(true)
                 })
             }
         }
@@ -56,10 +55,10 @@ class MovieViewHolder(
 
     private fun setVoteAverage(item: MovieItemDomain) {
         if (item.voteAverage > 0.0) {
-            itemView.voteAverageTextView.show()
-            itemView.voteAverageTextView.text = item.voteAverage.toString()
+            itemViewBinding.voteAverageTextView.show()
+            itemViewBinding.voteAverageTextView.text = item.voteAverage.toString()
         } else {
-            itemView.voteAverageTextView.hide()
+            itemViewBinding.voteAverageTextView.hide()
         }
     }
 

@@ -1,17 +1,17 @@
 package com.merqueo.co.merqueoprueba.application
 
 import android.app.Application
-import com.merqueo.co.home.di.homeFragmentModule
-import com.merqueo.co.home.di.serviceMovieModule
-import com.merqueo.co.home.di.viewModelMovie
+import com.co.merqueo.shoppingcart.dominio.di.moduleServiceShopping
+import com.merqueo.co.home.di.*
 import com.merqueo.co.infraestructura.source.di.connectivityModule
 import com.merqueo.co.infraestructura.source.di.moduleLocalSource
 import com.merqueo.co.infraestructura.source.di.moduleRemoteSource
-import com.merqueo.co.merqueoprueba.mainModule
-import com.merqueo.co.merqueoprueba.viewModelMainModule
+import com.merqueo.co.merqueoprueba.domain.di.mainModule
+import com.merqueo.co.merqueoprueba.domain.di.viewModelMainModule
 import com.merqueo.co.provide.di.databaseModule
 import com.merqueo.co.provide.di.networkModule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.koin.fragmentFactory
@@ -20,6 +20,7 @@ import org.koin.core.context.startKoin
 
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
+@FlowPreview
 class MerqueoApp : Application() {
     override fun onCreate() {
         super.onCreate()
@@ -35,10 +36,13 @@ class MerqueoApp : Application() {
                     moduleRemoteSource,
                     moduleLocalSource,
                     serviceMovieModule,
+                    serviceDetailMovieModule,
                     viewModelMovie,
                     connectivityModule,
                     mainModule,
-                    viewModelMainModule
+                    viewModelMainModule,
+                    viewModelDetailMovie,
+                    moduleServiceShopping
                 )
             )
         }
