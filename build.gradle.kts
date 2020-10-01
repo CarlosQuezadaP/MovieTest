@@ -12,7 +12,7 @@ buildscript {
 
         classpath(appdependencies.ClassPath.google)
         classpath(appdependencies.ClassPath.navisafe)
-        "classpath"("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+        classpath(appdependencies.ClassPath.kotlin_gradle_plugin)
     }
 }
 
