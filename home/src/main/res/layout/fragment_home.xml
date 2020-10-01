@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.merqueo.co.home.viewModel.MovieViewModel" />
+            type="com.merqueo.co.home.presentacion.viewModel.MovieViewModel" />
 
     </data>
 

@@ -137,7 +137,6 @@ dependencies {
     implementation(kotlin("stdlib-jdk8", Versions.kotlin))
     api(project(":home"))
     api(project(":shoppingCart"))
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation(Libs.Tests.junit)
     androidTestImplementation(Libs.Tests.runner)
     androidTestImplementation(Libs.Tests.espresso)

@@ -9,7 +9,6 @@ buildscript {
     dependencies {
         classpath(appdependencies.ClassPath.gradle)
         classpath(appdependencies.ClassPath.kotlingradle)
-
         classpath(appdependencies.ClassPath.google)
         classpath(appdependencies.ClassPath.navisafe)
         classpath(appdependencies.ClassPath.kotlin_gradle_plugin)

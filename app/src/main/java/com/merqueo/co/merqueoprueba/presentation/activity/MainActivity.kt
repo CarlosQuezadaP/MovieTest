@@ -10,7 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ActivityMainBinding
-import com.merqueo.co.merqueoprueba.viewModel.MainViewModel
+import com.merqueo.co.merqueoprueba.presentation.viewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 import org.koin.androidx.viewmodel.ext.android.viewModel

@@ -41,10 +41,13 @@ android {
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
-    api(project(":support"))
-    api(project(":CORE"))
-    implementation("androidx.room:room-runtime:2.2.5")
-    kapt("androidx.room:room-compiler:2.2.5")
+
+    api(appdependencies.Libs.Room.runtime)
+    api(appdependencies.Libs.Room.ktx)
+    implementation(project(mapOf("path" to ":CORE")))
+    kapt(appdependencies.Libs.Room.kaptcompiler)
+
+
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)
     androidTestImplementation(appdependencies.Libs.Tests.espresso)

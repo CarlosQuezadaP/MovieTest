@@ -10,14 +10,14 @@
 
         <variable
             name="viewModel"
-            type="com.merqueo.co.home.viewModel.DetailViewModel" />
+            type="com.merqueo.co.home.presentacion.viewModel.DetailViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.DetailFragment">
+        tools:context=".presentacion.fragments.DetailFragment">
 
 
         <ImageView

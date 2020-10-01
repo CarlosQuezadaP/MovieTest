@@ -42,13 +42,17 @@ android {
         defaultCacheImplementation =
             org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
     }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
 
 }
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
-
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     api(appdependencies.Libs.Core.paging)
     api(appdependencies.Libs.Core.constraintlayout)
     api(appdependencies.Libs.Core.appcompat)
@@ -80,6 +84,10 @@ dependencies {
     api(appdependencies.Libs.Koin.koinScope)
 
     api(appdependencies.Libs.toasty)
+
+    api(appdependencies.Libs.Room.runtime)
+    api(appdependencies.Libs.Room.ktx)
+    kapt(appdependencies.Libs.Room.kaptcompiler)
 
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)

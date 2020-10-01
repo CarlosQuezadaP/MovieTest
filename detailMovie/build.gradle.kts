@@ -57,7 +57,6 @@ dependencies {
 
     api(project(":CORE"))
     api(project(":infraestructura"))
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation(appdependencies.Libs.Tests.junit)
     androidTestImplementation(appdependencies.Libs.Tests.runner)
     androidTestImplementation(appdependencies.Libs.Tests.espresso)
