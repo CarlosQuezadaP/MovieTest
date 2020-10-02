@@ -63,17 +63,17 @@ class DetailFragment : Fragment() {
 
         mRootView.button_add.setOnClickListener {
             GlobalScope.launch {
-                var asd = detailMovieViewModel.movie.value!!
-                asd.onStore = true
-                detailMovieViewModel.updateMovieState(asd)
+                val movie = detailMovieViewModel.movie.value!!
+                movie.onStore = true
+                detailMovieViewModel.updateMovieState(movie)
             }
         }
 
         mRootView.button_delete.setOnClickListener {
             GlobalScope.launch {
-                var asd = detailMovieViewModel.movie.value!!
-                asd.onStore = false
-                detailMovieViewModel.updateMovieState(asd)
+                val movie = detailMovieViewModel.movie.value!!
+                movie.onStore = false
+                detailMovieViewModel.updateMovieState(movie)
             }
         }
     }
