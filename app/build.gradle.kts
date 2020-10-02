@@ -14,6 +14,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
     id("kotlin-android")
+    "koin"
 }
 
 android {
@@ -26,7 +27,7 @@ android {
         targetSdkVersion(TARGET_VERSION)
         versionCode = appdependencies.Builds.App.VERSION_CODE
         versionName = appdependencies.Builds.App.VERSION_NAME
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions.annotationProcessorOptions {
             includeCompileClasspath = true
         }
@@ -138,6 +139,11 @@ dependencies {
     api(project(":home"))
     api(project(":shoppingCart"))
     testImplementation(Libs.Tests.junit)
-    androidTestImplementation(Libs.Tests.runner)
-    androidTestImplementation(Libs.Tests.espresso)
+    androidTestImplementation(Libs.Tests.test_ext_junit)
+    androidTestImplementation(Libs.Tests.test_rules)
+    androidTestImplementation(Libs.Tests.test_runner)
+    androidTestImplementation(Libs.Tests.espresso_espresso)
+    androidTestImplementation(Libs.Tests.test_espresso)
+    testImplementation(Libs.Mockito.mockito_inline)
+    testImplementation(Libs.Mockito.mockito_core)
 }

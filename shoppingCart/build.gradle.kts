@@ -15,6 +15,7 @@ android {
         targetSdkVersion(appdependencies.Builds.TARGET_VERSION)
         versionCode = appdependencies.Builds.Core.VERSION_CODE
         versionName = appdependencies.Builds.Core.VERSION_NAME
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -63,6 +64,4 @@ dependencies {
     api(project(":infraestructura"))
 
     testImplementation(appdependencies.Libs.Tests.junit)
-    androidTestImplementation(appdependencies.Libs.Tests.runner)
-    androidTestImplementation(appdependencies.Libs.Tests.espresso)
 }

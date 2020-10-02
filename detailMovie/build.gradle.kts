@@ -58,6 +58,4 @@ dependencies {
     api(project(":CORE"))
     api(project(":infraestructura"))
     testImplementation(appdependencies.Libs.Tests.junit)
-    androidTestImplementation(appdependencies.Libs.Tests.runner)
-    androidTestImplementation(appdependencies.Libs.Tests.espresso)
 }

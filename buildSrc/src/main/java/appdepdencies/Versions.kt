@@ -11,6 +11,8 @@ object Versions {
     const val koin = "2.1.6"
 
     const val room = "2.2.5"
+    const val mockito = "3.1.0"
+    const val mockito_inline = "2.13.0"
     const val lifecycle = "2.2.0-rc03"
     const val savedstate = "1.0.0-rc01"
 
@@ -34,9 +36,16 @@ object Versions {
     }
 
     /* test */
+
+
     const val junit = "4.12"
+    const val test_ext = "1.1.1"
+    const val test_rules = "1.3.0"
+    const val espresso = "3.3.0"
+
+
+
     const val toasty = "1.5.0"
     const val runner = "1.0.2"
-    const val espresso = "3.0.2"
 
 }

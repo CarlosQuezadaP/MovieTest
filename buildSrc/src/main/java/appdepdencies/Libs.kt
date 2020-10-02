@@ -6,8 +6,11 @@ object Libs {
 
     object Tests {
         const val junit = "junit:junit:${Versions.junit}"
-        const val runner = "com.android.support.test:runner:${Versions.runner}"
-        const val espresso = "com.android.support.test.espresso:espresso-core:${Versions.espresso}"
+        const val test_ext_junit = "androidx.test.ext:junit:${Versions.test_ext}"
+        const val test_rules = "androidx.test:rules:${Versions.test_rules}"
+        const val test_runner = "androidx.test:runner:${Versions.test_rules}"
+        const val test_espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+        const val espresso_espresso = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
     }
 
     object Room {
@@ -16,8 +19,10 @@ object Libs {
         const val kaptcompiler = "androidx.room:room-compiler:${Versions.room}"
     }
 
-
-
+    object Mockito {
+        const val mockito_core = "org.mockito:mockito-core:${Versions.mockito}"
+        const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockito_inline}"
+    }
 
     object Koin {
         const val koin = "org.koin:koin-android:${Versions.koin}"

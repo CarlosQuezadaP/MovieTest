@@ -15,6 +15,7 @@ android {
         targetSdkVersion(appdependencies.Builds.TARGET_VERSION)
         versionCode = appdependencies.Builds.Core.VERSION_CODE
         versionName = appdependencies.Builds.Core.VERSION_NAME
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -57,11 +58,8 @@ android {
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
-
-    api(project(":CORE"))
     api(project(":infraestructura"))
+    api(project(":CORE"))
 
     testImplementation(appdependencies.Libs.Tests.junit)
-    androidTestImplementation(appdependencies.Libs.Tests.runner)
-    androidTestImplementation(appdependencies.Libs.Tests.espresso)
 }

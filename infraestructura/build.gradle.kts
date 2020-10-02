@@ -48,6 +48,4 @@ dependencies {
     api(project(":provide"))
 
     testImplementation(appdependencies.Libs.Tests.junit)
-    androidTestImplementation(appdependencies.Libs.Tests.runner)
-    androidTestImplementation(appdependencies.Libs.Tests.espresso)
 }

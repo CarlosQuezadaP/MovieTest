@@ -89,7 +89,6 @@ dependencies {
     api(appdependencies.Libs.Room.ktx)
     kapt(appdependencies.Libs.Room.kaptcompiler)
 
+
     testImplementation(appdependencies.Libs.Tests.junit)
-    androidTestImplementation(appdependencies.Libs.Tests.runner)
-    androidTestImplementation(appdependencies.Libs.Tests.espresso)
 }
