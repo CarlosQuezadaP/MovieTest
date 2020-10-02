@@ -9,11 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.merqueo.co.core.navigateUriWithDefaultOptions
+import com.merqueo.co.core.util.AddRemoveListener
+import com.merqueo.co.core.util.ClickListener
 import com.merqueo.co.home.R
 import com.merqueo.co.home.databinding.FragmentHomeBinding
 import com.merqueo.co.home.presentacion.adapter.MovieAdapter
-import com.merqueo.co.core.util.AddRemoveListener
-import com.merqueo.co.core.util.ClickListener
 import com.merqueo.co.home.presentacion.viewModel.MovieViewModel
 import com.merqueo.co.models.ui.MovieItemDomain
 import es.dmoral.toasty.Toasty
@@ -72,7 +72,6 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener {
             if (it) {
                 Toasty.success(requireActivity(), "se realizo el cambio de estado.").show()
             } else {
-
                 Toasty.error(requireActivity(), "No es posible realizar este cambio de estado")
                     .show()
             }

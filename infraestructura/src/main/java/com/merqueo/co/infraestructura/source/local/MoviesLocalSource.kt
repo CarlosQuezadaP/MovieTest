@@ -28,21 +28,18 @@ class MoviesLocalSource(
         return movies
     }
 
-    override suspend fun getAllOnStore(): Flow<List<MovieItemDomain>> {
-        val movies = moviesDao.getMovieStoreDistinctUntilChanged().map {
-            it.map {
-                it.convertTo()
-            }
-        }
-        return movies
-    }
 
     override suspend fun changeAllStore() {
-        moviesDao.getMovieStoreDistinctUntilChanged().map {
-            it.forEach {
-                moviesDao.updateToFailStore(false, it.id)
-            }
+        moviesDao.updateAll(getAllStore())
+    }
+
+    private fun getAllStore(): List<MovieEntity> {
+
+        val movies = moviesDao.getAllByStore()
+        movies.map {
+            it.onStore = false
         }
+        return movies
     }
 
 
@@ -59,6 +56,10 @@ class MoviesLocalSource(
 
     override suspend fun getCountStoreCart(): Flow<Int> {
         return moviesDao.getOnStoreCount()
+    }
+
+    override suspend fun getAllOnStore(): Flow<List<MovieItemDomain>> {
+        return moviesDao.getAllByStore2().map { it.map { it.convertTo() } }
     }
 
     override suspend fun getMovieById(idMovie: Int): MovieItemDomain {

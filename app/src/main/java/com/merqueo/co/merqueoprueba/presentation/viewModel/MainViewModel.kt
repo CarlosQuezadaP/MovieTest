@@ -35,4 +35,12 @@ class MainViewModel(private val iServiceMain: IServiceMain) : ViewModel() {
             }
         }
     }
+
+    fun deleteAll() {
+        coroutineScope.launch {
+           iServiceMain.deleteAll()
+        }
+    }
+
+
 }

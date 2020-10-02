@@ -15,8 +15,9 @@ val viewModelMovie = module {
     }
 }
 
+@ExperimentalCoroutinesApi
 val viewModelDetailMovie = module {
     viewModel {
-        DetailViewModel(get())
+        DetailViewModel(get(),get())
     }
 }

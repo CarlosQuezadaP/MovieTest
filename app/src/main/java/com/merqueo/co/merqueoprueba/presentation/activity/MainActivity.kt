@@ -1,6 +1,8 @@
 package com.merqueo.co.merqueoprueba.presentation.activity
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     var mainBinding: ActivityMainBinding? = null
     private val mainViewModel: MainViewModel by viewModel()
+    var menuItem: MenuItem? = null
 
     private val appBarConfiguration: AppBarConfiguration by lazy {
         AppBarConfiguration.Builder(
@@ -44,8 +47,21 @@ class MainActivity : AppCompatActivity() {
         button_navigation.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.homeFragment, R.id.shopFragment -> button_navigation.visibility =
-                    View.VISIBLE
+                R.id.homeFragment -> {
+                    button_navigation.visibility =
+                        View.VISIBLE
+
+                    showMenu(false)
+
+                }
+                R.id.shopFragment -> {
+                    button_navigation.visibility =
+                        View.VISIBLE
+
+                    showMenu(true)
+
+
+                }
                 else -> button_navigation.visibility = View.GONE
             }
         }
@@ -57,7 +73,33 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun showMenu(value: Boolean) {
+        menuItem?.apply {
+            isVisible = value
+        }
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        menuItem = menu?.findItem(R.id.delete)
+        showMenu(false)
+
+        menuItem!!.setOnMenuItemClickListener {
+
+            delete()
+            return@setOnMenuItemClickListener true
+        }
+        return true
+    }
+
+    private fun delete() {
+        mainViewModel.deleteAll()
+    }
+
+
     private fun setupBadge(count: Int) {
+
         mainBinding!!.buttonNavigation.getOrCreateBadge(R.id.nav_store).apply {
             number = count
         }

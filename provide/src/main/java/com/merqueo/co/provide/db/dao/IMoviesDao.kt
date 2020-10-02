@@ -20,6 +20,13 @@ interface IMoviesDao {
     @Query("UPDATE MovieEntity SET onStore=:onStore WHERE id = :id")
     fun updateToFailStore(onStore: Boolean = false, id: Int): Int
 
+    @Update
+    fun updateAll(movies: List<MovieEntity>): Int
+
+    @Update
+    fun updateMovie(movies: MovieEntity): Int
+
+
     @Query("SELECT COUNT(*) FROM MovieEntity WHERE onStore = :onStore")
     fun getOnStoreCount(onStore: Boolean = true): Flow<Int>
 
@@ -35,7 +42,10 @@ interface IMoviesDao {
     fun getPopularCount(isPopular: Boolean = true): Int
 
     @Query("SELECT * FROM MovieEntity  WHERE onStore = :onStore")
-    fun getAllByStore(onStore: Boolean = true): Flow<List<MovieEntity>>
+    fun getAllByStore(onStore: Boolean = true): List<MovieEntity>
+
+    @Query("SELECT * FROM MovieEntity  WHERE onStore = :onStore")
+    fun getAllByStore2(onStore: Boolean = true): Flow<List<MovieEntity>>
 
     @Query("SELECT * FROM MovieEntity")
     fun getAll(): Flow<List<MovieEntity>>
@@ -44,8 +54,5 @@ interface IMoviesDao {
     fun getMovieDistinctUntilChanged() =
         getAll()
 
-    @ExperimentalCoroutinesApi
-    fun getMovieStoreDistinctUntilChanged() =
-        getAllByStore()
 
 }

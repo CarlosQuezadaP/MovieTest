@@ -1,6 +1,5 @@
 package com.merqueo.co.infraestructura.source.local
 
-import com.merqueo.co.models.entities.MovieEntity
 import com.merqueo.co.models.ui.MovieItemDomain
 import kotlinx.coroutines.flow.Flow
 

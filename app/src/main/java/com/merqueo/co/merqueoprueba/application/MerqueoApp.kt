@@ -1,7 +1,9 @@
 package com.merqueo.co.merqueoprueba.application
 
 import android.app.Application
+import com.co.merqueo.shoppingcart.dominio.di.fragmentShoppingModule
 import com.co.merqueo.shoppingcart.dominio.di.moduleServiceShopping
+import com.co.merqueo.shoppingcart.dominio.di.moduleViewServiceShopping
 import com.merqueo.co.home.domain.di.*
 import com.merqueo.co.infraestructura.source.di.connectivityModule
 import com.merqueo.co.infraestructura.source.di.moduleLocalSource
@@ -42,7 +44,9 @@ class MerqueoApp : Application() {
                     mainModule,
                     viewModelMainModule,
                     viewModelDetailMovie,
-                    moduleServiceShopping
+                    moduleServiceShopping,
+                    fragmentShoppingModule,
+                    moduleViewServiceShopping
                 )
             )
         }

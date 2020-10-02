@@ -20,7 +20,11 @@ class ViewModelShopping(private val iServiceShoppingCart: IServiceShoppingCart) 
     val showLoading = ObservableBoolean()
     var movieList = MutableLiveData<List<MovieItemDomain>>()
 
-    private fun getAllStore() {
+    init {
+        getFromLocal()
+    }
+
+    private fun getFromLocal() {
         coroutineScope.launch {
             val response = iServiceShoppingCart.getAllStore()
             withContext(Dispatchers.Main) {
