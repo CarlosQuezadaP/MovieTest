@@ -33,6 +33,16 @@ class HomeTest {
         messageSuccesfulOnStore = "se realizo el cambio de estado."
     }
 
+
+    @Throws(InterruptedException::class)
+    @Test
+    fun removeAllMovies() {
+        ObjectUtils.openNavHostFragment()
+        ObjectUtils.sleep(3)
+        ObjectUtils.click(R.id.nav_store)
+        ObjectUtils.click(R.id.delete)
+    }
+
     @Throws(InterruptedException::class)
     @Test
     fun addMovieOnStore() {
