@@ -31,6 +31,8 @@ class HomeTest {
         }
 
         messageSuccesfulOnStore = "se realizo el cambio de estado."
+
+        removeAllMovies()
     }
 
 

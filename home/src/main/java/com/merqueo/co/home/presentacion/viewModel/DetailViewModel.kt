@@ -2,7 +2,7 @@ package com.merqueo.co.home.presentacion.viewModel
 
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
-import com.merqueo.co.core.SingleLiveEvent
+import com.merqueo.co.core.presentacion.SingleLiveEvent
 import com.merqueo.co.home.domain.service.IServiceMovie
 import com.merqueo.co.home.domain.service.IserviceDetail
 import com.merqueo.co.models.ui.MovieItemDomain
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.flowOf
 
 @ExperimentalCoroutinesApi
 class DetailViewModel(
-    private val iserviceDetail: IserviceDetail ,private val iServiceMovie: IServiceMovie
+    private val iserviceDetail: IserviceDetail, private val iServiceMovie: IServiceMovie
 ) :
     ViewModel() {
 
@@ -42,7 +42,7 @@ class DetailViewModel(
         }
     }
 
-     suspend fun updateMovieState(movieItemDomain: MovieItemDomain) {
+    suspend fun updateMovieState(movieItemDomain: MovieItemDomain) {
         coroutineScope.launch {
             val value = iServiceMovie.updateMovieState(movieItemDomain.id, movieItemDomain.onStore)
             withContext(Dispatchers.Main) {
@@ -51,7 +51,6 @@ class DetailViewModel(
 
         }
     }
-
 
 
 }

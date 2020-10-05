@@ -1,4 +1,4 @@
-package com.merqueo.co.core
+package com.merqueo.co.core.presentacion
 
 
 import android.util.Log

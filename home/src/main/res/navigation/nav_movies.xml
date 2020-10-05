@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.merqueo.co.home.presentacion.fragments.HomeFragment"
-        android:label="HomeFragment"
+        android:label="Movies"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"

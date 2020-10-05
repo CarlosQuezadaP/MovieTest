@@ -26,7 +26,7 @@ class ServiceMovie(
     }
 
     override suspend fun getMovies(): Flow<List<MovieItemDomain>> {
-        if (connectivity.isConnected) {
+        if (connectivity.isConnected()) {
             return getAllFromRemote()
         } else {
             return getAllFromLocale()

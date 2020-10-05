@@ -3,8 +3,8 @@ package com.merqueo.co.home.presentacion.adapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.merqueo.co.core.BuildConfig
-import com.merqueo.co.core.hide
-import com.merqueo.co.core.show
+import com.merqueo.co.core.presentacion.hide
+import com.merqueo.co.core.presentacion.show
 import com.merqueo.co.core.util.AddRemoveListener
 import com.merqueo.co.core.util.ClickListener
 import com.merqueo.co.home.R

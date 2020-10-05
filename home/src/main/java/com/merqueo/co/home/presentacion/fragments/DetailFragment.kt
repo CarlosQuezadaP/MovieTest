@@ -41,9 +41,6 @@ class DetailFragment : Fragment() {
         fragmentDetailBinding.lifecycleOwner = this
 
 
-
-
-
         return mRootView
     }
 
@@ -54,9 +51,15 @@ class DetailFragment : Fragment() {
 
         detailMovieViewModel.movieChangeState.observe(viewLifecycleOwner, {
             if (it) {
-                Toasty.success(requireActivity(), "se realizo el cambio de estado.").show()
+                Toasty.success(
+                    requireActivity(),
+                    getString(R.string.text_homeFragment_changeStatus)
+                ).show()
             } else {
-                Toasty.error(requireActivity(), "No es posible realizar este cambio de estado")
+                Toasty.error(
+                    requireActivity(),
+                    getString(R.string.text_home_Fragment_noChangeState)
+                )
                     .show()
             }
         })

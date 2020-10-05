@@ -5,8 +5,8 @@ import coil.api.load
 import com.co.merqueo.shoppingcart.R
 import com.co.merqueo.shoppingcart.databinding.ShoppingItemLayoutBinding
 import com.merqueo.co.core.BuildConfig
-import com.merqueo.co.core.hide
-import com.merqueo.co.core.show
+import com.merqueo.co.core.presentacion.hide
+import com.merqueo.co.core.presentacion.show
 import com.merqueo.co.models.ui.MovieItemDomain
 
 class MovieViewHolder(
@@ -38,8 +38,6 @@ class MovieViewHolder(
                 })
             }
         }
-
-
     }
 
     private fun fullPosterUrl(movie: MovieItemDomain): String {

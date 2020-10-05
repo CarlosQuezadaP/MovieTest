@@ -3,7 +3,7 @@ package com.merqueo.co.home.presentacion.viewModel
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.merqueo.co.core.SingleLiveEvent
+import com.merqueo.co.core.presentacion.SingleLiveEvent
 import com.merqueo.co.home.domain.service.IServiceMovie
 import com.merqueo.co.models.ui.MovieItemDomain
 import kotlinx.coroutines.*
@@ -19,13 +19,16 @@ class MovieViewModel(
 ) :
     ViewModel(), IMovieViewModel {
 
-    var job: Job? = null
 
-    var coroutineScope = CoroutineScope(Dispatchers.IO)
-    val showLoading = ObservableBoolean()
     val movieChangeState = SingleLiveEvent<Boolean>()
-    val showError = SingleLiveEvent<String>()
     var movieList = MutableLiveData<List<MovieItemDomain>>()
+
+    val showLoading = ObservableBoolean()
+    val show = SingleLiveEvent<Boolean>()
+    val showError = SingleLiveEvent<String>()
+
+    private var job: Job? = null
+    private var coroutineScope = CoroutineScope(Dispatchers.IO)
 
 
     init {
@@ -43,8 +46,14 @@ class MovieViewModel(
                         showError.value = throwable.localizedMessage
                     }.collect { result ->
                         result.collect {
-                            showError.value = null
-                            movieList.value = it
+                            if (it.size == 0) {
+                                show.value = true
+                                showError.value = "The movie List is Empty"
+                            } else {
+                                show.value = false
+                                showError.value = null
+                                movieList.value = it
+                            }
                         }
                     }
             }

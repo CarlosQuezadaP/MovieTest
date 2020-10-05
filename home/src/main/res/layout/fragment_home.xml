@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+
         <import type="android.view.View" />
+
+        <variable
+            name="onclick"
+            type="com.merqueo.co.home.util.OnClick" />
 
         <variable
             name="viewModel"
@@ -20,7 +26,7 @@
             android:id="@+id/recyclerview"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="@{viewModel.showError == null ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.show ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +43,39 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.show ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/textView_errorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.showError}"
+                android:textColor="#F44336" />
+
+            <Button
+                android:id="@+id/buttonRefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_bordered_green"
+                android:onClick="@{() -> onclick.onClick()}"
+                android:text="@string/refresh"
+                android:textColor="@color/color_white" />
+
+
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

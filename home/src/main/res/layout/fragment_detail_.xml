@@ -5,7 +5,6 @@
 
     <data>
 
-
         <import type="android.view.View" />
 
         <variable
@@ -24,15 +23,30 @@
             tools:context=".presentacion.fragments.DetailFragment">
 
 
+            <ProgressBar
+                android:id="@+id/imageProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:indeterminateDrawable="@drawable/spinner"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="@dimen/image_width"
                 android:layout_height="@dimen/image_height"
                 android:layout_marginTop="16dp"
                 android:scaleType="centerCrop"
+                app:imageUrl="@{viewModel.movie.posterPath}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"

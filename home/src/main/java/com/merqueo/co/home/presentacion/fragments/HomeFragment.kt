@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.merqueo.co.core.navigateUriWithDefaultOptions
+import com.merqueo.co.core.presentacion.navigateUriWithDefaultOptions
 import com.merqueo.co.core.util.AddRemoveListener
 import com.merqueo.co.core.util.ClickListener
 import com.merqueo.co.home.R
 import com.merqueo.co.home.databinding.FragmentHomeBinding
 import com.merqueo.co.home.presentacion.adapter.MovieAdapter
 import com.merqueo.co.home.presentacion.viewModel.MovieViewModel
+import com.merqueo.co.home.util.OnClick
 import com.merqueo.co.models.ui.MovieItemDomain
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -27,7 +28,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @InternalCoroutinesApi
 @ExperimentalCoroutinesApi
-class HomeFragment : Fragment(), AddRemoveListener, ClickListener {
+class HomeFragment : Fragment(), AddRemoveListener, ClickListener, OnClick {
 
     private lateinit var content: View
     private lateinit var homeBinding: FragmentHomeBinding
@@ -46,7 +47,9 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener {
         )
         mRootView = homeBinding.root
         homeBinding.lifecycleOwner = this
+        homeBinding.onclick = this
         setView()
+
 
         return mRootView
     }
@@ -70,9 +73,15 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener {
         })
         moviesViewModel.movieChangeState.observe(viewLifecycleOwner, {
             if (it) {
-                Toasty.success(requireActivity(), "se realizo el cambio de estado.").show()
+                Toasty.success(
+                    requireActivity(),
+                    getString(R.string.text_homeFragment_changeStatus)
+                ).show()
             } else {
-                Toasty.error(requireActivity(), "No es posible realizar este cambio de estado")
+                Toasty.error(
+                    requireActivity(),
+                    getString(R.string.text_home_Fragment_noChangeState)
+                )
                     .show()
             }
         })
@@ -80,7 +89,6 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener {
 
 
     override fun onClick(movieItemDomain: MovieItemDomain) {
-
         findNavController().navigateUriWithDefaultOptions(
             Uri.parse("merqueoMovie://moviedetails/${movieItemDomain.id}")
         )
@@ -91,6 +99,10 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener {
         GlobalScope.launch {
             moviesViewModel.updateMovieState(movieItemDomain)
         }
+    }
+
+    override fun onClick() {
+        moviesViewModel.showData()
     }
 
 

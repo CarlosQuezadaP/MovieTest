@@ -6,6 +6,5 @@
         android:id="@+id/delete"
         android:icon="@drawable/ic_restore_from_trash_black_24dp"
         android:title="borrar todo"
-
         app:showAsAction="ifRoom" />
 </menu>

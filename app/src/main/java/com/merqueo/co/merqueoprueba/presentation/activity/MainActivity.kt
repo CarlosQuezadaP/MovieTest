@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     var mainBinding: ActivityMainBinding? = null
     private val mainViewModel: MainViewModel by viewModel()
+
     var menuItem: MenuItem? = null
 
     private val appBarConfiguration: AppBarConfiguration by lazy {
@@ -45,22 +46,19 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(tlb_main)
         setupActionBarWithNavController(navController, appBarConfiguration)
         button_navigation.setupWithNavController(navController)
+
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.homeFragment -> {
                     button_navigation.visibility =
                         View.VISIBLE
-
                     showMenu(false)
-
                 }
                 R.id.shopFragment -> {
                     button_navigation.visibility =
                         View.VISIBLE
-
                     showMenu(true)
-
-
                 }
                 else -> button_navigation.visibility = View.GONE
             }
@@ -73,12 +71,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun showMenu(value: Boolean) {
-        menuItem?.apply {
-            isVisible = value
-        }
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
@@ -87,22 +79,10 @@ class MainActivity : AppCompatActivity() {
 
         menuItem!!.setOnMenuItemClickListener {
 
-            delete()
+            deleteAllMovies()
             return@setOnMenuItemClickListener true
         }
         return true
-    }
-
-    private fun delete() {
-        mainViewModel.deleteAll()
-    }
-
-
-    private fun setupBadge(count: Int) {
-
-        mainBinding!!.buttonNavigation.getOrCreateBadge(R.id.nav_store).apply {
-            number = count
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -112,6 +92,23 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mainBinding = null
+    }
+
+    private fun showMenu(value: Boolean) {
+        menuItem?.apply {
+            isVisible = value
+        }
+    }
+
+    private fun deleteAllMovies() {
+        mainViewModel.deleteAll()
+    }
+
+
+    private fun setupBadge(count: Int) {
+        mainBinding!!.buttonNavigation.getOrCreateBadge(R.id.nav_store).apply {
+            number = count
+        }
     }
 
 
