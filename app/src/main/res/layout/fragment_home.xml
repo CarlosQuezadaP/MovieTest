@@ -10,11 +10,11 @@
 
         <variable
             name="onclick"
-            type="com.merqueo.co.home.util.OnClick" />
+            type="com.merqueo.co.merqueoprueba.util.OnClick" />
 
         <variable
             name="viewModel"
-            type="com.merqueo.co.home.presentacion.viewModel.MovieViewModel" />
+            type="com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

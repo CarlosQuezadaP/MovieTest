@@ -1,4 +1,4 @@
-package com.merqueo.co.home.presentacion.fragments
+package com.merqueo.co.merqueoprueba.presentation.fragment
 
 import android.widget.Toast
 import androidx.fragment.app.Fragment

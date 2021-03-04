@@ -1,4 +1,4 @@
-package com.merqueo.co.home.presentacion.fragments
+package com.merqueo.co.merqueoprueba.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.merqueo.co.home.R
-import com.merqueo.co.home.databinding.FragmentDetailBinding
-import com.merqueo.co.home.presentacion.viewModel.DetailViewModel
+import com.merqueo.co.merqueoprueba.R
+import com.merqueo.co.merqueoprueba.databinding.FragmentDetailBinding
+import com.merqueo.co.merqueoprueba.presentation.viewModel.DetailViewModel
 import com.merqueo.co.models.ui.MovieItemDomain
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_detail_.view.*

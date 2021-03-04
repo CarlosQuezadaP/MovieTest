@@ -1,15 +1,16 @@
-package com.merqueo.co.home.presentacion.viewModel
+package com.merqueo.co.merqueoprueba.presentation.viewModel
 
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.merqueo.co.core.presentacion.SingleLiveEvent
-import com.merqueo.co.home.domain.service.IServiceMovie
+import com.merqueo.co.merqueoprueba.domain.servicio.IServiceMovie
 import com.merqueo.co.models.ui.MovieItemDomain
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 
 
 @ExperimentalCoroutinesApi
@@ -42,10 +43,12 @@ class MovieViewModel(
             showLoading.set(false)
             withContext(Dispatchers.Main) {
                 flowOf(response)
-                    .catch { throwable ->
-                        showError.value = throwable.localizedMessage
-                    }.collect { result ->
-                        result.collect {
+
+                    .catch {
+                        var error = this
+                    }
+                    .collect {
+                        it.collect {
                             if (it.size == 0) {
                                 show.value = true
                                 showError.value = "The movie List is Empty"
@@ -55,11 +58,10 @@ class MovieViewModel(
                                 movieList.value = it
                             }
                         }
-                    }
+                }
             }
         }
     }
-
 
     suspend fun updateMovieState(movieItemDomain: MovieItemDomain) {
         coroutineScope.launch {
@@ -67,7 +69,6 @@ class MovieViewModel(
             withContext(Dispatchers.Main) {
                 movieChangeState.value = value
             }
-
         }
     }
 

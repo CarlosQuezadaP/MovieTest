@@ -1,13 +1,12 @@
-package com.merqueo.co.home.presentacion.viewModel
+package com.merqueo.co.merqueoprueba.presentation.viewModel
 
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
 import com.merqueo.co.core.presentacion.SingleLiveEvent
-import com.merqueo.co.home.domain.service.IServiceMovie
-import com.merqueo.co.home.domain.service.IserviceDetail
+import com.merqueo.co.merqueoprueba.domain.servicio.IServiceMovie
+import com.merqueo.co.merqueoprueba.domain.servicio.IserviceDetail
 import com.merqueo.co.models.ui.MovieItemDomain
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 
@@ -32,12 +31,9 @@ class DetailViewModel(
             val response = iserviceDetail.getMovie(idMovie)
             showLoading.set(false)
             withContext(Dispatchers.Main) {
-                flowOf(response)
-                    .catch { throwable ->
-                        showError.value = throwable.localizedMessage
-                    }.collect {
-                        movie.value = it
-                    }
+                flowOf(response).collect {
+                    movie.value = it
+                }
             }
         }
     }

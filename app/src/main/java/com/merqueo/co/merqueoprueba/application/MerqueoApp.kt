@@ -4,7 +4,7 @@ import android.app.Application
 import com.co.merqueo.shoppingcart.dominio.di.fragmentShoppingModule
 import com.co.merqueo.shoppingcart.dominio.di.moduleServiceShopping
 import com.co.merqueo.shoppingcart.dominio.di.moduleViewServiceShopping
-import com.merqueo.co.home.domain.di.*
+import com.merqueo.co.merqueoprueba.domain.di.*
 import com.merqueo.co.infraestructura.source.di.connectivityModule
 import com.merqueo.co.infraestructura.source.di.moduleLocalSource
 import com.merqueo.co.infraestructura.source.di.moduleRemoteSource

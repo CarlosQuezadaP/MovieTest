@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.merqueo.co.home.presentacion.viewModel.DetailViewModel" />
+            type="com.merqueo.co.merqueoprueba.presentation.viewModel.DetailViewModel" />
 
     </data>
 
@@ -20,7 +20,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".presentacion.fragments.DetailFragment">
+            tools:context="com.merqueo.co.merqueoprueba.presentation.fragment.DetailFragment">
 
 
             <ProgressBar

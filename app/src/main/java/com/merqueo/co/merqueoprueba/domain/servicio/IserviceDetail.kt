@@ -1,4 +1,4 @@
-package com.merqueo.co.home.domain.service
+package com.merqueo.co.merqueoprueba.domain.servicio
 
 import com.merqueo.co.models.ui.MovieItemDomain
 

@@ -1,7 +1,7 @@
-package com.merqueo.co.home.domain.di
+package com.merqueo.co.merqueoprueba.domain.di
 
-import com.merqueo.co.home.presentacion.viewModel.DetailViewModel
-import com.merqueo.co.home.presentacion.viewModel.MovieViewModel
+import com.merqueo.co.merqueoprueba.presentation.viewModel.DetailViewModel
+import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.androidx.viewmodel.dsl.viewModel

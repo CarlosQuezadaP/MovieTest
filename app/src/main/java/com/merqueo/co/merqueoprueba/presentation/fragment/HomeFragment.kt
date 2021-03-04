@@ -1,4 +1,4 @@
-package com.merqueo.co.home.presentacion.fragments
+package com.merqueo.co.merqueoprueba.presentation.fragment
 
 import android.net.Uri
 import android.os.Bundle
@@ -11,11 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.merqueo.co.core.presentacion.navigateUriWithDefaultOptions
 import com.merqueo.co.core.util.AddRemoveListener
 import com.merqueo.co.core.util.ClickListener
-import com.merqueo.co.home.R
-import com.merqueo.co.home.databinding.FragmentHomeBinding
-import com.merqueo.co.home.presentacion.adapter.MovieAdapter
-import com.merqueo.co.home.presentacion.viewModel.MovieViewModel
-import com.merqueo.co.home.util.OnClick
+import com.merqueo.co.merqueoprueba.R
+import com.merqueo.co.merqueoprueba.databinding.FragmentHomeBinding
+import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel
+import com.merqueo.co.merqueoprueba.util.OnClick
 import com.merqueo.co.models.ui.MovieItemDomain
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -34,7 +33,7 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, OnClick {
     private lateinit var homeBinding: FragmentHomeBinding
     private lateinit var mRootView: View
     private val moviesViewModel: MovieViewModel by viewModel()
-    private lateinit var movieAdapter: MovieAdapter
+    private lateinit var movieAdapter: com.merqueo.co.merqueoprueba.presentation.adapter.MovieAdapter
 
 
     override fun onCreateView(
@@ -56,7 +55,7 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, OnClick {
 
 
     private fun setView() {
-        movieAdapter = MovieAdapter(this, this)
+        movieAdapter = com.merqueo.co.merqueoprueba.presentation.adapter.MovieAdapter(this, this)
         mRootView.recyclerview.adapter = movieAdapter
     }
 
