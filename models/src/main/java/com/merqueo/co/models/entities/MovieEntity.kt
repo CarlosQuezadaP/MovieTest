@@ -4,7 +4,7 @@ import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.merqueo.co.core.IConvertableTo
+import com.merqueo.co.usecases.IConvertableTo
 import com.merqueo.co.models.ui.MovieItemDomain
 
 @Keep

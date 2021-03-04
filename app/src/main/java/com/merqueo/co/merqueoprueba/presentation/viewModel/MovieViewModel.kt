@@ -3,14 +3,13 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.merqueo.co.core.presentacion.SingleLiveEvent
+import com.merqueo.co.usecases.presentacion.SingleLiveEvent
 import com.merqueo.co.merqueoprueba.domain.servicio.IServiceMovie
 import com.merqueo.co.models.ui.MovieItemDomain
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 
 
 @ExperimentalCoroutinesApi

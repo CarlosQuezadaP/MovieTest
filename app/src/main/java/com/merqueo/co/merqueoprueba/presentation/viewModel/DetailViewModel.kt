@@ -2,7 +2,7 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
-import com.merqueo.co.core.presentacion.SingleLiveEvent
+import com.merqueo.co.usecases.presentacion.SingleLiveEvent
 import com.merqueo.co.merqueoprueba.domain.servicio.IServiceMovie
 import com.merqueo.co.merqueoprueba.domain.servicio.IserviceDetail
 import com.merqueo.co.models.ui.MovieItemDomain

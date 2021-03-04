@@ -2,7 +2,7 @@ package com.merqueo.co.models.dto.upcoming
 
 
 import com.google.gson.annotations.SerializedName
-import com.merqueo.co.core.IConvertableTo
+import com.merqueo.co.usecases.IConvertableTo
 import com.merqueo.co.models.ui.MovieItemDomain
 
 data class MovieDto(

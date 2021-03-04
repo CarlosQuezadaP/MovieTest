@@ -1,4 +1,4 @@
-package com.merqueo.co.core.util
+package com.merqueo.co.usecases.util
 
 import com.merqueo.co.models.ui.MovieItemDomain
 

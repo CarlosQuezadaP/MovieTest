@@ -4,12 +4,10 @@ import android.app.Application
 import com.co.merqueo.shoppingcart.dominio.di.fragmentShoppingModule
 import com.co.merqueo.shoppingcart.dominio.di.moduleServiceShopping
 import com.co.merqueo.shoppingcart.dominio.di.moduleViewServiceShopping
+import com.merqueo.co.data.source.di.connectivityModule
+import com.merqueo.co.data.source.di.moduleLocalSource
+import com.merqueo.co.data.source.di.moduleRemoteSource
 import com.merqueo.co.merqueoprueba.domain.di.*
-import com.merqueo.co.infraestructura.source.di.connectivityModule
-import com.merqueo.co.infraestructura.source.di.moduleLocalSource
-import com.merqueo.co.infraestructura.source.di.moduleRemoteSource
-import com.merqueo.co.merqueoprueba.domain.di.mainModule
-import com.merqueo.co.merqueoprueba.domain.di.viewModelMainModule
 import com.merqueo.co.provide.di.databaseModule
 import com.merqueo.co.provide.di.networkModule
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -131,7 +131,8 @@ dependencies {
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
 
     api(project(":CORE"))
-    api(project(":infraestructura"))
+    api(project(":infraestructure"))
+    api(project(":data"))
 
     testImplementation(Libs.Tests.junit)
     androidTestImplementation(Libs.Tests.test_ext_junit)

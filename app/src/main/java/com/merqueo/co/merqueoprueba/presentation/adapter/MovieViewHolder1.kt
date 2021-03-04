@@ -2,11 +2,11 @@ package com.merqueo.co.merqueoprueba.presentation.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import com.merqueo.co.core.BuildConfig
-import com.merqueo.co.core.presentacion.hide
-import com.merqueo.co.core.presentacion.show
-import com.merqueo.co.core.util.AddRemoveListener
-import com.merqueo.co.core.util.ClickListener
+import com.merqueo.co.usecases.BuildConfig
+import com.merqueo.co.usecases.presentacion.hide
+import com.merqueo.co.usecases.presentacion.show
+import com.merqueo.co.usecases.util.AddRemoveListener
+import com.merqueo.co.usecases.util.ClickListener
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ItemMovieLayoutBinding
 import com.merqueo.co.models.ui.MovieItemDomain

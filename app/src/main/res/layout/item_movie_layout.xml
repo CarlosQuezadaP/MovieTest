@@ -13,12 +13,12 @@
 
         <variable
             name="movieClickInterface"
-            type="com.merqueo.co.core.util.AddRemoveListener" />
+            type="com.merqueo.co.usecases.util.AddRemoveListener" />
 
 
         <variable
             name="clickInterface"
-            type="com.merqueo.co.core.util.ClickListener" />
+            type="com.merqueo.co.usecases.util.ClickListener" />
 
     </data>
 

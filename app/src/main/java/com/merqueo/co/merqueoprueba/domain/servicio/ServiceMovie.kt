@@ -1,9 +1,9 @@
 package com.merqueo.co.merqueoprueba.domain.servicio
 
-import com.merqueo.co.core.Connectivity
+import com.merqueo.co.data.source.local.IMoviesLocalSource
+import com.merqueo.co.data.source.remote.IMoviesRemoteSource
 import com.merqueo.co.home.domain.flattenToList
-import com.merqueo.co.infraestructura.source.local.IMoviesLocalSource
-import com.merqueo.co.infraestructura.source.remote.IMoviesRemoteSource
+import com.merqueo.co.usecases.Connectivity
 import com.merqueo.co.models.ui.MovieItemDomain
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow

@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.merqueo.co.core.util.AddRemoveListener
-import com.merqueo.co.core.util.ClickListener
+import com.merqueo.co.usecases.util.AddRemoveListener
+import com.merqueo.co.usecases.util.ClickListener
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ItemMovieLayoutBinding
 import com.merqueo.co.models.ui.MovieItemDomain

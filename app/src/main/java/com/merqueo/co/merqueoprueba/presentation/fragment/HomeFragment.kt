@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.merqueo.co.core.presentacion.navigateUriWithDefaultOptions
-import com.merqueo.co.core.util.AddRemoveListener
-import com.merqueo.co.core.util.ClickListener
+import com.merqueo.co.usecases.presentacion.navigateUriWithDefaultOptions
+import com.merqueo.co.usecases.util.AddRemoveListener
+import com.merqueo.co.usecases.util.ClickListener
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.FragmentHomeBinding
 import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel

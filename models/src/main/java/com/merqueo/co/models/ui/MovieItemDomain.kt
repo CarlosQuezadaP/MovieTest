@@ -1,7 +1,7 @@
 package com.merqueo.co.models.ui
 
 import androidx.annotation.Keep
-import com.merqueo.co.core.IConvertableTo
+import com.merqueo.co.usecases.IConvertableTo
 import com.merqueo.co.models.entities.MovieEntity
 
 @Keep
