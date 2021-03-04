@@ -1,12 +1,12 @@
-package com.co.merqueo.shoppingcart.presentation.adapter
+package com.merqueo.co.merqueoprueba.presentation.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import com.co.merqueo.shoppingcart.R
-import com.co.merqueo.shoppingcart.databinding.ShoppingItemLayoutBinding
 import com.merqueo.co.core.BuildConfig
 import com.merqueo.co.core.presentacion.hide
 import com.merqueo.co.core.presentacion.show
+import com.merqueo.co.merqueoprueba.R
+import com.merqueo.co.merqueoprueba.databinding.ShoppingItemLayoutBinding
 import com.merqueo.co.models.ui.MovieItemDomain
 
 class MovieViewHolder(

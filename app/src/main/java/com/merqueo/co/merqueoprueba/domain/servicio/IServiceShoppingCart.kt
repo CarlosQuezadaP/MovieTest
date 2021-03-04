@@ -1,4 +1,4 @@
-package com.co.merqueo.shoppingcart.dominio.service
+package com.merqueo.co.merqueoprueba.domain.servicio
 
 import com.merqueo.co.models.ui.MovieItemDomain
 import kotlinx.coroutines.flow.Flow

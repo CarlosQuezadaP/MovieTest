@@ -1,4 +1,4 @@
-package com.co.merqueo.shoppingcart.presentation.adapter
+package com.merqueo.co.merqueoprueba.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.merqueo.co.models.ui.MovieItemDomain

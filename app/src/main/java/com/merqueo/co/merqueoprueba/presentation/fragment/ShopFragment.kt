@@ -1,4 +1,4 @@
-package com.co.merqueo.shoppingcart.presentation.fragment
+package com.merqueo.co.merqueoprueba.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.co.merqueo.shoppingcart.R
-import com.co.merqueo.shoppingcart.databinding.FragmentShopBinding
-import com.co.merqueo.shoppingcart.presentation.adapter.StoreAdapter
-import com.co.merqueo.shoppingcart.presentation.viewModel.ViewModelShopping
+import com.merqueo.co.merqueoprueba.R
+import com.merqueo.co.merqueoprueba.databinding.FragmentShopBinding
+import com.merqueo.co.merqueoprueba.presentation.adapter.StoreAdapter
+import com.merqueo.co.merqueoprueba.presentation.viewModel.ViewModelShopping
 import com.merqueo.co.models.ui.MovieItemDomain
 import kotlinx.android.synthetic.main.fragment_shop.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel

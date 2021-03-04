@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.co.merqueo.shoppingcart.presentation.viewModel.ViewModelShopping" />
+            type="com.merqueo.co.merqueoprueba.presentation.viewModel.ViewModelShopping" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

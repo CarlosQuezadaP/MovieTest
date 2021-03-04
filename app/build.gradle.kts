@@ -4,16 +4,15 @@ import appdependencies.Builds.COMPILE_VERSION
 import appdependencies.Builds.MIN_VERSION
 import appdependencies.Builds.TARGET_VERSION
 import appdependencies.Libs
-import appdependencies.Versions
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
+    id("kotlin-android")
+    id("androidx.navigation.safeargs.kotlin")
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
-    id("kotlin-android")
     "koin"
 }
 
@@ -83,32 +82,15 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
     bundle {
         abi {
             enableSplit = false
         }
     }
 
-
-
-    tasks.withType<KotlinCompile>().all {
-        kotlinOptions.suppressWarnings = true
-        kotlinOptions.jvmTarget = "1.8"
-        kotlinOptions.noReflect = true
-        kotlinOptions.freeCompilerArgs += listOf(
-            "-XXLanguage:+InlineClasses"
-        )
-    }
-
     packagingOptions {
         exclude("META-INF/notice.txt")
     }
-
 
     configurations.all {
         resolutionStrategy {
@@ -117,17 +99,28 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 
-
-    androidExtensions {
-        isExperimental = true
-        defaultCacheImplementation =
-            org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
+        kotlinOptions.suppressWarnings = true
+        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.noReflect = true
+        kotlinOptions.freeCompilerArgs += listOf(
+            "-XXLanguage:+InlineClasses"
+        )
     }
 
     buildFeatures {
         dataBinding = true
         viewBinding = true
+    }
+    androidExtensions {
+        isExperimental = true
+        defaultCacheImplementation =
+            org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
     }
 
 
@@ -135,9 +128,12 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(kotlin("stdlib-jdk8", Versions.kotlin))
+    implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
+
     api(project(":home"))
-    api(project(":shoppingCart"))
+    api(project(":CORE"))
+    api(project(":infraestructura"))
+
     testImplementation(Libs.Tests.junit)
     androidTestImplementation(Libs.Tests.test_ext_junit)
     androidTestImplementation(Libs.Tests.test_rules)

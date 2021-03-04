@@ -1,19 +1,17 @@
-package com.co.merqueo.shoppingcart.presentation.viewModel
+package com.merqueo.co.merqueoprueba.presentation.viewModel
 
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.co.merqueo.shoppingcart.dominio.service.IServiceShoppingCart
 import com.merqueo.co.models.ui.MovieItemDomain
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ViewModelShopping(private val iServiceShoppingCart: IServiceShoppingCart) : ViewModel() {
+class ViewModelShopping(private val iServiceShoppingCart: com.merqueo.co.merqueoprueba.domain.servicio.IServiceShoppingCart) :
+    ViewModel() {
 
 
     var coroutineScope = CoroutineScope(Dispatchers.IO)
@@ -28,14 +26,10 @@ class ViewModelShopping(private val iServiceShoppingCart: IServiceShoppingCart) 
         coroutineScope.launch {
             val response = iServiceShoppingCart.getAllStore()
             withContext(Dispatchers.Main) {
-                flowOf(response)
-                    .catch { throwable ->
+                response.collect {
+                    movieList.value = it
+                }
 
-                    }.collect { result ->
-                        result.collect {
-                            movieList.value = it
-                        }
-                    }
             }
         }
     }
