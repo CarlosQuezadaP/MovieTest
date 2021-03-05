@@ -4,7 +4,7 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.merqueo.co.usecases.presentacion.SingleLiveEvent
-import com.merqueo.co.usecases.IServiceMovie
+import com.merqueo.co.usecases.usecases.IServiceMovie
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.flowOf
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
 class MovieViewModel(
-    private val iServiceMovie: com.merqueo.co.usecases.IServiceMovie
+    private val iServiceMovie: IServiceMovie
 ) :
     ViewModel(), IMovieViewModel {
 

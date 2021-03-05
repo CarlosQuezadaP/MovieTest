@@ -2,8 +2,8 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
-import com.merqueo.co.usecases.IServiceMovie
-import com.merqueo.co.usecases.IserviceDetail
+import com.merqueo.co.usecases.usecases.IServiceMovie
+import com.merqueo.co.usecases.usecases.IserviceDetail
 import com.merqueo.co.usecases.presentacion.SingleLiveEvent
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
