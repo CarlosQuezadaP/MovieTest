@@ -3,14 +3,13 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ViewModelShopping(private val iServiceShoppingCart: com.merqueo.co.merqueoprueba.domain.servicio.IServiceShoppingCart) :
+class ViewModelShopping(private val iServiceShoppingCart: com.merqueo.co.usecases.IServiceShoppingCart) :
     ViewModel() {
 
 

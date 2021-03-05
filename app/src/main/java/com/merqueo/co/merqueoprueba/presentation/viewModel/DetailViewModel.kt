@@ -2,8 +2,8 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
-import com.merqueo.co.merqueoprueba.domain.servicio.IServiceMovie
-import com.merqueo.co.merqueoprueba.domain.servicio.IserviceDetail
+import com.merqueo.co.usecases.IServiceMovie
+import com.merqueo.co.usecases.IserviceDetail
 import com.merqueo.co.usecases.presentacion.SingleLiveEvent
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.flowOf
 
 @ExperimentalCoroutinesApi
 class DetailViewModel(
-    private val iserviceDetail: IserviceDetail, private val iServiceMovie: IServiceMovie
+    private val iserviceDetail: IserviceDetail,
+    private val iServiceMovie: IServiceMovie
 ) :
     ViewModel() {
 
@@ -34,6 +35,7 @@ class DetailViewModel(
                     .collect {
                         movie.value = it
                     }
+
 
             }
         }

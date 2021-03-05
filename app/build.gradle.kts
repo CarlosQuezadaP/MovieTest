@@ -133,6 +133,8 @@ dependencies {
     api(project(":CORE"))
     api(project(":infraestructure"))
     api(project(":data"))
+    api(project(":usecases"))
+
 
     testImplementation(Libs.Tests.junit)
     androidTestImplementation(Libs.Tests.test_ext_junit)

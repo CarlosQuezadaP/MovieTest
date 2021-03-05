@@ -4,10 +4,8 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.merqueo.co.usecases.presentacion.SingleLiveEvent
-import com.merqueo.co.merqueoprueba.domain.servicio.IServiceMovie
-import com.merqueo.co.domain.models.MovieItemDomain
+import com.merqueo.co.usecases.IServiceMovie
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 
@@ -15,7 +13,7 @@ import kotlinx.coroutines.flow.flowOf
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
 class MovieViewModel(
-    private val iServiceMovie: IServiceMovie
+    private val iServiceMovie: com.merqueo.co.usecases.IServiceMovie
 ) :
     ViewModel(), IMovieViewModel {
 
@@ -35,6 +33,8 @@ class MovieViewModel(
         showData()
     }
 
+
+
     override fun showData() {
         showLoading.set(true)
         job = coroutineScope.launch {
@@ -42,10 +42,6 @@ class MovieViewModel(
             showLoading.set(false)
             withContext(Dispatchers.Main) {
                 flowOf(response)
-
-                    .catch {
-                        var error = this
-                    }
                     .collect {
                         it.collect {
                             if (it.size == 0) {
@@ -57,7 +53,9 @@ class MovieViewModel(
                                 movieList.value = it
                             }
                         }
-                }
+                    }
+
+
             }
         }
     }

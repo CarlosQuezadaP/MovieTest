@@ -1,7 +1,8 @@
-package com.merqueo.co.merqueoprueba.domain.servicio
+package com.merqueo.co.usecases
+
+
 
 import com.merqueo.co.data.source.local.IMoviesLocalSource
-import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.flow.Flow
 
 class ServiceShoppingCart(private val localSource: IMoviesLocalSource) : IServiceShoppingCart {

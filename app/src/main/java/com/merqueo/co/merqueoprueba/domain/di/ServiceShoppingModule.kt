@@ -1,9 +1,13 @@
 package com.co.merqueo.shoppingcart.dominio.di
 
-import com.merqueo.co.merqueoprueba.domain.servicio.IServiceShoppingCart
-import com.merqueo.co.merqueoprueba.domain.servicio.ServiceShoppingCart
+import com.merqueo.co.usecases.IServiceShoppingCart
+import com.merqueo.co.usecases.ServiceShoppingCart
 import org.koin.dsl.module
 
 val moduleServiceShopping = module {
-    single<IServiceShoppingCart> { ServiceShoppingCart(get()) }
+    single<com.merqueo.co.usecases.IServiceShoppingCart> {
+        com.merqueo.co.usecases.ServiceShoppingCart(
+            get()
+        )
+    }
 }

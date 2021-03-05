@@ -1,6 +1,6 @@
 package com.merqueo.co.merqueoprueba.service
 
-import com.merqueo.co.merqueoprueba.domain.servicio.IServiceMovie
+import com.merqueo.co.usecases.IServiceMovie
 import com.merqueo.co.usecases.source.remote.IMoviesRemoteSource
 import org.junit.Before
 import org.junit.Test
@@ -12,7 +12,7 @@ import org.mockito.MockitoAnnotations
 class MovieServiceTest {
 
     @InjectMocks
-    lateinit var servicioCrearAlquiler: IServiceMovie
+    lateinit var servicioCrearAlquiler: com.merqueo.co.usecases.IServiceMovie
 
     @Mock
     lateinit var moviesRepository: IMoviesRemoteSource

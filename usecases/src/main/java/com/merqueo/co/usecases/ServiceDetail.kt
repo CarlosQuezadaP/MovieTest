@@ -1,7 +1,7 @@
-package com.merqueo.co.merqueoprueba.domain.servicio
+package com.merqueo.co.usecases
 
 import com.merqueo.co.data.source.local.IMoviesLocalSource
-import com.merqueo.co.domain.models.MovieItemDomain
+
 
 class ServiceDetail(private val localSource: IMoviesLocalSource) : IserviceDetail {
 

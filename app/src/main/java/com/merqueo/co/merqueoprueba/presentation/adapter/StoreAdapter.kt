@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
+import com.merqueo.co.domain.models.MovieItemDomain
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ShoppingItemLayoutBinding
-import com.merqueo.co.domain.models.MovieItemDomain
 
 class StoreAdapter :
-    ListAdapter<com.merqueo.co.domain.models.MovieItemDomain, MovieViewHolder>(MovieItemDiffCallback()) {
+    ListAdapter<MovieItemDomain, MovieViewHolder>(MovieItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): MovieViewHolder {
         val layout = DataBindingUtil.inflate(

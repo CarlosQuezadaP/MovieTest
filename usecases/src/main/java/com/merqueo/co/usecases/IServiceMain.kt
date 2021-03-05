@@ -1,4 +1,4 @@
-package com.merqueo.co.merqueoprueba.domain.servicio
+package com.merqueo.co.usecases
 
 import kotlinx.coroutines.flow.Flow
 
