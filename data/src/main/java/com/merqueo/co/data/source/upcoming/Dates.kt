@@ -1,4 +1,4 @@
-package com.merqueo.co.models.dto.upcoming
+package com.merqueo.co.data.source.upcoming
 
 
 import com.google.gson.annotations.SerializedName

@@ -1,9 +1,9 @@
-package com.merqueo.co.models.dto.upcoming
+package com.merqueo.co.data.source.upcoming
 
 
 import com.google.gson.annotations.SerializedName
 import com.merqueo.co.usecases.IConvertableTo
-import com.merqueo.co.models.ui.MovieItemDomain
+import com.merqueo.co.domain.models.MovieItemDomain
 
 data class MovieDto(
     @SerializedName("adult")
@@ -34,9 +34,9 @@ data class MovieDto(
     val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Int
-) : IConvertableTo<MovieItemDomain> {
-    override fun convertTo(): MovieItemDomain {
-        return MovieItemDomain(
+) : IConvertableTo<com.merqueo.co.domain.models.MovieItemDomain> {
+    override fun convertTo(): com.merqueo.co.domain.models.MovieItemDomain {
+        return com.merqueo.co.domain.models.MovieItemDomain(
             id = id,
             voteCount = voteCount,
             voteAverage = voteAverage,

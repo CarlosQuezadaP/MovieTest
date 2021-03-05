@@ -1,6 +1,6 @@
 package com.merqueo.co.infraestructura.network.api
 
-import com.merqueo.co.models.dto.upcoming.UpcomingResponse
+import com.merqueo.co.data.source.upcoming.UpcomingResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

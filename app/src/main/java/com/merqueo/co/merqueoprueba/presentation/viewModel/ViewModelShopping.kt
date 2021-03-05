@@ -3,7 +3,7 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.merqueo.co.models.ui.MovieItemDomain
+import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -16,7 +16,7 @@ class ViewModelShopping(private val iServiceShoppingCart: com.merqueo.co.merqueo
 
     var coroutineScope = CoroutineScope(Dispatchers.IO)
     val showLoading = ObservableBoolean()
-    var movieList = MutableLiveData<List<MovieItemDomain>>()
+    var movieList = MutableLiveData<List<com.merqueo.co.domain.models.MovieItemDomain>>()
 
     init {
         getFromLocal()

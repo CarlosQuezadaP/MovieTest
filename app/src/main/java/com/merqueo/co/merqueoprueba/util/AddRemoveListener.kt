@@ -1,8 +1,8 @@
 package com.merqueo.co.usecases.util
 
-import com.merqueo.co.models.ui.MovieItemDomain
+import com.merqueo.co.domain.models.MovieItemDomain
 
 
 interface AddRemoveListener {
-    fun onItemClickOnButton(movieItemDomain: MovieItemDomain, type: Boolean)
+    fun onItemClickOnButton(movieItemDomain: com.merqueo.co.domain.models.MovieItemDomain, type: Boolean)
 }

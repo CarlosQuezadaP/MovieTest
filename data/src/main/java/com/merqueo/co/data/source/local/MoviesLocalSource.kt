@@ -1,20 +1,22 @@
 package com.merqueo.co.data.source.local
 
-import com.merqueo.co.models.entities.MovieEntity
-import com.merqueo.co.models.ui.MovieItemDomain
-import com.merqueo.co.provide.db.dao.IMoviesDao
+import com.merqueo.co.data.anticorruption.IEntityToDomainConverter
+import com.merqueo.co.data.source.db.dao.IMoviesDao
+import com.merqueo.co.data.source.entities.MovieEntity
+import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 @ExperimentalCoroutinesApi
 class MoviesLocalSource(
-    private val moviesDao: IMoviesDao
+    private val moviesDao: IMoviesDao,
+    private val converter: IEntityToDomainConverter,
 ) : IMoviesLocalSource {
 
     override suspend fun insertAll(data: List<MovieItemDomain>) {
         val dataa = data.map {
-            it.convertTo()
+            converter.convertDomainToEntity(it)
         }
         moviesDao.insertAll(dataa)
     }
@@ -44,7 +46,7 @@ class MoviesLocalSource(
 
 
     override suspend fun insert(movieItem: MovieItemDomain) {
-        moviesDao.insert(movieItem.convertTo())
+        moviesDao.insert(converter.convertDomainToEntity(movieItem))
     }
 
     override suspend fun updateMovieState(id: Int, status: Boolean): Boolean {

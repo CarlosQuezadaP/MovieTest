@@ -1,13 +1,13 @@
 package com.merqueo.co.merqueoprueba.domain.servicio
 
-import com.merqueo.co.models.ui.MovieItemDomain
+import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.flow.Flow
 
 interface IServiceMovie {
 
-    suspend fun getMovies(): Flow<List<MovieItemDomain>>
-    suspend fun getAllFromRemote(): Flow<List<MovieItemDomain>>
-    suspend fun getAllFromLocale(): Flow<List<MovieItemDomain>>
-    suspend fun saveMovies(movieDtos: List<MovieItemDomain>)
+    suspend fun getMovies(): Flow<List<com.merqueo.co.domain.models.MovieItemDomain>>
+    suspend fun getAllFromRemote(): Flow<List<com.merqueo.co.domain.models.MovieItemDomain>>
+    suspend fun getAllFromLocale(): Flow<List<com.merqueo.co.domain.models.MovieItemDomain>>
+    suspend fun saveMovies(movieDtos: List<com.merqueo.co.domain.models.MovieItemDomain>)
     suspend fun updateMovieState(id: Int, status: Boolean): Boolean
 }

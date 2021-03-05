@@ -1,4 +1,4 @@
-package com.merqueo.co.provide.db.converters
+package com.merqueo.co.data.source.db.converters
 
 import androidx.room.TypeConverter
 

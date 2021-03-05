@@ -4,7 +4,7 @@ import com.merqueo.co.data.source.local.IMoviesLocalSource
 import com.merqueo.co.data.source.remote.IMoviesRemoteSource
 import com.merqueo.co.home.domain.flattenToList
 import com.merqueo.co.usecases.Connectivity
-import com.merqueo.co.models.ui.MovieItemDomain
+import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 
@@ -15,17 +15,17 @@ class ServiceMovie(
     private val connectivity: Connectivity
 ) : IServiceMovie {
 
-    override suspend fun getAllFromRemote(): Flow<List<MovieItemDomain>> {
+    override suspend fun getAllFromRemote(): Flow<List<com.merqueo.co.domain.models.MovieItemDomain>> {
         val dataToSave = remoteSource.getUpcomingMovies(1)
         saveMovies(dataToSave.flattenToList())
         return remoteSource.getUpcomingMovies(1)
     }
 
-    override suspend fun getAllFromLocale(): Flow<List<MovieItemDomain>> {
+    override suspend fun getAllFromLocale(): Flow<List<com.merqueo.co.domain.models.MovieItemDomain>> {
         return localSource.getAll()
     }
 
-    override suspend fun getMovies(): Flow<List<MovieItemDomain>> {
+    override suspend fun getMovies(): Flow<List<com.merqueo.co.domain.models.MovieItemDomain>> {
         if (connectivity.isConnected()) {
             return getAllFromRemote()
         } else {
@@ -33,7 +33,7 @@ class ServiceMovie(
         }
     }
 
-    override suspend fun saveMovies(movieDtos: List<MovieItemDomain>) {
+    override suspend fun saveMovies(movieDtos: List<com.merqueo.co.domain.models.MovieItemDomain>) {
         localSource.insertAll(movieDtos)
     }
 

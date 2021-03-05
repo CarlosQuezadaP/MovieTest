@@ -45,7 +45,6 @@ dependencies {
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
 
     api(project(":CORE"))
-    api(project(":provide"))
 
     testImplementation(appdependencies.Libs.Tests.junit)
 }

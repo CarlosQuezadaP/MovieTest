@@ -5,6 +5,7 @@ import com.co.merqueo.shoppingcart.dominio.di.fragmentShoppingModule
 import com.co.merqueo.shoppingcart.dominio.di.moduleServiceShopping
 import com.co.merqueo.shoppingcart.dominio.di.moduleViewServiceShopping
 import com.merqueo.co.data.source.di.connectivityModule
+import com.merqueo.co.data.source.di.entityToDomainConverterModule
 import com.merqueo.co.data.source.di.moduleLocalSource
 import com.merqueo.co.data.source.di.moduleRemoteSource
 import com.merqueo.co.merqueoprueba.domain.di.*
@@ -44,7 +45,8 @@ class MerqueoApp : Application() {
                     viewModelDetailMovie,
                     moduleServiceShopping,
                     fragmentShoppingModule,
-                    moduleViewServiceShopping
+                    moduleViewServiceShopping,
+                    entityToDomainConverterModule
                 )
             )
         }

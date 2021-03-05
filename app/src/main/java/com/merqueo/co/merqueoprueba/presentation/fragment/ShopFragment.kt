@@ -10,7 +10,7 @@ import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.FragmentShopBinding
 import com.merqueo.co.merqueoprueba.presentation.adapter.StoreAdapter
 import com.merqueo.co.merqueoprueba.presentation.viewModel.ViewModelShopping
-import com.merqueo.co.models.ui.MovieItemDomain
+import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.android.synthetic.main.fragment_shop.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -46,7 +46,7 @@ class ShopFragment : Fragment() {
     }
 
 
-    private fun showData(movies: List<MovieItemDomain>) {
+    private fun showData(movies: List<com.merqueo.co.domain.models.MovieItemDomain>) {
         movieAdapter.submitList(movies)
     }
 

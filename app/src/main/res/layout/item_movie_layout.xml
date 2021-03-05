@@ -9,7 +9,7 @@
 
         <variable
             name="movie"
-            type="com.merqueo.co.models.ui.MovieItemDomain" />
+            type="com.merqueo.co.domain.models.MovieItemDomain" />
 
         <variable
             name="movieClickInterface"

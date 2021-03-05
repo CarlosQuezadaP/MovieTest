@@ -1,11 +1,11 @@
-package com.merqueo.co.models.entities
+package com.merqueo.co.data.source.entities
 
 import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.merqueo.co.domain.models.MovieItemDomain
 import com.merqueo.co.usecases.IConvertableTo
-import com.merqueo.co.models.ui.MovieItemDomain
 
 @Keep
 @Entity(

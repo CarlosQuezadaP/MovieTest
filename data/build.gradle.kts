@@ -42,7 +42,11 @@ dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
     api(project(":CORE"))
-    api(project(":provide"))
     api(project(":infraestructure"))
+    api(project(":domain"))
+    api(appdependencies.Libs.Room.runtime)
+    api(appdependencies.Libs.Room.ktx)
+    kapt(appdependencies.Libs.Room.kaptcompiler)
+
     testImplementation(appdependencies.Libs.Tests.junit)
 }

@@ -1,7 +1,7 @@
-package com.merqueo.co.provide.db.dao
+package com.merqueo.co.data.source.db.dao
 
 import androidx.room.*
-import com.merqueo.co.models.entities.MovieEntity
+import com.merqueo.co.data.source.entities.MovieEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 

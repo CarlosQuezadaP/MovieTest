@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.merqueo.co.usecases.presentacion.SingleLiveEvent
 import com.merqueo.co.merqueoprueba.domain.servicio.IServiceMovie
-import com.merqueo.co.models.ui.MovieItemDomain
+import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -21,7 +21,7 @@ class MovieViewModel(
 
 
     val movieChangeState = SingleLiveEvent<Boolean>()
-    var movieList = MutableLiveData<List<MovieItemDomain>>()
+    var movieList = MutableLiveData<List<com.merqueo.co.domain.models.MovieItemDomain>>()
 
     val showLoading = ObservableBoolean()
     val show = SingleLiveEvent<Boolean>()
@@ -62,7 +62,7 @@ class MovieViewModel(
         }
     }
 
-    suspend fun updateMovieState(movieItemDomain: MovieItemDomain) {
+    suspend fun updateMovieState(movieItemDomain: com.merqueo.co.domain.models.MovieItemDomain) {
         coroutineScope.launch {
             val value = iServiceMovie.updateMovieState(movieItemDomain.id, movieItemDomain.onStore)
             withContext(Dispatchers.Main) {

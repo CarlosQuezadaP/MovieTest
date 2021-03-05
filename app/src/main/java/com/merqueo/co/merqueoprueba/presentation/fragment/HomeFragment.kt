@@ -15,7 +15,7 @@ import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.FragmentHomeBinding
 import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel
 import com.merqueo.co.merqueoprueba.util.OnClick
-import com.merqueo.co.models.ui.MovieItemDomain
+import com.merqueo.co.domain.models.MovieItemDomain
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -60,7 +60,7 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, OnClick {
     }
 
 
-    private fun showData(movies: List<MovieItemDomain>) {
+    private fun showData(movies: List<com.merqueo.co.domain.models.MovieItemDomain>) {
         movieAdapter.submitList(movies)
     }
 
@@ -87,13 +87,13 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, OnClick {
     }
 
 
-    override fun onClick(movieItemDomain: MovieItemDomain) {
+    override fun onClick(movieItemDomain: com.merqueo.co.domain.models.MovieItemDomain) {
         findNavController().navigateUriWithDefaultOptions(
             Uri.parse("merqueoMovie://moviedetails/${movieItemDomain.id}")
         )
     }
 
-    override fun onItemClickOnButton(movieItemDomain: MovieItemDomain, type: Boolean) {
+    override fun onItemClickOnButton(movieItemDomain: com.merqueo.co.domain.models.MovieItemDomain, type: Boolean) {
         movieItemDomain.onStore = type
         GlobalScope.launch {
             moviesViewModel.updateMovieState(movieItemDomain)

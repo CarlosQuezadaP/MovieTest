@@ -1,12 +1,12 @@
-package com.merqueo.co.provide.db
+package com.merqueo.co.data.source.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.merqueo.co.provide.db.converters.FromListOfIntToStringConverter
-import com.merqueo.co.provide.db.converters.FromListOfStringsToStringConverter
-import com.merqueo.co.provide.db.dao.IMoviesDao
-import com.merqueo.co.models.entities.MovieEntity
+import com.merqueo.co.data.source.db.converters.FromListOfIntToStringConverter
+import com.merqueo.co.data.source.db.converters.FromListOfStringsToStringConverter
+import com.merqueo.co.data.source.db.dao.IMoviesDao
+import com.merqueo.co.data.source.entities.MovieEntity
 @Database(
     entities = [
         MovieEntity::class
