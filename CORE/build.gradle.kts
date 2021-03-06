@@ -54,7 +54,6 @@ dependencies {
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     api(appdependencies.Libs.Core.paging)
-    api(appdependencies.Libs.Core.constraintlayout)
     api(appdependencies.Libs.Core.appcompat)
 
     kapt(appdependencies.Libs.Lifecycle.kapt_compiler)
@@ -65,6 +64,7 @@ dependencies {
     api(appdependencies.Libs.Lifecycle.common)
     api(appdependencies.Libs.Lifecycle.runtime)
 
+    api(appdependencies.Libs.Core.constraintlayout)
     api(appdependencies.Libs.ImageLoading.coil)
 
     api(appdependencies.Libs.Core.navigationFragmentKtx)

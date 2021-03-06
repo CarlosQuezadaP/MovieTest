@@ -135,7 +135,8 @@ dependencies {
     api(project(":data"))
     api(project(":usecases"))
 
-
+    api(Libs.Core.constraintlayout)
+    
     testImplementation(Libs.Tests.junit)
     androidTestImplementation(Libs.Tests.test_ext_junit)
     androidTestImplementation(Libs.Tests.test_rules)
