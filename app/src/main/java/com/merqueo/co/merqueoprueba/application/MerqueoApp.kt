@@ -2,14 +2,12 @@ package com.merqueo.co.merqueoprueba.application
 
 import android.app.Application
 import com.co.merqueo.shoppingcart.dominio.di.fragmentShoppingModule
-import com.co.merqueo.shoppingcart.dominio.di.moduleServiceShopping
 import com.co.merqueo.shoppingcart.dominio.di.moduleViewServiceShopping
-import com.merqueo.co.home.domain.di.*
-import com.merqueo.co.infraestructura.source.di.connectivityModule
-import com.merqueo.co.infraestructura.source.di.moduleLocalSource
-import com.merqueo.co.infraestructura.source.di.moduleRemoteSource
-import com.merqueo.co.merqueoprueba.domain.di.mainModule
-import com.merqueo.co.merqueoprueba.domain.di.viewModelMainModule
+import com.merqueo.co.data.di.connectivityModule
+import com.merqueo.co.data.di.entityToDomainConverterModule
+import com.merqueo.co.data.di.moduleLocalSource
+import com.merqueo.co.data.di.moduleRemoteSource
+import com.merqueo.co.merqueoprueba.domain.di.*
 import com.merqueo.co.provide.di.databaseModule
 import com.merqueo.co.provide.di.networkModule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -37,16 +35,20 @@ class MerqueoApp : Application() {
                     homeFragmentModule,
                     moduleRemoteSource,
                     moduleLocalSource,
-                    serviceMovieModule,
-                    serviceDetailMovieModule,
+                    detailFragmentModule,
+                    usecaseGetMovieModule,
+                    useCaseDetailMovieModule,
                     viewModelMovie,
                     connectivityModule,
                     mainModule,
                     viewModelMainModule,
                     viewModelDetailMovie,
-                    moduleServiceShopping,
+                    useCaseGetMovieShopShopping,
                     fragmentShoppingModule,
-                    moduleViewServiceShopping
+                    moduleViewServiceShopping,
+                    entityToDomainConverterModule,
+                    useCaseUpdateMovieModule,
+                    useCasedeleteMoviesFromShop
                 )
             )
         }
