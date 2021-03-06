@@ -10,23 +10,23 @@ import kotlinx.coroutines.flow.Flow
 
 
 @FlowPreview
-class ServiceMovie(
+class GetMoviesUseCase(
     private val remoteSource: IMoviesRemoteSource,
     private val localSource: IMoviesLocalSource,
     private val connectivity: Connectivity
-) : IServiceMovie {
+) : IGetMoviesUseCase {
 
-    override suspend fun getAllFromRemote(): Flow<List<MovieItemDomain>> {
+    suspend fun getAllFromRemote(): Flow<List<MovieItemDomain>> {
         val dataToSave = remoteSource.getUpcomingMovies(1)
-        saveMovies(dataToSave.flattenToList())
+        insertMovies(dataToSave.flattenToList())
         return remoteSource.getUpcomingMovies(1)
     }
 
-    override suspend fun getAllFromLocale(): Flow<List<MovieItemDomain>> {
+    suspend fun getAllFromLocale(): Flow<List<MovieItemDomain>> {
         return localSource.getAll()
     }
 
-    override suspend fun getMovies(): Flow<List<MovieItemDomain>> {
+    override suspend fun invoke(): Flow<List<MovieItemDomain>> {
         if (connectivity.isConnected()) {
             return getAllFromRemote()
         } else {
@@ -34,21 +34,12 @@ class ServiceMovie(
         }
     }
 
-    override suspend fun saveMovies(movieDtos: List<MovieItemDomain>) {
+    suspend fun insertMovies(movieDtos: List<MovieItemDomain>) {
         localSource.insertAll(movieDtos)
     }
 
-    override suspend fun updateMovieState(id: Int, status: Boolean): Boolean {
-        val movieState = getMovieState(id)
-        if (movieState == status) {
-            return false
-        }
-        return localSource.updateMovieState(id, status)
-    }
+}
 
-    private suspend fun getMovieState(id: Int): Boolean {
-        return localSource.getMovieById(id).onStore
-    }
-
-
+interface IGetMoviesUseCase {
+    suspend fun invoke(): Flow<List<MovieItemDomain>>
 }

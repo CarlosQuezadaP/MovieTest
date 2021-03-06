@@ -2,7 +2,6 @@ package com.merqueo.co.merqueoprueba.application
 
 import android.app.Application
 import com.co.merqueo.shoppingcart.dominio.di.fragmentShoppingModule
-import com.co.merqueo.shoppingcart.dominio.di.moduleServiceShopping
 import com.co.merqueo.shoppingcart.dominio.di.moduleViewServiceShopping
 import com.merqueo.co.data.di.connectivityModule
 import com.merqueo.co.data.di.entityToDomainConverterModule
@@ -36,17 +35,20 @@ class MerqueoApp : Application() {
                     homeFragmentModule,
                     moduleRemoteSource,
                     moduleLocalSource,
-                    serviceMovieModule,
-                    serviceDetailMovieModule,
+                    detailFragmentModule,
+                    usecaseGetMovieModule,
+                    useCaseDetailMovieModule,
                     viewModelMovie,
                     connectivityModule,
                     mainModule,
                     viewModelMainModule,
                     viewModelDetailMovie,
-                    moduleServiceShopping,
+                    useCaseGetMovieShopShopping,
                     fragmentShoppingModule,
                     moduleViewServiceShopping,
-                    entityToDomainConverterModule
+                    entityToDomainConverterModule,
+                    useCaseUpdateMovieModule,
+                    useCasedeleteMoviesFromShop
                 )
             )
         }

@@ -14,13 +14,16 @@ import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ActivityMainBinding
 import com.merqueo.co.merqueoprueba.presentation.viewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
+@InternalCoroutinesApi
 class MainActivity : AppCompatActivity() {
 
     var mainBinding: ActivityMainBinding? = null
+
     private val mainViewModel: MainViewModel by viewModel()
 
     var menuItem: MenuItem? = null
@@ -67,8 +70,6 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.totalCart.observe(this, {
             setupBadge(it)
         })
-
-
     }
 
 
@@ -104,12 +105,10 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.deleteAll()
     }
 
-
     private fun setupBadge(count: Int) {
         mainBinding!!.buttonNavigation.getOrCreateBadge(R.id.nav_store).apply {
             number = count
         }
     }
-
 
 }

@@ -7,12 +7,12 @@ import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.androidx.fragment.dsl.fragment
 import org.koin.dsl.module
 
-@ExperimentalCoroutinesApi
 @InternalCoroutinesApi
 val homeFragmentModule = module {
     fragment { HomeFragment() }
 }
 
+@ExperimentalCoroutinesApi
 val detailFragmentModule = module {
     fragment { DetailFragment() }
 }

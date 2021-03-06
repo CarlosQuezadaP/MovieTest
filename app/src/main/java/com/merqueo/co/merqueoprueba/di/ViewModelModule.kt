@@ -11,13 +11,13 @@ import org.koin.dsl.module
 @InternalCoroutinesApi
 val viewModelMovie = module {
     viewModel {
-        MovieViewModel(get())
+        MovieViewModel(get(), get())
     }
 }
 
 @ExperimentalCoroutinesApi
 val viewModelDetailMovie = module {
     viewModel {
-        DetailViewModel(get(),get())
+        DetailViewModel(get(), get())
     }
 }

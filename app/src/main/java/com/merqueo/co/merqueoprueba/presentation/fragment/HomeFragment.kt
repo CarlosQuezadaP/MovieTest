@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.merqueo.co.usecases.presentacion.navigateUriWithDefaultOptions
-import com.merqueo.co.usecases.util.AddRemoveListener
-import com.merqueo.co.usecases.util.ClickListener
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.FragmentHomeBinding
 import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel
 import com.merqueo.co.merqueoprueba.util.OnClick
-import com.merqueo.co.domain.models.MovieItemDomain
+import com.merqueo.co.usecases.presentacion.navigateUriWithDefaultOptions
+import com.merqueo.co.usecases.util.AddRemoveListener
+import com.merqueo.co.usecases.util.ClickListener
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -39,7 +38,7 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, OnClick {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         homeBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_home, container, false
@@ -93,7 +92,10 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, OnClick {
         )
     }
 
-    override fun onItemClickOnButton(movieItemDomain: com.merqueo.co.domain.models.MovieItemDomain, type: Boolean) {
+    override fun onItemClickOnButton(
+        movieItemDomain: com.merqueo.co.domain.models.MovieItemDomain,
+        type: Boolean
+    ) {
         movieItemDomain.onStore = type
         GlobalScope.launch {
             moviesViewModel.updateMovieState(movieItemDomain)

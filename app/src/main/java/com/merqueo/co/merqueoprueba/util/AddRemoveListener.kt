@@ -4,5 +4,8 @@ import com.merqueo.co.domain.models.MovieItemDomain
 
 
 interface AddRemoveListener {
-    fun onItemClickOnButton(movieItemDomain: com.merqueo.co.domain.models.MovieItemDomain, type: Boolean)
+    fun onItemClickOnButton(
+        movieItemDomain: MovieItemDomain,
+        type: Boolean
+    )
 }

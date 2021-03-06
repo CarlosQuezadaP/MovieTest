@@ -10,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.FragmentDetailBinding
 import com.merqueo.co.merqueoprueba.presentation.viewModel.DetailViewModel
-import com.merqueo.co.domain.models.MovieItemDomain
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_detail_.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi

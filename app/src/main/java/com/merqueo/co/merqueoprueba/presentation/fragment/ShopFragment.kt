@@ -10,14 +10,12 @@ import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.FragmentShopBinding
 import com.merqueo.co.merqueoprueba.presentation.adapter.StoreAdapter
 import com.merqueo.co.merqueoprueba.presentation.viewModel.ViewModelShopping
-import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.android.synthetic.main.fragment_shop.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ShopFragment : Fragment() {
 
-    lateinit var content: View
     lateinit var shopBindingImpl: FragmentShopBinding
     private lateinit var mRootView: View
     private val viewModelShopping: ViewModelShopping by viewModel()
@@ -29,7 +27,7 @@ class ShopFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         shopBindingImpl = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_shop, container, false
