@@ -4,11 +4,11 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import com.merqueo.co.usecases.Connectivity
+import com.merqueo.co.usecases.IConnectivity
 import java.net.InetAddress
 import java.net.UnknownHostException
 
-class ConnectivityImp(private val context: Context) : Connectivity {
+class IConnectivityImp(private val context: Context) : IConnectivity {
 
     override fun isConnected(): Boolean {
         val connectivityManager =
@@ -29,7 +29,7 @@ class ConnectivityImp(private val context: Context) : Connectivity {
                     val activeNetworkInfo = connectivityManager.activeNetworkInfo
                     return activeNetworkInfo != null && activeNetworkInfo.isConnected && isInternetAvailable()
                 } catch (ex: Exception) {
-                    // Log
+                   val Aasd = ex
                 }
             }
         }

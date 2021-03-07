@@ -3,12 +3,12 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.merqueo.co.domain.models.MovieItemDomain
 import com.merqueo.co.usecases.presentacion.SingleLiveEvent
 import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOf
 
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
@@ -19,7 +19,7 @@ class MovieViewModel(
     ViewModel(), IMovieViewModel {
 
     val movieChangeState = SingleLiveEvent<Boolean>()
-    var movieList = MutableLiveData<List<com.merqueo.co.domain.models.MovieItemDomain>>()
+    var movieList = MutableLiveData<List<MovieItemDomain>>()
     val showLoading = ObservableBoolean()
     val show = SingleLiveEvent<Boolean>()
     val showError = SingleLiveEvent<String>()
@@ -33,27 +33,24 @@ class MovieViewModel(
     override fun showData() {
         showLoading.set(true)
         job = coroutineScope.launch {
-            val response = iGetMoviesUseCase.invoke()
+            val response = iGetMoviesUseCase.invoke(1)
             showLoading.set(false)
             withContext(Dispatchers.Main) {
-                flowOf(response)
-                    .collect {
-                        it.collect {
-                            if (it.size == 0) {
-                                show.value = true
-                                showError.value = "The movie List is Empty"
-                            } else {
-                                show.value = false
-                                showError.value = null
-                                movieList.value = it
-                            }
-                        }
+                response.collect {
+                    if (it.size == 0) {
+                        show.value = true
+                        showError.value = "The movie List is Empty"
+                    } else {
+                        show.value = false
+                        showError.value = null
+                        movieList.value = it
                     }
+                }
             }
         }
     }
 
-    suspend fun updateMovieState(movieItemDomain: com.merqueo.co.domain.models.MovieItemDomain) {
+    suspend fun updateMovieState(movieItemDomain: MovieItemDomain) {
         coroutineScope.launch {
             val value = iUpdateMovieUseCase.invoke(movieItemDomain.id, movieItemDomain.onStore)
             withContext(Dispatchers.Main) {

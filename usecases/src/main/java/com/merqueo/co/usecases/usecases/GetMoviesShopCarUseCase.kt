@@ -4,7 +4,6 @@ import com.merqueo.co.data.localSource.IMoviesLocalSource
 import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.flow.Flow
 
-
 interface IGetMoviesShopCarUseCase {
     suspend fun invoke(): Flow<List<MovieItemDomain>>
 }

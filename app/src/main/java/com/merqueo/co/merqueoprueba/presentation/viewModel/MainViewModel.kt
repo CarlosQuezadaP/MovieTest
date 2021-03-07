@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.merqueo.co.usecases.usecases.IDeleteMoviesFromShopUseCase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOf
 
 @InternalCoroutinesApi
 class MainViewModel(private val iDeleteMoviesFromShopUseCase: IDeleteMoviesFromShopUseCase) :
@@ -22,12 +21,9 @@ class MainViewModel(private val iDeleteMoviesFromShopUseCase: IDeleteMoviesFromS
         coroutineScope.launch {
             val response = iDeleteMoviesFromShopUseCase.countMovies()
             withContext(Dispatchers.Main) {
-                flowOf(response)
-                    .collect {
-                        it.collect {
-                            totalCart.value = it
-                        }
-                    }
+                response.collect {
+                    totalCart.value = it
+                }
             }
         }
     }

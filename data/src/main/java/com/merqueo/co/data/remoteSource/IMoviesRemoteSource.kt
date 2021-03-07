@@ -1,8 +1,7 @@
 package com.merqueo.co.data.remoteSource
 
-import kotlinx.coroutines.flow.Flow
+import com.merqueo.co.domain.models.MovieItemDomain
 
 interface IMoviesRemoteSource {
-
-    suspend fun getUpcomingMovies(page: Int): Flow<List<com.merqueo.co.domain.models.MovieItemDomain>>
+    suspend fun getUpcomingMovies(page: Int): List<MovieItemDomain>
 }

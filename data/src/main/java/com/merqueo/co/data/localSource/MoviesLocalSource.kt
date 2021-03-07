@@ -30,20 +30,17 @@ class MoviesLocalSource(
         return movies
     }
 
-
     override suspend fun changeAllStore() {
         moviesDao.updateAll(getAllStore())
     }
 
     private fun getAllStore(): List<MovieEntity> {
-
         val movies = moviesDao.getAllByStore()
         movies.map {
             it.onStore = false
         }
         return movies
     }
-
 
     override suspend fun insert(movieItem: MovieItemDomain) {
         moviesDao.insert(converter.convertDomainToEntity(movieItem))
