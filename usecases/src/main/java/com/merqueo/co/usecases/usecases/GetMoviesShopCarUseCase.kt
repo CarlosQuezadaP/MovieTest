@@ -8,7 +8,8 @@ interface IGetMoviesShopCarUseCase {
     suspend fun invoke(): Flow<List<MovieItemDomain>>
 }
 
-class GetMoviesShopCarUseCase(private val localSource: IMoviesLocalSource) : IGetMoviesShopCarUseCase {
+class GetMoviesShopCarUseCase(private val localSource: IMoviesLocalSource) :
+    IGetMoviesShopCarUseCase {
     override suspend fun invoke(): Flow<List<MovieItemDomain>> {
         return localSource.getAllOnStore()
     }

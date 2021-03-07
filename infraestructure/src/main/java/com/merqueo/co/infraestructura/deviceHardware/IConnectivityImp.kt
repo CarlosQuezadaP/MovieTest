@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import com.merqueo.co.usecases.IConnectivity
+import com.merqueo.co.CORE.IConnectivity
 import java.net.InetAddress
 import java.net.UnknownHostException
 

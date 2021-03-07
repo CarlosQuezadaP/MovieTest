@@ -1,4 +1,4 @@
-package com.merqueo.co.usecases
+package com.merqueo.co.CORE
 
 import org.junit.Test
 

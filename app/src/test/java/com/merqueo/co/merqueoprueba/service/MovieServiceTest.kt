@@ -1,7 +1,7 @@
 package com.merqueo.co.merqueoprueba.service
 
 import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
-import com.merqueo.co.usecases.source.remote.IMoviesRemoteSource
+import com.merqueo.co.CORE.source.remote.IMoviesRemoteSource
 import org.junit.Before
 import org.junit.Test
 import org.mockito.InjectMocks

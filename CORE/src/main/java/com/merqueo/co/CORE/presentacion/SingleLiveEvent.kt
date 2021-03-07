@@ -1,4 +1,4 @@
-package com.merqueo.co.usecases.presentacion
+package com.merqueo.co.CORE.presentacion
 
 
 import android.util.Log

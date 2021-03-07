@@ -1,3 +1,3 @@
-package com.merqueo.co.usecases.domain.exceptions
+package com.merqueo.co.CORE.domain.exceptions
 
 class DataException(message: String) : Exception()

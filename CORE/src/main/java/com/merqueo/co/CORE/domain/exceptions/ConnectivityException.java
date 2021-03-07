@@ -1,4 +1,4 @@
-package com.merqueo.co.usecases.domain.exceptions;
+package com.merqueo.co.CORE.domain.exceptions;
 
 public class ConnectivityException extends RuntimeException {
     private static final String NO_INTERNET_CONNECTION_MESSAGE = "No hay conexión a internet. Intenta más tarde.";

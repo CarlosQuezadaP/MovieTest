@@ -1,4 +1,4 @@
-package com.merqueo.co.usecases
+package com.merqueo.co.CORE
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

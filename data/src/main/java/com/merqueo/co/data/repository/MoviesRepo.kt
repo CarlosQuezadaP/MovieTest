@@ -24,12 +24,15 @@ class MoviesRepo(
     }
 
     suspend fun getFromRemote(page: Int) {
+
         val dataToSave = iMoviesRemoteSource.getUpcomingMovies(page)
+
         dataToSave.run {
             this.map {
                 iEntityToDomainConverter.convertDomainToEntity(it)
             }
         }
+
         insertAll(dataToSave)
     }
 

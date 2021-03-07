@@ -4,7 +4,7 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.merqueo.co.domain.models.MovieItemDomain
-import com.merqueo.co.usecases.presentacion.SingleLiveEvent
+import com.merqueo.co.CORE.presentacion.SingleLiveEvent
 import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
 import kotlinx.coroutines.*

@@ -1,9 +1,9 @@
-package com.merqueo.co.usecases.presentacion
+package com.merqueo.co.CORE.presentacion
 
 import android.net.Uri
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
-import com.merqueo.co.usecases.R
+import com.merqueo.co.CORE.R
 
 fun createDefaultNavOptions(destination: Int) = NavOptions.Builder()
     .setLaunchSingleTop(false)

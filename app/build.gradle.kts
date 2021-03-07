@@ -136,7 +136,8 @@ dependencies {
     api(project(":usecases"))
 
     api(Libs.Core.constraintlayout)
-    
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+
     testImplementation(Libs.Tests.junit)
     androidTestImplementation(Libs.Tests.test_ext_junit)
     androidTestImplementation(Libs.Tests.test_rules)

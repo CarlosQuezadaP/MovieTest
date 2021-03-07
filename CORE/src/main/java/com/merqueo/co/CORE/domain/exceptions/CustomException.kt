@@ -1,4 +1,4 @@
-package com.merqueo.co.usecases.domain.exceptions
+package com.merqueo.co.CORE.domain.exceptions
 
 sealed class CustomException(message: String = "") : Exception(message)
 {

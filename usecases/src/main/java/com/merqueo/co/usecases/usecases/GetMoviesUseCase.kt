@@ -2,7 +2,7 @@ package com.merqueo.co.usecases.usecases
 
 import com.merqueo.co.data.repository.IMovieRepo
 import com.merqueo.co.domain.models.MovieItemDomain
-import com.merqueo.co.usecases.IConnectivity
+import com.merqueo.co.CORE.IConnectivity
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 

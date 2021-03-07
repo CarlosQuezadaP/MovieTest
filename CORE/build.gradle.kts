@@ -16,8 +16,8 @@ android {
         versionName = appdependencies.Builds.Core.VERSION_NAME
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "IMAGES_URL", "\"https://image.tmdb.org/t/p/w500\"")
-        buildConfigField("String", "SERVER_URL", "\"https://api.themoviedb.org/3/\"")
         buildConfigField("String", "IMAGES_BACKDROP_URL", "\"https://image.tmdb.org/t/p/original\"")
+        buildConfigField("String", "SERVER_URL", "\"https://api.themoviedb.org/3/\"")
         buildConfigField("String", "ApiKey", "\"026a257e7842ac9cac1fa627496b1468\"")
 
     }
