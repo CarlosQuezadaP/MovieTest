@@ -3,7 +3,7 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
 import com.merqueo.co.domain.models.MovieItemDomain
-import com.merqueo.co.CORE.presentacion.SingleLiveEvent
+import com.merqueo.co.merqueoprueba.SingleLiveEvent
 import com.merqueo.co.usecases.usecases.IMovieDetailUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
 import kotlinx.coroutines.*

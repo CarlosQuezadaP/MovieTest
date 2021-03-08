@@ -3,8 +3,8 @@ package com.merqueo.co.merqueoprueba.presentation.adapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.merqueo.co.CORE.BuildConfig
-import com.merqueo.co.CORE.presentacion.hide
-import com.merqueo.co.CORE.presentacion.show
+import com.merqueo.co.merqueoprueba.hide
+import com.merqueo.co.merqueoprueba.show
 import com.merqueo.co.domain.models.MovieItemDomain
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ItemMovieLayoutBinding

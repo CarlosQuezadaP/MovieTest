@@ -1,4 +1,4 @@
-package com.merqueo.co.CORE.presentacion
+package com.merqueo.co.merqueoprueba
 
 import android.net.Uri
 import androidx.navigation.NavController

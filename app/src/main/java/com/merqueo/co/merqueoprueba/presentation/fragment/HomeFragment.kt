@@ -14,7 +14,7 @@ import com.merqueo.co.merqueoprueba.databinding.FragmentHomeBinding
 import com.merqueo.co.merqueoprueba.presentation.adapter.MovieAdapter
 import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel
 import com.merqueo.co.merqueoprueba.util.OnClick
-import com.merqueo.co.CORE.presentacion.navigateUriWithDefaultOptions
+import com.merqueo.co.merqueoprueba.navigateUriWithDefaultOptions
 import com.merqueo.co.merqueoprueba.util.AddRemoveListener
 import com.merqueo.co.merqueoprueba.util.ClickListener
 import kotlinx.android.synthetic.main.fragment_home.view.*

@@ -3,7 +3,7 @@ package com.merqueo.co.data.anticorruption
 import com.merqueo.co.data.db.entities.MovieEntity
 import com.merqueo.co.domain.models.MovieItemDomain
 
-class EntityToDomainConverter : IEntityToDomainConverter {
+class Converter : IConverter {
 
     override fun convertEntityToDomain(movieEntity: MovieEntity): MovieItemDomain {
         return MovieItemDomain(
