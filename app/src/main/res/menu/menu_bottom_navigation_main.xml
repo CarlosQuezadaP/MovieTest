@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_movies"
-        android:icon="@drawable/ic_movie_black_24dp"
-        android:title="Movies" />
+        android:id="@+id/homeFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home_btn" />
+    <item
+        android:id="@+id/moviesFragment"
+        android:enabled="true"
+        android:icon="@drawable/round_ondemand_video_white_48dp"
+        android:title="Películas" />
+
 
     <item
-        android:id="@+id/nav_store"
+        android:id="@+id/shopFragment2"
         android:icon="@drawable/ic_shopping_cart_black_18dp"
         android:title="store" />
 </menu>

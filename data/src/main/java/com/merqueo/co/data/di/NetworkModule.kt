@@ -1,6 +1,6 @@
 package com.merqueo.co.provide.di
 
-import com.merqueo.co.usecases.BuildConfig
+import com.merqueo.co.CORE.BuildConfig
 import com.merqueo.co.infraestructura.network.api.IMovieApi
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient

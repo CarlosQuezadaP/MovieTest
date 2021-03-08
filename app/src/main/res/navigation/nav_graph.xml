@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/nav_movies">
-    <include app:graph="@navigation/nav_movies" />
-    <include app:graph="@navigation/nav_store" />
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.merqueo.co.merqueoprueba.presentation.fragment.HomeFragment"
+        android:label="Movies"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_moviesFragment"
+            app:destination="@id/moviesFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.merqueo.co.merqueoprueba.presentation.fragment.DetailFragment"
+        android:label="Detalle de pelicula"
+        tools:layout="@layout/fragment_detail_">
+        <argument
+            android:name="movieID"
+            app:argType="integer" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="merqueoMovie://moviedetails/{movieID}" />
+    </fragment>
+    <fragment
+        android:id="@+id/shopFragment2"
+        android:name="com.merqueo.co.merqueoprueba.presentation.fragment.ShopFragment"
+        android:label="ShopFragment" >
+        <action
+            android:id="@+id/action_shopFragment2_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="com.merqueo.co.merqueoprueba.presentation.fragment.MoviesFragment"
+        android:label="fragment_movies"
+        tools:layout="@layout/fragment_movies" >
+        <action
+            android:id="@+id/action_moviesFragment_to_shopFragment2"
+            app:destination="@id/shopFragment2" />
+        <action
+            android:id="@+id/action_moviesFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+
 </navigation>

@@ -13,12 +13,12 @@
 
         <variable
             name="movieClickInterface"
-            type="com.merqueo.co.usecases.util.AddRemoveListener" />
+            type="com.merqueo.co.merqueoprueba.util.AddRemoveListener" />
 
 
         <variable
             name="clickInterface"
-            type="com.merqueo.co.usecases.util.ClickListener" />
+            type="com.merqueo.co.merqueoprueba.util.ClickListener" />
 
     </data>
 
@@ -146,42 +146,44 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_add"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:background="@{movie.onStore ? @drawable/button_bordered_green : @drawable/button_bordered_blue}"
                         android:onClick="@{() -> movieClickInterface.onItemClickOnButton(movie, true)}"
                         android:text="Agregar"
                         android:textColor="#ffffff"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        android:enabled="@{!movie.onStore}"
+                        app:bindingDrawable="@{movie.onStore ? @color/button_gray :  @color/button_green}" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_delete"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:background="@{movie.onStore ? @drawable/button_bordered_gray : @drawable/button_bordered_red}"
                         android:onClick="@{() -> movieClickInterface.onItemClickOnButton(movie, false)}"
                         android:text="Eliminar"
                         android:textColor="#FFFFFF"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        android:enabled="@{movie.onStore}"
+                        app:bindingDrawable="@{movie.onStore ? @color/button_red : @color/button_gray}" />
 
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_viewDetail"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:background="@{movie.onStore ? @drawable/button_bordered_gray : @drawable/button_bordered_red}"
                         android:onClick="@{() -> clickInterface.onClick(movie)}"
                         android:text="Detalle"
                         android:textColor="#FFFFFF"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        app:backgroundTint="@color/button_blue"/>
 
 
                 </LinearLayout>

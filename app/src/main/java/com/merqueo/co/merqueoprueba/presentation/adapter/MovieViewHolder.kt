@@ -4,9 +4,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ShoppingItemLayoutBinding
-import com.merqueo.co.usecases.BuildConfig
-import com.merqueo.co.usecases.presentacion.hide
-import com.merqueo.co.usecases.presentacion.show
+import com.merqueo.co.CORE.BuildConfig
+import com.merqueo.co.merqueoprueba.hide
+import com.merqueo.co.merqueoprueba.show
 
 class MovieViewHolder(
     private val itemViewBinding: ShoppingItemLayoutBinding

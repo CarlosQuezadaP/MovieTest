@@ -9,7 +9,6 @@ val usecaseGetMovieModule = module {
     single<IGetMoviesUseCase> {
         GetMoviesUseCase(
             get(),
-            get(),
             get()
         )
     }

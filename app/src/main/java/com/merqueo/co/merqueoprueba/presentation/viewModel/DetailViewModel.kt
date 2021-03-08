@@ -2,12 +2,11 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
-import com.merqueo.co.usecases.presentacion.SingleLiveEvent
+import com.merqueo.co.domain.models.MovieItemDomain
+import com.merqueo.co.merqueoprueba.SingleLiveEvent
 import com.merqueo.co.usecases.usecases.IMovieDetailUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOf
 
 @ExperimentalCoroutinesApi
 class DetailViewModel(
@@ -21,9 +20,8 @@ class DetailViewModel(
     var coroutineScope = CoroutineScope(Dispatchers.IO)
     val showLoading = ObservableBoolean()
     val movieChangeState = SingleLiveEvent<Boolean>()
-    val showError = SingleLiveEvent<String>()
 
-    var movie = SingleLiveEvent<com.merqueo.co.domain.models.MovieItemDomain>()
+    var movie = SingleLiveEvent<MovieItemDomain>()
 
     fun getMovie(idMovie: Int) {
         showLoading.set(true)
@@ -31,15 +29,12 @@ class DetailViewModel(
             val response = IMovieDetailUseCase.invoke(idMovie)
             showLoading.set(false)
             withContext(Dispatchers.Main) {
-                flowOf(response)
-                    .collect {
-                        movie.value = it
-                    }
+                movie.value = response
             }
         }
     }
 
-    suspend fun updateMovieState(movieItemDomain: com.merqueo.co.domain.models.MovieItemDomain) {
+    suspend fun updateMovieState(movieItemDomain: MovieItemDomain) {
         coroutineScope.launch {
             val value = iUpdateMovieUseCase.invoke(movieItemDomain.id, movieItemDomain.onStore)
             withContext(Dispatchers.Main) {

@@ -28,7 +28,6 @@ class ViewModelShopping(private val iGetMoviesShopCarUseCase: IGetMoviesShopCarU
                 response.collect {
                     movieList.value = it
                 }
-
             }
         }
     }

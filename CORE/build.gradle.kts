@@ -16,8 +16,8 @@ android {
         versionName = appdependencies.Builds.Core.VERSION_NAME
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "IMAGES_URL", "\"https://image.tmdb.org/t/p/w500\"")
-        buildConfigField("String", "SERVER_URL", "\"https://api.themoviedb.org/3/\"")
         buildConfigField("String", "IMAGES_BACKDROP_URL", "\"https://image.tmdb.org/t/p/original\"")
+        buildConfigField("String", "SERVER_URL", "\"https://api.themoviedb.org/3/\"")
         buildConfigField("String", "ApiKey", "\"026a257e7842ac9cac1fa627496b1468\"")
 
     }
@@ -54,7 +54,6 @@ dependencies {
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     api(appdependencies.Libs.Core.paging)
-    api(appdependencies.Libs.Core.constraintlayout)
     api(appdependencies.Libs.Core.appcompat)
 
     kapt(appdependencies.Libs.Lifecycle.kapt_compiler)
@@ -65,6 +64,7 @@ dependencies {
     api(appdependencies.Libs.Lifecycle.common)
     api(appdependencies.Libs.Lifecycle.runtime)
 
+    api(appdependencies.Libs.Core.constraintlayout)
     api(appdependencies.Libs.ImageLoading.coil)
 
     api(appdependencies.Libs.Core.navigationFragmentKtx)

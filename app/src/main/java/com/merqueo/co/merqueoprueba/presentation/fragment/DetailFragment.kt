@@ -23,15 +23,12 @@ class DetailFragment : Fragment() {
     private val args: DetailFragmentArgs by navArgs()
     private lateinit var fragmentDetailBinding: FragmentDetailBinding
     private val detailMovieViewModel: DetailViewModel by viewModel()
-    private lateinit var content: View
     private lateinit var mRootView: View
-
-    private lateinit var movieItemDomain: com.merqueo.co.domain.models.MovieItemDomain
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         fragmentDetailBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_detail_, container, false

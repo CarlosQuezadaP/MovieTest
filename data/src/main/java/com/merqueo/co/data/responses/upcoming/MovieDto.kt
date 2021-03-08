@@ -2,7 +2,7 @@ package com.merqueo.co.data.responses.upcoming
 
 
 import com.google.gson.annotations.SerializedName
-import com.merqueo.co.usecases.IConvertableTo
+import com.merqueo.co.CORE.IConvertableTo
 
 data class MovieDto(
     @SerializedName("adult")

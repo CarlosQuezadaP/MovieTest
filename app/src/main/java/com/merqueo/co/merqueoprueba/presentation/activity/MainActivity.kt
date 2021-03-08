@@ -1,14 +1,9 @@
 package com.merqueo.co.merqueoprueba.presentation.activity
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ActivityMainBinding
@@ -26,17 +21,6 @@ class MainActivity : AppCompatActivity() {
 
     private val mainViewModel: MainViewModel by viewModel()
 
-    var menuItem: MenuItem? = null
-
-    private val appBarConfiguration: AppBarConfiguration by lazy {
-        AppBarConfiguration.Builder(
-            setOf(
-                R.id.homeFragment,
-                R.id.shopFragment,
-            )
-        ).build()
-    }
-
     private val navController: NavController by lazy { findNavController(R.id.fragment_nav_host) }
 
 
@@ -46,45 +30,14 @@ class MainActivity : AppCompatActivity() {
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding!!.root)
 
-        setSupportActionBar(tlb_main)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        button_navigation.setupWithNavController(navController)
+        bottom_navigation.setupWithNavController(navController)
 
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.homeFragment -> {
-                    button_navigation.visibility =
-                        View.VISIBLE
-                    showMenu(false)
-                }
-                R.id.shopFragment -> {
-                    button_navigation.visibility =
-                        View.VISIBLE
-                    showMenu(true)
-                }
-                else -> button_navigation.visibility = View.GONE
-            }
-        }
 
         mainViewModel.totalCart.observe(this, {
             setupBadge(it)
         })
     }
 
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
-        menuItem = menu?.findItem(R.id.delete)
-        showMenu(false)
-
-        menuItem!!.setOnMenuItemClickListener {
-
-            deleteAllMovies()
-            return@setOnMenuItemClickListener true
-        }
-        return true
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
@@ -95,18 +48,8 @@ class MainActivity : AppCompatActivity() {
         mainBinding = null
     }
 
-    private fun showMenu(value: Boolean) {
-        menuItem?.apply {
-            isVisible = value
-        }
-    }
-
-    private fun deleteAllMovies() {
-        mainViewModel.deleteAll()
-    }
-
     private fun setupBadge(count: Int) {
-        mainBinding!!.buttonNavigation.getOrCreateBadge(R.id.nav_store).apply {
+        bottom_navigation.getOrCreateBadge(R.id.shopFragment2).apply {
             number = count
         }
     }
