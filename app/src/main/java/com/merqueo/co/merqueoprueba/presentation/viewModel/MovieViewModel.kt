@@ -4,14 +4,12 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.merqueo.co.CORE.model.Resource
-import com.merqueo.co.CORE.presentacion.SingleLiveEvent
 import com.merqueo.co.domain.models.MovieItemDomain
+import com.merqueo.co.merqueoprueba.SingleLiveEvent
 import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onStart
 
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
@@ -40,33 +38,27 @@ class MovieViewModel(
             showLoading.set(false)
             withContext(Dispatchers.Main) {
                 response
-                    .onStart {
-
-                    }
-                    .catch {
-
-                    }
                     .collect {
-                    when (it) {
-                        is Resource.Success -> {
-                            if (it.value.size == 0) {
-                                show.value = true
-                                showError.value = "The movie List is Empty"
-                            } else {
-                                show.value = false
-                                showError.value = null
-                                movieList.value = it.value
+                        when (it) {
+                            is Resource.Success -> {
+                                if (it.value.size == 0) {
+                                    show.value = true
+                                    showError.value = "The movie List is Empty"
+                                } else {
+                                    show.value = false
+                                    showError.value = null
+                                    movieList.value = it.value
+                                }
+                            }
+                            is Resource.Failure -> {
+
+                            }
+
+                            is Resource.Loading -> {
+
                             }
                         }
-                        is Resource.Failure -> {
-
-                        }
-
-                        is Resource.Loading -> {
-
-                        }
                     }
-                }
             }
         }
     }

@@ -1,7 +1,8 @@
 package com.merqueo.co.data.localSource
 
 import com.merqueo.co.CORE.model.Resource
-import com.merqueo.co.data.anticorruption.IEntityToDomainConverter
+import com.merqueo.co.data.anticorruption.Converter
+import com.merqueo.co.data.anticorruption.IConverter
 import com.merqueo.co.data.db.dao.IMoviesDao
 import com.merqueo.co.data.db.entities.MovieEntity
 import com.merqueo.co.domain.models.MovieItemDomain
@@ -12,7 +13,7 @@ import kotlinx.coroutines.flow.map
 @ExperimentalCoroutinesApi
 class MoviesLocalSource(
     private val moviesDao: IMoviesDao,
-    private val converter: IEntityToDomainConverter,
+    private val converter: IConverter,
 ) : IMoviesLocalSource {
 
     override suspend fun insertAll(data: List<MovieItemDomain>) {
