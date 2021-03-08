@@ -24,6 +24,10 @@ object Libs {
         const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockito_inline}"
     }
 
+    object MockIO{
+        const val mockio = "io.mockk:mockk:${Versions.mockio}"
+    }
+
     object Koin {
         const val koin = "org.koin:koin-android:${Versions.koin}"
         const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"

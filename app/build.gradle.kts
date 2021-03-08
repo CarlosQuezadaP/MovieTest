@@ -4,7 +4,6 @@ import appdependencies.Builds.COMPILE_VERSION
 import appdependencies.Builds.MIN_VERSION
 import appdependencies.Builds.TARGET_VERSION
 import appdependencies.Libs
-import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 
 plugins {
     id("com.android.application")
@@ -15,6 +14,7 @@ plugins {
     kotlin("kapt")
     "koin"
 }
+
 
 android {
     compileOptions.incremental = false
@@ -43,84 +43,18 @@ android {
         }
     }
 
-    flavorDimensions("version")
-    productFlavors {
-        create("dev") {
-            applicationId = APP_ID
-            versionCode = appdependencies.Builds.App.VERSION_CODE
-            versionName = appdependencies.Builds.App.VERSION_NAME
-            setDimension("version")
-            applicationIdSuffix = ".dev"
-            versionNameSuffix = "-dev"
-            multiDexEnabled = true
-        }
-
-        create("prod") {
-            applicationId = APP_ID
-            versionCode = appdependencies.Builds.App.VERSION_CODE
-            versionName = appdependencies.Builds.App.VERSION_NAME
-            setDimension("version")
-            multiDexEnabled = true
-        }
-    }
-
-    dexOptions {
-        javaMaxHeapSize = "4g"
-    }
-
-    applicationVariants.forEach { variant ->
-        variant.outputs.forEach { output ->
-            val outputImpl = output as BaseVariantOutputImpl
-            val project = project.name
-            val sep = "_"
-            val flavor = variant.flavorName
-            val buildType = variant.buildType.name
-            val version = variant.versionName
-
-            val newApkName = "$project$sep$flavor$sep$buildType$sep$version.apk"
-            outputImpl.outputFileName = newApkName
-        }
-    }
-
-    bundle {
-        abi {
-            enableSplit = false
-        }
-    }
-
-    packagingOptions {
-        exclude("META-INF/notice.txt")
-    }
-
-    configurations.all {
-        resolutionStrategy {
-            failOnVersionConflict()
-            preferProjectModules()
-        }
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
-        kotlinOptions.suppressWarnings = true
-        kotlinOptions.jvmTarget = "1.8"
-        kotlinOptions.noReflect = true
-        kotlinOptions.freeCompilerArgs += listOf(
-            "-XXLanguage:+InlineClasses"
-        )
-    }
 
     buildFeatures {
         dataBinding = true
         viewBinding = true
     }
-    androidExtensions {
-        isExperimental = true
-        defaultCacheImplementation =
-            org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
 
@@ -135,15 +69,31 @@ dependencies {
     api(project(":data"))
     api(project(":usecases"))
 
-    api(Libs.Core.constraintlayout)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
-    testImplementation(Libs.Tests.junit)
-    androidTestImplementation(Libs.Tests.test_ext_junit)
-    androidTestImplementation(Libs.Tests.test_rules)
-    androidTestImplementation(Libs.Tests.test_runner)
-    androidTestImplementation(Libs.Tests.espresso_espresso)
-    androidTestImplementation(Libs.Tests.test_espresso)
-    testImplementation(Libs.Mockito.mockito_inline)
-    testImplementation(Libs.Mockito.mockito_core)
+    api(Libs.Core.paging)
+    api(Libs.Core.appcompat)
+
+    kapt(Libs.Lifecycle.kapt_compiler)
+    api(Libs.Lifecycle.livedataKtx)
+    api(Libs.Lifecycle.viewmodelKtx)
+    api(Libs.Lifecycle.savedStateViewModel)
+    api(Libs.Lifecycle.extensions)
+    api(Libs.Lifecycle.common)
+    api(Libs.Lifecycle.runtime)
+
+    api(Libs.toasty)
+    api(Libs.Core.constraintlayout)
+    api(Libs.ImageLoading.coil)
+
+    api(Libs.Koin.koinViewModel)
+    api(Libs.Koin.koinFragment)
+    api(Libs.Koin.koinScope)
+
+    api(Libs.Core.navigationFragmentKtx)
+    api(Libs.Core.navigationUiKtx)
+    api(Libs.Core.material)
+
+    testImplementation(Libs.MockIO.mockio)
+
+
 }

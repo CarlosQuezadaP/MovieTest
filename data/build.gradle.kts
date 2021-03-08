@@ -19,23 +19,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
-        kotlinOptions.suppressWarnings = true
-        kotlinOptions.jvmTarget = "1.8"
-        kotlinOptions.noReflect = true
-        kotlinOptions.freeCompilerArgs += listOf(
-            "-XXLanguage:+InlineClasses"
-        )
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
-
-
-    androidExtensions {
-        isExperimental = true
-        defaultCacheImplementation =
-            org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
-    }
-
 }
 
 dependencies {
@@ -44,6 +30,14 @@ dependencies {
     api(project(":CORE"))
     api(project(":infraestructure"))
     api(project(":domain"))
+
+    api(appdependencies.Libs.Retrofit.core)
+    api(appdependencies.Libs.Retrofit.adapter)
+    api(appdependencies.Libs.Retrofit.gson)
+
+    api(appdependencies.Libs.Okhttp.okhttp)
+    api(appdependencies.Libs.Okhttp.logging)
+
     api(appdependencies.Libs.Room.runtime)
     api(appdependencies.Libs.Room.ktx)
     kapt(appdependencies.Libs.Room.kaptcompiler)
