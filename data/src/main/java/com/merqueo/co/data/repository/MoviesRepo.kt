@@ -1,5 +1,6 @@
 package com.merqueo.co.data.repository
 
+import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.data.anticorruption.IEntityToDomainConverter
 import com.merqueo.co.data.localSource.IMoviesLocalSource
 import com.merqueo.co.data.remoteSource.IMoviesRemoteSource
@@ -18,7 +19,10 @@ class MoviesRepo(
         iMoviesLocalSource.insertAll(data)
     }
 
-    override suspend fun getAll(connectivity: Boolean, page: Int): Flow<List<MovieItemDomain>> {
+    override suspend fun getAll(
+        connectivity: Boolean,
+        page: Int
+    ): Flow<Resource<List<MovieItemDomain>>> {
         if (connectivity) getFromRemote(page)
         return iMoviesLocalSource.getAll()
     }

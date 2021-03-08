@@ -1,5 +1,6 @@
 package com.merqueo.co.data.localSource
 
+import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.data.anticorruption.IEntityToDomainConverter
 import com.merqueo.co.data.db.dao.IMoviesDao
 import com.merqueo.co.data.db.entities.MovieEntity
@@ -21,12 +22,16 @@ class MoviesLocalSource(
         moviesDao.insertAll(dataa)
     }
 
-    override suspend fun getAll(): Flow<List<MovieItemDomain>> {
-        val movies = moviesDao.getMovieDistinctUntilChanged().map {
-            it.map {
-                it.convertTo()
+    override suspend fun getAll(): Flow<Resource<List<MovieItemDomain>>> {
+        val movies: Flow<Resource<List<MovieItemDomain>>> =
+            moviesDao.getMovieDistinctUntilChanged().map {
+                it.map {
+                    it.convertTo()
+                }
+            }.map {
+                val response = Resource.Success(it)
+                response
             }
-        }
         return movies
     }
 

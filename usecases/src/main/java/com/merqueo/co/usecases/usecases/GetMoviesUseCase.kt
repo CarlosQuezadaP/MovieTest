@@ -1,8 +1,9 @@
 package com.merqueo.co.usecases.usecases
 
+import com.merqueo.co.CORE.IConnectivity
+import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.data.repository.IMovieRepo
 import com.merqueo.co.domain.models.MovieItemDomain
-import com.merqueo.co.CORE.IConnectivity
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 
@@ -13,12 +14,12 @@ class GetMoviesUseCase(
     private val iConnectivity: IConnectivity
 ) : IGetMoviesUseCase {
 
-    override suspend fun invoke(page: Int): Flow<List<MovieItemDomain>> {
+    override suspend fun invoke(page: Int): Flow<Resource<List<MovieItemDomain>>> {
         return iMoviesRepo.getAll(iConnectivity.isConnected(), page)
     }
 
 }
 
 interface IGetMoviesUseCase {
-    suspend fun invoke(page: Int): Flow<List<MovieItemDomain>>
+    suspend fun invoke(page: Int): Flow<Resource<List<MovieItemDomain>>>
 }
