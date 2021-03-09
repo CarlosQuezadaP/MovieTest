@@ -3,6 +3,8 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.merqueo.co.domain.models.MovieItemDomain
+import com.merqueo.co.usecases.usecases.IDeleteMoviesFromShopUseCase
 import com.merqueo.co.usecases.usecases.IGetMoviesShopCarUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -10,12 +12,14 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ViewModelShopping(private val iGetMoviesShopCarUseCase: IGetMoviesShopCarUseCase) :
+class ViewModelShopping(
+    private val iGetMoviesShopCarUseCase: IGetMoviesShopCarUseCase,
+    private val iDeleteMoviesFromShopUseCase: IDeleteMoviesFromShopUseCase
+) :
     ViewModel() {
 
     var coroutineScope = CoroutineScope(Dispatchers.IO)
-    val showLoading = ObservableBoolean()
-    var movieList = MutableLiveData<List<com.merqueo.co.domain.models.MovieItemDomain>>()
+    var movieList = MutableLiveData<List<MovieItemDomain>>()
 
     init {
         getFromLocal()
@@ -32,4 +36,9 @@ class ViewModelShopping(private val iGetMoviesShopCarUseCase: IGetMoviesShopCarU
         }
     }
 
+    fun deleteAll() {
+        coroutineScope.launch {
+            iDeleteMoviesFromShopUseCase.invoke()
+        }
+    }
 }

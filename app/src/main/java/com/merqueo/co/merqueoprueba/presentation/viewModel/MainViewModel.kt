@@ -1,5 +1,6 @@
 package com.merqueo.co.merqueoprueba.presentation.viewModel
 
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.merqueo.co.usecases.usecases.IDeleteMoviesFromShopUseCase
@@ -12,7 +13,6 @@ class MainViewModel(private val iDeleteMoviesFromShopUseCase: IDeleteMoviesFromS
 
     val totalCart = MutableLiveData<Int>()
     var coroutineScope = CoroutineScope(Dispatchers.IO)
-
     init {
         getCountStore()
     }
@@ -28,10 +28,6 @@ class MainViewModel(private val iDeleteMoviesFromShopUseCase: IDeleteMoviesFromS
         }
     }
 
-    fun deleteAll() {
-        coroutineScope.launch {
-            iDeleteMoviesFromShopUseCase.invoke()
-        }
-    }
+
 
 }

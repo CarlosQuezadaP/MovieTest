@@ -6,21 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.merqueo.co.domain.models.MovieItemDomain
+import com.merqueo.co.merqueoprueba.handlers.IDeleteAll
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.FragmentShopBinding
 import com.merqueo.co.merqueoprueba.presentation.adapter.StoreAdapter
 import com.merqueo.co.merqueoprueba.presentation.viewModel.ViewModelShopping
+import com.merqueo.co.merqueoprueba.setExitToFullScreenTransition
+import com.merqueo.co.merqueoprueba.setReturnFromFullScreenTransition
+import kotlinx.android.synthetic.main.fragment_shop.*
 import kotlinx.android.synthetic.main.fragment_shop.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class ShopFragment : Fragment() {
+class ShopFragment : Fragment(), IDeleteAll {
 
     lateinit var shopBindingImpl: FragmentShopBinding
     private lateinit var mRootView: View
     private val viewModelShopping: ViewModelShopping by viewModel()
-
-
     private lateinit var movieAdapter: StoreAdapter
 
 
@@ -32,30 +35,49 @@ class ShopFragment : Fragment() {
             inflater,
             R.layout.fragment_shop, container, false
         )
+
+        shopBindingImpl.apply {
+            lifecycleOwner = this@ShopFragment
+            deleteAll = this@ShopFragment
+        }
+
         mRootView = shopBindingImpl.root
-        shopBindingImpl.lifecycleOwner = this
-        setView()
+
+        setupAdapter()
+
         return mRootView
     }
 
-    private fun setView() {
-        movieAdapter = StoreAdapter()
-        mRootView.recyclerview.adapter = movieAdapter
-    }
 
-
-    private fun showData(movies: List<com.merqueo.co.domain.models.MovieItemDomain>) {
+    private fun showData(movies: List<MovieItemDomain>) {
         movieAdapter.submitList(movies)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setExitToFullScreenTransition()
+        setReturnFromFullScreenTransition()
 
         viewModelShopping.movieList.observe(viewLifecycleOwner, {
             showData(it)
         })
+    }
 
+    private fun setupAdapter() {
+        movieAdapter = StoreAdapter()
+        mRootView.recyclerviewShop.apply {
+            adapter = movieAdapter
+            postponeEnterTransition()
+            viewTreeObserver.addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
+        }
 
+    }
+
+    override fun deleteAll() {
+        viewModelShopping.deleteAll()
     }
 
 

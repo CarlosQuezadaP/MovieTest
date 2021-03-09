@@ -3,13 +3,13 @@ package com.merqueo.co.merqueoprueba.presentation.adapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.merqueo.co.CORE.BuildConfig
-import com.merqueo.co.merqueoprueba.hide
-import com.merqueo.co.merqueoprueba.show
 import com.merqueo.co.domain.models.MovieItemDomain
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ItemMovieLayoutBinding
-import com.merqueo.co.merqueoprueba.util.AddRemoveListener
-import com.merqueo.co.merqueoprueba.util.ClickListener
+import com.merqueo.co.merqueoprueba.handlers.AddRemoveListener
+import com.merqueo.co.merqueoprueba.handlers.ClickListener
+import com.merqueo.co.merqueoprueba.hide
+import com.merqueo.co.merqueoprueba.show
 
 class MovieViewHolder1(
     private val itemViewBinding: ItemMovieLayoutBinding,

@@ -21,9 +21,12 @@ class MovieViewModel(
 
     val movieChangeState = SingleLiveEvent<Boolean>()
     var movieList = MutableLiveData<List<MovieItemDomain>>()
-    val showLoading = ObservableBoolean()
-    val show = SingleLiveEvent<Boolean>()
-    val showError = SingleLiveEvent<String>()
+
+
+    var isLoading = ObservableBoolean()
+    var failure = ObservableBoolean()
+
+
     private var job: Job? = null
     private var coroutineScope = CoroutineScope(Dispatchers.IO)
 
@@ -32,26 +35,25 @@ class MovieViewModel(
     }
 
     override fun showData() {
-        showLoading.set(true)
+        isLoading.set(true)
+        failure.set(false)
         job = coroutineScope.launch {
             val response = iGetMoviesUseCase.invoke(1)
-            showLoading.set(false)
             withContext(Dispatchers.Main) {
                 response
                     .collect {
+                        isLoading.set(false)
                         when (it) {
                             is Resource.Success -> {
                                 if (it.value.size == 0) {
-                                    show.value = true
-                                    showError.value = "The movie List is Empty"
+                                    failure.set(true)
                                 } else {
-                                    show.value = false
-                                    showError.value = null
+
                                     movieList.value = it.value
                                 }
                             }
                             is Resource.Failure -> {
-
+                                failure.set(true)
                             }
 
                             is Resource.Loading -> {
@@ -72,5 +74,9 @@ class MovieViewModel(
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        job?.cancel()
+    }
 
 }
