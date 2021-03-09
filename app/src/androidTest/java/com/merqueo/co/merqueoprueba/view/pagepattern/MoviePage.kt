@@ -14,10 +14,14 @@ import com.merqueo.co.merqueoprueba.presentation.adapter.MovieViewHolder1
 class MoviePage : Page() {
 
     @IdRes
-    val rvEvents: Int = R.id.recyclerviewMovies
+    val rvEvents: Int = R.id.recyclerViewMovies
 
     @IdRes
     val menuItemShop: Int = R.id.shopFragment2
+
+
+    @IdRes
+    val trash_imageButton: Int = R.id.imageButton_trash
 
 
     fun clickToActionMovie(position: Int, idView: Int): Page {
@@ -31,8 +35,8 @@ class MoviePage : Page() {
         return this
     }
 
-    fun clickOnMenu(): Page {
-        Espresso.onView(ViewMatchers.withId(menuItemShop)).perform(click())
+    fun clickOnView(idView: Int): Page {
+        Espresso.onView(ViewMatchers.withId(idView)).perform(click())
         return this
     }
 
