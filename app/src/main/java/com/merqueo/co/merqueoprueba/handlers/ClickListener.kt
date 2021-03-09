@@ -1,4 +1,4 @@
-package com.merqueo.co.merqueoprueba.util
+package com.merqueo.co.merqueoprueba.handlers
 
 import com.merqueo.co.domain.models.MovieItemDomain
 
