@@ -21,7 +21,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
+            android:id="@+id/recyclerviewMovies"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:visibility="@{viewModel.show ? View.GONE : View.VISIBLE}"

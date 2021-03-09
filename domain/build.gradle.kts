@@ -19,21 +19,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
-        kotlinOptions.suppressWarnings = true
-        kotlinOptions.jvmTarget = "1.8"
-        kotlinOptions.noReflect = true
-        kotlinOptions.freeCompilerArgs += listOf(
-            "-XXLanguage:+InlineClasses"
-        )
-    }
-
-
-    androidExtensions {
-        isExperimental = true
-        defaultCacheImplementation =
-            org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
 }
@@ -41,6 +28,4 @@ android {
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
-
-    testImplementation(appdependencies.Libs.Tests.junit)
 }

@@ -4,7 +4,6 @@ import appdependencies.Builds.COMPILE_VERSION
 import appdependencies.Builds.MIN_VERSION
 import appdependencies.Builds.TARGET_VERSION
 import appdependencies.Libs
-import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 
 plugins {
     id("com.android.application")
@@ -15,6 +14,7 @@ plugins {
     kotlin("kapt")
     "koin"
 }
+
 
 android {
     compileOptions.incremental = false
@@ -43,84 +43,18 @@ android {
         }
     }
 
-    flavorDimensions("version")
-    productFlavors {
-        create("dev") {
-            applicationId = APP_ID
-            versionCode = appdependencies.Builds.App.VERSION_CODE
-            versionName = appdependencies.Builds.App.VERSION_NAME
-            setDimension("version")
-            applicationIdSuffix = ".dev"
-            versionNameSuffix = "-dev"
-            multiDexEnabled = true
-        }
-
-        create("prod") {
-            applicationId = APP_ID
-            versionCode = appdependencies.Builds.App.VERSION_CODE
-            versionName = appdependencies.Builds.App.VERSION_NAME
-            setDimension("version")
-            multiDexEnabled = true
-        }
-    }
-
-    dexOptions {
-        javaMaxHeapSize = "4g"
-    }
-
-    applicationVariants.forEach { variant ->
-        variant.outputs.forEach { output ->
-            val outputImpl = output as BaseVariantOutputImpl
-            val project = project.name
-            val sep = "_"
-            val flavor = variant.flavorName
-            val buildType = variant.buildType.name
-            val version = variant.versionName
-
-            val newApkName = "$project$sep$flavor$sep$buildType$sep$version.apk"
-            outputImpl.outputFileName = newApkName
-        }
-    }
-
-    bundle {
-        abi {
-            enableSplit = false
-        }
-    }
-
-    packagingOptions {
-        exclude("META-INF/notice.txt")
-    }
-
-    configurations.all {
-        resolutionStrategy {
-            failOnVersionConflict()
-            preferProjectModules()
-        }
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
-        kotlinOptions.suppressWarnings = true
-        kotlinOptions.jvmTarget = "1.8"
-        kotlinOptions.noReflect = true
-        kotlinOptions.freeCompilerArgs += listOf(
-            "-XXLanguage:+InlineClasses"
-        )
-    }
 
     buildFeatures {
         dataBinding = true
         viewBinding = true
     }
-    androidExtensions {
-        isExperimental = true
-        defaultCacheImplementation =
-            org.jetbrains.kotlin.gradle.internal.CacheImplementation.HASH_MAP
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
 
@@ -130,20 +64,43 @@ dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
 
-    api(project(":CORE"))
-    api(project(":infraestructure"))
-    api(project(":data"))
-    api(project(":usecases"))
+    implementation(project(":CORE"))
+    implementation(project(":infraestructure"))
+    implementation(project(":data"))
+    implementation(project(":usecases"))
 
-    api(Libs.Core.constraintlayout)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
-    testImplementation(Libs.Tests.junit)
-    androidTestImplementation(Libs.Tests.test_ext_junit)
-    androidTestImplementation(Libs.Tests.test_rules)
-    androidTestImplementation(Libs.Tests.test_runner)
-    androidTestImplementation(Libs.Tests.espresso_espresso)
-    androidTestImplementation(Libs.Tests.test_espresso)
-    testImplementation(Libs.Mockito.mockito_inline)
-    testImplementation(Libs.Mockito.mockito_core)
+    implementation(Libs.Core.paging)
+    implementation(Libs.Core.appcompat)
+
+    kapt(Libs.Lifecycle.kapt_compiler)
+    implementation(Libs.Lifecycle.livedataKtx)
+    implementation(Libs.Lifecycle.viewmodelKtx)
+    implementation(Libs.Lifecycle.savedStateViewModel)
+    implementation(Libs.Lifecycle.extensions)
+    implementation(Libs.Lifecycle.common)
+    implementation(Libs.Lifecycle.runtime)
+
+    implementation(Libs.toasty)
+    implementation(Libs.Core.constraintlayout)
+    implementation(Libs.ImageLoading.coil)
+
+    implementation(Libs.Koin.koinViewModel)
+    implementation(Libs.Koin.koinFragment)
+
+    implementation(Libs.Core.navigationFragmentKtx)
+    implementation(Libs.Core.navigationUiKtx)
+    implementation(Libs.Core.material)
+
+    testImplementation("io.mockk:mockk:1.10.6")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.2")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.3.0")
+    androidTestImplementation("androidx.test:core-ktx:1.3.0")
+    androidTestImplementation("androidx.test:rules:1.3.0")
+    androidTestImplementation("io.mockk:mockk-android:1.10.2")
+    implementation(kotlin("reflect"))
+
+
 }
