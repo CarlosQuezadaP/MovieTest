@@ -55,7 +55,7 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, OnClick {
 
     private fun setView() {
         movieAdapter = MovieAdapter(this, this)
-        mRootView.recyclerview.adapter = movieAdapter
+        mRootView.recyclerviewMovies.adapter = movieAdapter
     }
 
 
