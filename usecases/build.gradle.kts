@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    "koin"
 }
 
 android {
@@ -32,4 +33,7 @@ dependencies {
     api(project(":CORE"))
     api(project(":domain"))
 
+    testImplementation(appdependencies.Libs.MockIO.mockio)
+    testImplementation(appdependencies.Libs.Koin.koinTest)
+    testImplementation(appdependencies.Libs.Tests.junit)
 }

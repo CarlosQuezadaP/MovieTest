@@ -32,7 +32,7 @@ object Libs {
         const val koin = "org.koin:koin-android:${Versions.koin}"
         const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
         const val koinFragment = "org.koin:koin-androidx-fragment:${Versions.koin}"
-        const val koinScope = "org.koin:koin-androidx-scope:${Versions.koin}"
+        const val koinTest = "org.koin:koin-test:${Versions.koin}"
     }
 
     object Lifecycle {

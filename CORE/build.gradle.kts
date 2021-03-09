@@ -10,7 +10,7 @@ android {
     compileSdkVersion(appdependencies.Builds.COMPILE_VERSION)
     buildToolsVersion = appdependencies.Builds.BUILD_TOOLS
     defaultConfig {
-        minSdkVersion(appdependencies.Builds .MIN_VERSION)
+        minSdkVersion(appdependencies.Builds.MIN_VERSION)
         targetSdkVersion(appdependencies.Builds.TARGET_VERSION)
         versionCode = appdependencies.Builds.Core.VERSION_CODE
         versionName = appdependencies.Builds.Core.VERSION_NAME
@@ -33,6 +33,5 @@ dependencies {
     implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
 
     api(appdependencies.Libs.Koin.koin)
-
-    testImplementation(appdependencies.Libs.Tests.junit)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
 }
