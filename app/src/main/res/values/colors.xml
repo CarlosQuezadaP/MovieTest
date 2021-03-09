@@ -30,5 +30,6 @@
     <color name="color_purple">#482275</color>
     <color name="color_white">#ffffff</color>
     <color name="color_transparent">#00FFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
 
 </resources>

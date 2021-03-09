@@ -8,4 +8,6 @@
     <string name="text_home_Fragment_noChangeState">No es posible realizar este cambio de estado</string>
     <string name="refresh">Refresh</string>
     <string name="home_btn">Home</string>
+    <string name="no_es_posible_conectarse_con_netflix">No es posible conectarse con Netflix</string>
+    <string name="reintentarlo">Reintentarlo</string>
 </resources>
