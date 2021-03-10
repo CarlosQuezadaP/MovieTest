@@ -30,6 +30,6 @@ class MovieAdapter(
     }
 
     override fun submitList(list: List<MovieItemDomain>?) {
-        super.submitList(list?.let { ArrayList(it) })
+        super.submitList(list?.apply { ArrayList(this) })
     }
 }

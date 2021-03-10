@@ -5,7 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.domain.models.MovieItemDomain
-import com.merqueo.co.merqueoprueba.SingleLiveEvent
+import com.merqueo.co.merqueoprueba.utils.SingleLiveEvent
+import com.merqueo.co.merqueoprueba.presentation.viewModel.interfaces.IMovieViewModel
 import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
 import kotlinx.coroutines.*
@@ -45,14 +46,14 @@ class MovieViewModel(
                         isLoading.set(false)
                         when (it) {
                             is Resource.Success -> {
-                                if (it.value.size == 0) {
+                                if (it.data.size == 0) {
                                     failure.set(true)
                                 } else {
 
-                                    movieList.value = it.value
+                                    movieList.value = it.data
                                 }
                             }
-                            is Resource.Failure -> {
+                            is Resource.Error -> {
                                 failure.set(true)
                             }
 

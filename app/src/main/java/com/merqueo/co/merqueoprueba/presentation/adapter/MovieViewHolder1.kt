@@ -8,8 +8,8 @@ import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ItemMovieLayoutBinding
 import com.merqueo.co.merqueoprueba.handlers.AddRemoveListener
 import com.merqueo.co.merqueoprueba.handlers.ClickListener
-import com.merqueo.co.merqueoprueba.hide
-import com.merqueo.co.merqueoprueba.show
+import com.merqueo.co.merqueoprueba.utils.hide
+import com.merqueo.co.merqueoprueba.utils.show
 
 class MovieViewHolder1(
     private val itemViewBinding: ItemMovieLayoutBinding,
@@ -28,10 +28,12 @@ class MovieViewHolder1(
         itemViewBinding.clickInterface = clickListener
 
         setVoteAverage(movie)
+
+
         fullPosterUrl(movie).takeIf {
             !isPlaceHolder
-        }?.let { imageUrl ->
-            itemViewBinding.movieImageView.load(imageUrl) {
+        }?.apply {
+            itemViewBinding.movieImageView.load(this) {
                 placeholder(R.drawable.ic_cloud_off_black_24dp)
                 target(onStart = {
                     itemViewBinding.imageProgressBar.show()

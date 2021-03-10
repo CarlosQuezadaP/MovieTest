@@ -5,8 +5,8 @@ import coil.api.load
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ShoppingItemLayoutBinding
 import com.merqueo.co.CORE.BuildConfig
-import com.merqueo.co.merqueoprueba.hide
-import com.merqueo.co.merqueoprueba.show
+import com.merqueo.co.merqueoprueba.utils.hide
+import com.merqueo.co.merqueoprueba.utils.show
 
 class MovieViewHolder(
     private val itemViewBinding: ShoppingItemLayoutBinding
@@ -23,8 +23,8 @@ class MovieViewHolder(
         setVoteAverage(movie)
         fullPosterUrl(movie).takeIf {
             !isPlaceHolder
-        }?.let { imageUrl ->
-            itemViewBinding.movieImageView.load(imageUrl) {
+        }?.apply {
+            itemViewBinding.movieImageView.load(this) {
                 placeholder(R.drawable.ic_cloud_off_black_24dp)
                 target(onStart = {
                     itemViewBinding.imageProgressBar.show()

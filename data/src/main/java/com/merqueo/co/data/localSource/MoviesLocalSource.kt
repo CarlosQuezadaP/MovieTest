@@ -1,14 +1,15 @@
 package com.merqueo.co.data.localSource
 
 import com.merqueo.co.CORE.model.Resource
-import com.merqueo.co.data.anticorruption.Converter
 import com.merqueo.co.data.anticorruption.IConverter
 import com.merqueo.co.data.db.dao.IMoviesDao
 import com.merqueo.co.data.db.entities.MovieEntity
 import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 
 @ExperimentalCoroutinesApi
 class MoviesLocalSource(
@@ -30,8 +31,7 @@ class MoviesLocalSource(
                     it.convertTo()
                 }
             }.map {
-                val response = Resource.Success(it)
-                response
+                Resource.Success(it)
             }
         return movies
     }
@@ -63,8 +63,19 @@ class MoviesLocalSource(
         return moviesDao.getOnStoreCount()
     }
 
-    override suspend fun getAllOnStore(): Flow<List<MovieItemDomain>> {
-        return moviesDao.getAllByStore2().map { it.map { it.convertTo() } }
+    override fun getAllOnStore(): Flow<Resource<List<MovieItemDomain>>> {
+
+        val reso = moviesDao.getAllByStore2().map { it.map { it.convertTo() } }.map {
+            val response: Resource<List<MovieItemDomain>> = Resource.Success(it)
+            response
+        }
+        reso.catch{
+            emit(Resource.Error("Error"))
+        }.onStart {
+            emit(Resource.Loading)
+        }
+
+        return reso
     }
 
     override suspend fun getMovieById(idMovie: Int): MovieItemDomain {

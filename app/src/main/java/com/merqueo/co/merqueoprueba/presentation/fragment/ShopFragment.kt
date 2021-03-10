@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.merqueo.co.domain.models.MovieItemDomain
-import com.merqueo.co.merqueoprueba.handlers.IDeleteAll
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.FragmentShopBinding
+import com.merqueo.co.merqueoprueba.handlers.IDeleteAll
 import com.merqueo.co.merqueoprueba.presentation.adapter.StoreAdapter
 import com.merqueo.co.merqueoprueba.presentation.viewModel.ViewModelShopping
-import com.merqueo.co.merqueoprueba.setExitToFullScreenTransition
-import com.merqueo.co.merqueoprueba.setReturnFromFullScreenTransition
+import com.merqueo.co.merqueoprueba.utils.setExitToFullScreenTransition
+import com.merqueo.co.merqueoprueba.utils.setReturnFromFullScreenTransition
 import kotlinx.android.synthetic.main.fragment_shop.*
 import kotlinx.android.synthetic.main.fragment_shop.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -58,7 +58,7 @@ class ShopFragment : Fragment(), IDeleteAll {
         setExitToFullScreenTransition()
         setReturnFromFullScreenTransition()
 
-        viewModelShopping.movieList.observe(viewLifecycleOwner, {
+        viewModelShopping.getMoviesFromShop().observe(viewLifecycleOwner, {
             showData(it)
         })
     }

@@ -16,13 +16,6 @@ class MoviePage : Page() {
     @IdRes
     val rvEvents: Int = R.id.recyclerViewMovies
 
-    @IdRes
-    val menuItemShop: Int = R.id.shopFragment2
-
-
-    @IdRes
-    val trash_imageButton: Int = R.id.imageButton_trash
-
 
     fun clickToActionMovie(position: Int, idView: Int): Page {
         Espresso.onView(ViewMatchers.withId(rvEvents))

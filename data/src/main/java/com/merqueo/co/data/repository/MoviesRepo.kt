@@ -52,7 +52,7 @@ class MoviesRepo(
         return iMoviesLocalSource.getCountStoreCart()
     }
 
-    override suspend fun getAllOnStore(): Flow<List<MovieItemDomain>> {
+    override fun getAllOnStore(): Flow<Resource<List<MovieItemDomain>>> {
         return iMoviesLocalSource.getAllOnStore()
     }
 

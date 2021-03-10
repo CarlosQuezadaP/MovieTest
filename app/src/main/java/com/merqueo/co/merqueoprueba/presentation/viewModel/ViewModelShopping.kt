@@ -1,16 +1,16 @@
 package com.merqueo.co.merqueoprueba.presentation.viewModel
 
-import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.domain.models.MovieItemDomain
+import com.merqueo.co.merqueoprueba.utils.SingleLiveEvent
+import com.merqueo.co.merqueoprueba.presentation.states.ShopViewState
 import com.merqueo.co.usecases.usecases.IDeleteMoviesFromShopUseCase
 import com.merqueo.co.usecases.usecases.IGetMoviesShopCarUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ViewModelShopping(
     private val iGetMoviesShopCarUseCase: IGetMoviesShopCarUseCase,
@@ -18,27 +18,55 @@ class ViewModelShopping(
 ) :
     ViewModel() {
 
-    var coroutineScope = CoroutineScope(Dispatchers.IO)
-    var movieList = MutableLiveData<List<MovieItemDomain>>()
+    private var coroutineScope = CoroutineScope(Dispatchers.IO)
+    private var movieList = MutableLiveData<List<MovieItemDomain>>()
+    val isEmpty = SingleLiveEvent<Boolean>()
 
     init {
         getFromLocal()
     }
 
-    private fun getFromLocal() {
-        coroutineScope.launch {
-            val response = iGetMoviesShopCarUseCase.invoke()
-            withContext(Dispatchers.Main) {
-                response.collect {
-                    movieList.value = it
+    private val viewState =
+        ShopViewState()
+
+
+    fun getFromLocal(): LiveData<ShopViewState> {
+
+        val agl = iGetMoviesShopCarUseCase.invoke()
+            .map {
+
+                when (it) {
+                    is Resource.Success -> {
+                        movieList.value = it.data
+                        isEmpty.value = (it.data.size == 0)
+
+                        viewState.copy(
+                            loading = false,
+                            data = it.data
+                        )
+                    }
+                    is Resource.Error -> {
+                        viewState.copy(loading = false, error = "Error")
+                    }
+                    is Resource.Loading -> {
+                        viewState.copy(loading = true)
+                    }
+                    else -> viewState.copy(loading = false, error = "Error")
+
                 }
-            }
-        }
+
+            }.asLiveData(Dispatchers.Default + viewModelScope.coroutineContext)
+
+        return agl
+
     }
+
 
     fun deleteAll() {
         coroutineScope.launch {
             iDeleteMoviesFromShopUseCase.invoke()
         }
     }
+
+    fun getMoviesFromShop() = movieList
 }
