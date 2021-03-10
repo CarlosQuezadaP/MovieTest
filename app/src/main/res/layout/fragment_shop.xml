@@ -36,29 +36,34 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:orientation="vertical"
+                android:visibility="@{viewModel.isEmpty ? View.GONE: View.VISIBLE}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/include_toolbar_shop"
                 tools:listitem="@layout/shopping_item_layout"
-
                 />
 
-            <include
-                layout="@layout/error_layout"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_viewModel_shoppingCartEmpty"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="@{viewModel.isEmpty ? View.VISIBLE: View.GONE}"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <include
                 android:id="@+id/include_toolbar_shop"
                 layout="@layout/custom_toolbar_shop"
-                app:deleteAll="@{deleteAll}"
-                />
+                app:deleteAll="@{deleteAll}" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

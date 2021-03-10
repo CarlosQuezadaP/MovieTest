@@ -7,10 +7,6 @@
         <import type="android.view.View" />
 
         <variable
-            name="onclick"
-            type="com.merqueo.co.merqueoprueba.handlers.OnClick" />
-
-        <variable
             name="viewModel"
             type="com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel" />
 
