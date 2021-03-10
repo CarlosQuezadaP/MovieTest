@@ -11,6 +11,7 @@ import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.FragmentShopBinding
 import com.merqueo.co.merqueoprueba.handlers.IDeleteAll
 import com.merqueo.co.merqueoprueba.presentation.adapter.StoreAdapter
+import com.merqueo.co.merqueoprueba.presentation.states.ShopViewState
 import com.merqueo.co.merqueoprueba.presentation.viewModel.ViewModelShopping
 import com.merqueo.co.merqueoprueba.utils.setExitToFullScreenTransition
 import com.merqueo.co.merqueoprueba.utils.setReturnFromFullScreenTransition
@@ -58,8 +59,12 @@ class ShopFragment : Fragment(), IDeleteAll {
         setExitToFullScreenTransition()
         setReturnFromFullScreenTransition()
 
-        viewModelShopping.getMoviesFromShop().observe(viewLifecycleOwner, {
-            showData(it)
+        viewModelShopping.getFromLocal().observe(viewLifecycleOwner, {
+            when (it) {
+                is ShopViewState -> {
+                    showData(it.data)
+                }
+            }
         })
     }
 
