@@ -54,11 +54,16 @@ class MoviesLocalSource(
         moviesDao.insert(converter.convertDomainToEntity(movieItem))
     }
 
-    override fun updateMovieState(id: Int, status: Boolean): Boolean {
+    override fun updateMovieState(id: Int, status: Boolean): Flow<Resource<Boolean>> {
+
         var mov = getMoviEntityByID(id)
         mov = changeMovieState(mov, status)
-        val movieReturn = (moviesDao.update(mov.onStore, mov.id) != 0)
-        return movieReturn
+
+        val response = flowOf((moviesDao.update(mov.onStore, mov.id) != 0)).map {
+            val response = Resource.Success(true)
+            response
+        }
+        return response
     }
 
     override fun getCountStoreCart(): Flow<Int> {

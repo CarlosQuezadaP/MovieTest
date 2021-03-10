@@ -1,17 +1,17 @@
 package com.merqueo.co.merqueoprueba.presentation.viewModel
 
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.domain.models.MovieItemDomain
+import com.merqueo.co.merqueoprueba.presentation.states.BooleanViewState
 import com.merqueo.co.merqueoprueba.presentation.states.MovieViewState
-import com.merqueo.co.merqueoprueba.utils.SingleLiveEvent
 import com.merqueo.co.merqueoprueba.presentation.viewModel.interfaces.IMovieViewModel
 import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
-import kotlinx.coroutines.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.map
 
 @ExperimentalCoroutinesApi
@@ -22,16 +22,11 @@ class MovieViewModel(
 ) :
     ViewModel(), IMovieViewModel {
 
-    val movieChangeState = SingleLiveEvent<Boolean>()
-    var movieList = MutableLiveData<List<MovieItemDomain>>()
-
+    private val booleanViewState =
+        BooleanViewState()
 
     var isLoading = ObservableBoolean()
     var failure = ObservableBoolean()
-
-
-    private var job: Job? = null
-    private var coroutineScope = CoroutineScope(Dispatchers.IO)
 
     private val viewState =
         MovieViewState()
@@ -39,8 +34,6 @@ class MovieViewModel(
     init {
         showData()
     }
-
-
 
 
     override fun showData() = iGetMoviesUseCase.invoke(1)
@@ -65,19 +58,25 @@ class MovieViewModel(
         }.asLiveData()
 
 
+    fun updateMovieState(movieItemDomain: MovieItemDomain) =
+        iUpdateMovieUseCase.invoke(movieItemDomain.id, movieItemDomain.onStore).map {
+            when (it) {
+                is Resource.Success -> {
+                    booleanViewState.copy(
+                        loading = false,
+                        data = it.data
+                    )
+                }
+                is Resource.Error -> {
+                    booleanViewState.copy(loading = false, error = "Error")
+                }
+                is Resource.Loading -> {
+                    booleanViewState.copy(loading = true)
+                }
+                else -> booleanViewState.copy(loading = false, error = "Error")
 
-    suspend fun updateMovieState(movieItemDomain: MovieItemDomain) {
-        coroutineScope.launch {
-            val value = iUpdateMovieUseCase.invoke(movieItemDomain.id, movieItemDomain.onStore)
-            withContext(Dispatchers.Main) {
-                movieChangeState.value = value
             }
-        }
-    }
 
-    override fun onCleared() {
-        super.onCleared()
-        job?.cancel()
-    }
+        }.asLiveData()
 
 }

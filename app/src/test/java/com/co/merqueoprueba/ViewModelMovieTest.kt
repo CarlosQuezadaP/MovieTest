@@ -4,11 +4,11 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.co.merqueoprueba.utils.MainCoroutineScopeRule
 import com.merqueo.co.CORE.model.Resource
+import com.merqueo.co.merqueoprueba.presentation.states.BooleanViewState
 import com.merqueo.co.merqueoprueba.presentation.states.MovieViewState
 import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel
 import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
-import com.merqueo.co.usecases.usecases.UpdateMovieUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -46,11 +46,28 @@ class ViewModelMovieTest {
         emit(Resource.Success(movieBuilder.buildAsList()))
     }
 
+    val flow_update_movies = flow {
+        emit(Resource.Loading)
+        delay(10)
+        emit(Resource.Success(true))
+    }
+
     lateinit var viewModelMovies: MovieViewModel
 
 
     @Mock
     private lateinit var mockObserver: Observer<MovieViewState>
+
+
+    @Mock
+    private lateinit var mockObserverBoolean: Observer<BooleanViewState>
+
+
+    @Captor
+    private lateinit var captorUpdate: ArgumentCaptor<BooleanViewState>
+
+    @Captor
+    private lateinit var captor: ArgumentCaptor<MovieViewState>
 
 
     @Before
@@ -62,10 +79,6 @@ class ViewModelMovieTest {
         viewModelMovies =
             MovieViewModel(iGetMovieUseCase, iUpdateMovieUseCase)
     }
-
-    @Captor
-    private lateinit var captor: ArgumentCaptor<MovieViewState>
-
 
     @Test
     fun `get movies from shop return list movieItem success`() {
@@ -97,6 +110,47 @@ class ViewModelMovieTest {
             Assert.assertEquals(
                 "Los vengadores 4",
                 captor.value.data[0].title
+            )
+        }
+    }
+
+    @Test
+    fun `update movies as shop`() {
+
+        coroutineScope.runBlockingTest {
+
+            //arrange
+
+            val movie = movieBuilder.build()
+
+            Mockito.`when`(
+                iUpdateMovieUseCase.invoke(
+                    movie.id,
+                    movie.onStore
+                )
+            )
+                .thenReturn(flow_update_movies)
+
+            //Act
+            val liveData = viewModelMovies.updateMovieState(movie)
+            liveData.observeForever(mockObserverBoolean)
+
+
+            //Assert
+            Mockito.verify(mockObserverBoolean)
+                .onChanged(captorUpdate.capture())
+
+            Assert.assertEquals(true, captorUpdate.value.loading)
+
+            coroutineScope.advanceTimeBy(10)
+
+            Mockito.verify(mockObserverBoolean, Mockito.times(2))
+                .onChanged(captorUpdate.capture()) // onchange has been triggered twice
+
+
+            Assert.assertEquals(
+                true,
+                captorUpdate.value.data
             )
         }
     }

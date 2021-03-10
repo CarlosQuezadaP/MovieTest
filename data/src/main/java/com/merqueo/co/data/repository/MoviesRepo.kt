@@ -51,7 +51,7 @@ class MoviesRepo(
         iMoviesLocalSource.insert(movieItem)
     }
 
-    override fun updateMovieState(id: Int, status: Boolean): Boolean {
+    override fun updateMovieState(id: Int, status: Boolean): Flow<Resource<Boolean>> {
         return iMoviesLocalSource.updateMovieState(id, status)
     }
 

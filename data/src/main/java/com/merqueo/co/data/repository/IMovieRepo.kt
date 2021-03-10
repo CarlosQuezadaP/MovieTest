@@ -8,7 +8,7 @@ interface IMovieRepo {
     fun insertAll(data: List<MovieItemDomain>)
     fun getAll(connectivity: Boolean, page: Int): Flow<Resource<List<MovieItemDomain>>>
     fun insert(movieItem: MovieItemDomain)
-    fun updateMovieState(id: Int, status: Boolean): Boolean
+    fun updateMovieState(id: Int, status: Boolean): Flow<Resource<Boolean>>
     fun getCountStoreCart(): Flow<Int>
     fun getAllOnStore(): Flow<Resource<List<MovieItemDomain>>>
     fun changeAllStore(): Flow<Resource<Boolean>>
