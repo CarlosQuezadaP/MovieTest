@@ -6,9 +6,7 @@ import com.merqueo.co.data.localSource.IMoviesLocalSource
 import com.merqueo.co.data.remoteSource.IMoviesRemoteSource
 import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 @FlowPreview
 class MoviesRepo(
@@ -17,11 +15,11 @@ class MoviesRepo(
     private val converter: IConverter
 ) : IMovieRepo {
 
-    override fun insertAll(data: List<MovieItemDomain>) {
+    override suspend fun insertAll(data: List<MovieItemDomain>) {
         iMoviesLocalSource.insertAll(data)
     }
 
-    override fun getAll(
+    override suspend fun getAll(
         connectivity: Boolean,
         page: Int
     ): Flow<Resource<List<MovieItemDomain>>> {
@@ -29,32 +27,28 @@ class MoviesRepo(
         return iMoviesLocalSource.getAll()
     }
 
-    fun getFromRemote(page: Int) {
+    suspend fun getFromRemote(page: Int) {
 
-        GlobalScope.launch {
-            val dataToSave = iMoviesRemoteSource.getUpcomingMovies(page)
+        val dataToSave = iMoviesRemoteSource.getUpcomingMovies(page)
 
-            dataToSave.run {
-                this.map {
-                    converter.convertDomainToEntity(it)
-                }
+        dataToSave.run {
+            this.map {
+                converter.convertDomainToEntity(it)
             }
-
-            insertAll(dataToSave)
         }
 
-
+        insertAll(dataToSave)
     }
 
-    override fun insert(movieItem: MovieItemDomain) {
+    override suspend fun insert(movieItem: MovieItemDomain) {
         iMoviesLocalSource.insert(movieItem)
     }
 
-    override fun updateMovieState(id: Int, status: Boolean): Boolean {
+    override suspend fun updateMovieState(id: Int, status: Boolean): Boolean {
         return iMoviesLocalSource.updateMovieState(id, status)
     }
 
-    override fun getCountStoreCart(): Flow<Int> {
+    override suspend fun getCountStoreCart(): Flow<Int> {
         return iMoviesLocalSource.getCountStoreCart()
     }
 
@@ -62,11 +56,11 @@ class MoviesRepo(
         return iMoviesLocalSource.getAllOnStore()
     }
 
-    override fun changeAllStore() {
+    override suspend fun changeAllStore() {
         iMoviesLocalSource.changeAllStore()
     }
 
-    override fun getMovieById(idMovie: Int): MovieItemDomain {
+    override suspend fun getMovieById(idMovie: Int): MovieItemDomain {
         return iMoviesLocalSource.getMovieById(idMovie)
     }
 }

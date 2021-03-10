@@ -40,6 +40,7 @@ class DetailViewModel(
             withContext(Dispatchers.Main) {
                 movieChangeState.value = value
             }
+
         }
     }
 

@@ -17,14 +17,14 @@ class MoviesLocalSource(
     private val converter: IConverter,
 ) : IMoviesLocalSource {
 
-    override fun insertAll(data: List<MovieItemDomain>) {
+    override suspend fun insertAll(data: List<MovieItemDomain>) {
         val dataa = data.map {
             converter.convertDomainToEntity(it)
         }
         moviesDao.insertAll(dataa)
     }
 
-    override fun getAll(): Flow<Resource<List<MovieItemDomain>>> {
+    override suspend fun getAll(): Flow<Resource<List<MovieItemDomain>>> {
         val movies: Flow<Resource<List<MovieItemDomain>>> =
             moviesDao.getMovieDistinctUntilChanged().map {
                 it.map {
@@ -36,7 +36,7 @@ class MoviesLocalSource(
         return movies
     }
 
-    override fun changeAllStore() {
+    override suspend fun changeAllStore() {
         moviesDao.updateAll(getAllStore())
     }
 
@@ -48,18 +48,18 @@ class MoviesLocalSource(
         return movies
     }
 
-    override fun insert(movieItem: MovieItemDomain) {
+    override suspend fun insert(movieItem: MovieItemDomain) {
         moviesDao.insert(converter.convertDomainToEntity(movieItem))
     }
 
-    override fun updateMovieState(id: Int, status: Boolean): Boolean {
+    override suspend fun updateMovieState(id: Int, status: Boolean): Boolean {
         var mov = getMoviEntityByID(id)
         mov = changeMovieState(mov, status)
         val movieReturn = (moviesDao.update(mov.onStore, mov.id) != 0)
         return movieReturn
     }
 
-    override fun getCountStoreCart(): Flow<Int> {
+    override suspend fun getCountStoreCart(): Flow<Int> {
         return moviesDao.getOnStoreCount()
     }
 
@@ -69,7 +69,7 @@ class MoviesLocalSource(
             val response: Resource<List<MovieItemDomain>> = Resource.Success(it)
             response
         }
-        reso.catch {
+        reso.catch{
             emit(Resource.Error("Error"))
         }.onStart {
             emit(Resource.Loading)
@@ -78,7 +78,7 @@ class MoviesLocalSource(
         return reso
     }
 
-    override fun getMovieById(idMovie: Int): MovieItemDomain {
+    override suspend fun getMovieById(idMovie: Int): MovieItemDomain {
         return moviesDao.getById(idMovie).convertTo()
     }
 
