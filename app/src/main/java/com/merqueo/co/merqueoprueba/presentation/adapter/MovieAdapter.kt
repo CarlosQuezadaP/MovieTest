@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.merqueo.co.domain.models.MovieItemDomain
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ItemMovieLayoutBinding
-import com.merqueo.co.merqueoprueba.util.AddRemoveListener
-import com.merqueo.co.merqueoprueba.util.ClickListener
+import com.merqueo.co.merqueoprueba.handlers.AddRemoveListener
+import com.merqueo.co.merqueoprueba.handlers.ClickListener
 
 class MovieAdapter(
     private val addRemoveListener: AddRemoveListener,
@@ -30,6 +30,6 @@ class MovieAdapter(
     }
 
     override fun submitList(list: List<MovieItemDomain>?) {
-        super.submitList(list?.let { ArrayList(it) })
+        super.submitList(list?.apply { ArrayList(this) })
     }
 }

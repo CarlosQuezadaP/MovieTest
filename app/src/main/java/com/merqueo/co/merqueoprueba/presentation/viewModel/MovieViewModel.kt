@@ -1,15 +1,18 @@
 package com.merqueo.co.merqueoprueba.presentation.viewModel
 
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.domain.models.MovieItemDomain
-import com.merqueo.co.merqueoprueba.SingleLiveEvent
+import com.merqueo.co.merqueoprueba.presentation.states.BooleanViewState
+import com.merqueo.co.merqueoprueba.presentation.states.MovieViewState
+import com.merqueo.co.merqueoprueba.presentation.viewModel.interfaces.IMovieViewModel
 import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.map
 
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
@@ -19,58 +22,61 @@ class MovieViewModel(
 ) :
     ViewModel(), IMovieViewModel {
 
-    val movieChangeState = SingleLiveEvent<Boolean>()
-    var movieList = MutableLiveData<List<MovieItemDomain>>()
-    val showLoading = ObservableBoolean()
-    val show = SingleLiveEvent<Boolean>()
-    val showError = SingleLiveEvent<String>()
-    private var job: Job? = null
-    private var coroutineScope = CoroutineScope(Dispatchers.IO)
+    private val booleanViewState =
+        BooleanViewState()
+
+    var isLoading = ObservableBoolean()
+    var failure = ObservableBoolean()
+
+    private val viewState =
+        MovieViewState()
 
     init {
         showData()
     }
 
-    override fun showData() {
-        showLoading.set(true)
-        job = coroutineScope.launch {
-            val response = iGetMoviesUseCase.invoke(1)
-            showLoading.set(false)
-            withContext(Dispatchers.Main) {
-                response
-                    .collect {
-                        when (it) {
-                            is Resource.Success -> {
-                                if (it.value.size == 0) {
-                                    show.value = true
-                                    showError.value = "The movie List is Empty"
-                                } else {
-                                    show.value = false
-                                    showError.value = null
-                                    movieList.value = it.value
-                                }
-                            }
-                            is Resource.Failure -> {
 
-                            }
+    override fun showData() = iGetMoviesUseCase.invoke(1)
+        .map {
+            when (it) {
+                is Resource.Success -> {
+                    viewState.copy(
+                        loading = false,
+                        data = it.data
+                    )
+                }
+                is Resource.Error -> {
+                    viewState.copy(loading = false, error = "Error")
+                }
+                is Resource.Loading -> {
+                    viewState.copy(loading = true)
+                }
+                else -> viewState.copy(loading = false, error = "Error")
 
-                            is Resource.Loading -> {
-
-                            }
-                        }
-                    }
             }
-        }
-    }
 
-    suspend fun updateMovieState(movieItemDomain: MovieItemDomain) {
-        coroutineScope.launch {
-            val value = iUpdateMovieUseCase.invoke(movieItemDomain.id, movieItemDomain.onStore)
-            withContext(Dispatchers.Main) {
-                movieChangeState.value = value
+        }.asLiveData()
+
+
+    fun updateMovieState(movieItemDomain: MovieItemDomain) =
+        iUpdateMovieUseCase.invoke(movieItemDomain.id, movieItemDomain.onStore).map {
+            when (it) {
+                is Resource.Success -> {
+                    booleanViewState.copy(
+                        loading = false,
+                        data = it.data
+                    )
+                }
+                is Resource.Error -> {
+                    booleanViewState.copy(loading = false, error = "Error")
+                }
+                is Resource.Loading -> {
+                    booleanViewState.copy(loading = true)
+                }
+                else -> booleanViewState.copy(loading = false, error = "Error")
+
             }
-        }
-    }
 
+        }.asLiveData()
 
 }

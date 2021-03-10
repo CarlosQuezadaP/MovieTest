@@ -9,6 +9,7 @@ val databaseModule = module {
 
     single {
         Room.databaseBuilder(androidApplication(), MerqueoDatabase::class.java, "db")
+            .allowMainThreadQueries()
             .build()
     }
 

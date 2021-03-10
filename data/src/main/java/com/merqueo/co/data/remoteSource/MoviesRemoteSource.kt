@@ -10,19 +10,18 @@ class MoviesRemoteSource(
     private val moviesApi: IMovieApi
 ) : IMoviesRemoteSource {
 
-    var closure: (UpcomingResponse) -> List<MovieItemDomain> = {
-        it.movieDtos.map {
+    var getMoviesDomain: (UpcomingResponse?) -> List<MovieItemDomain> = {
+        it?.movieDtos?.map {
             it.convertTo()
-        }
+        } ?: listOf()
     }
-
 
     override suspend fun getUpcomingMovies(page: Int): List<MovieItemDomain> {
 
         val response = moviesApi.getUpcomingMovies(page)
 
-        return response.body()?.run {
-            closure(this)
-        } ?: emptyList()
+        return with(response.body()) {
+            getMoviesDomain(this)
+        }
     }
 }

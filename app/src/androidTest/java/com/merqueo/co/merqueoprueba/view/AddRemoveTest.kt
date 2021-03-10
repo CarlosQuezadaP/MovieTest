@@ -49,7 +49,10 @@ class AddRemoveTest {
         pageUtils.sleep(5)
         Page.on<MoviePage>().clickToActionMovie(0, R.id.button_add)
         pageUtils.sleep(2)
-        Page.on<MoviePage>().clickOnMenu()
+        Page.on<MoviePage>().clickOnView(R.id.shopFragment2)
+        pageUtils.sleep(1)
+        Page.on<MoviePage>().clickOnView(R.id.imageButton_trash)
+        pageUtils.sleep(1)
     }
 
 

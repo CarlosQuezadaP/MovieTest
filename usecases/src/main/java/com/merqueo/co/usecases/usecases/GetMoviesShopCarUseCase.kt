@@ -1,16 +1,17 @@
 package com.merqueo.co.usecases.usecases
 
+import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.data.localSource.IMoviesLocalSource
 import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.flow.Flow
 
 interface IGetMoviesShopCarUseCase {
-    suspend fun invoke(): Flow<List<MovieItemDomain>>
+    fun invoke(): Flow<Resource<List<MovieItemDomain>>>
 }
 
 class GetMoviesShopCarUseCase(private val localSource: IMoviesLocalSource) :
     IGetMoviesShopCarUseCase {
-    override suspend fun invoke(): Flow<List<MovieItemDomain>> {
+    override fun invoke():Flow<Resource<List<MovieItemDomain>>> {
         return localSource.getAllOnStore()
     }
 }

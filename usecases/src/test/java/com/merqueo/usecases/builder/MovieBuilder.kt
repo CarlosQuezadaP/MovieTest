@@ -1,7 +1,6 @@
 package com.merqueo.usecases.builder
 
 import com.merqueo.co.domain.models.MovieItemDomain
-import kotlinx.coroutines.flow.flowOf
 
 class MovieBuilder {
 

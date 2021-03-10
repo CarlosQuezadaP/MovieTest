@@ -1,14 +1,12 @@
 package com.merqueo.co.data.localSource
 
 import com.merqueo.co.CORE.model.Resource
-import com.merqueo.co.data.anticorruption.Converter
 import com.merqueo.co.data.anticorruption.IConverter
 import com.merqueo.co.data.db.dao.IMoviesDao
 import com.merqueo.co.data.db.entities.MovieEntity
 import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 
 @ExperimentalCoroutinesApi
 class MoviesLocalSource(
@@ -16,28 +14,32 @@ class MoviesLocalSource(
     private val converter: IConverter,
 ) : IMoviesLocalSource {
 
-    override suspend fun insertAll(data: List<MovieItemDomain>) {
+    override fun insertAll(data: List<MovieItemDomain>) {
         val dataa = data.map {
             converter.convertDomainToEntity(it)
         }
         moviesDao.insertAll(dataa)
     }
 
-    override suspend fun getAll(): Flow<Resource<List<MovieItemDomain>>> {
+    override fun getAll(): Flow<Resource<List<MovieItemDomain>>> {
         val movies: Flow<Resource<List<MovieItemDomain>>> =
             moviesDao.getMovieDistinctUntilChanged().map {
                 it.map {
                     it.convertTo()
                 }
             }.map {
-                val response = Resource.Success(it)
-                response
+                Resource.Success(it)
             }
         return movies
     }
 
-    override suspend fun changeAllStore() {
-        moviesDao.updateAll(getAllStore())
+    override fun changeAllStore():Flow<Resource<Boolean>> {
+
+        val response = flowOf(moviesDao.updateAll(getAllStore())).map {
+            val response = Resource.Success(true)
+            response
+        }
+        return response
     }
 
     private fun getAllStore(): List<MovieEntity> {
@@ -48,26 +50,42 @@ class MoviesLocalSource(
         return movies
     }
 
-    override suspend fun insert(movieItem: MovieItemDomain) {
+    override fun insert(movieItem: MovieItemDomain) {
         moviesDao.insert(converter.convertDomainToEntity(movieItem))
     }
 
-    override suspend fun updateMovieState(id: Int, status: Boolean): Boolean {
+    override fun updateMovieState(id: Int, status: Boolean): Flow<Resource<Boolean>> {
+
         var mov = getMoviEntityByID(id)
         mov = changeMovieState(mov, status)
-        val movieReturn = (moviesDao.update(mov.onStore, mov.id) != 0)
-        return movieReturn
+
+        val response = flowOf((moviesDao.update(mov.onStore, mov.id) != 0)).map {
+            val response = Resource.Success(true)
+            response
+        }
+        return response
     }
 
-    override suspend fun getCountStoreCart(): Flow<Int> {
+    override fun getCountStoreCart(): Flow<Int> {
         return moviesDao.getOnStoreCount()
     }
 
-    override suspend fun getAllOnStore(): Flow<List<MovieItemDomain>> {
-        return moviesDao.getAllByStore2().map { it.map { it.convertTo() } }
+    override fun getAllOnStore(): Flow<Resource<List<MovieItemDomain>>> {
+
+        val response = moviesDao.getAllByStore2().map { it.map { it.convertTo() } }.map {
+            val response: Resource<List<MovieItemDomain>> = Resource.Success(it)
+            response
+        }
+        response.catch {
+            emit(Resource.Error("Error"))
+        }.onStart {
+            emit(Resource.Loading)
+        }
+
+        return response
     }
 
-    override suspend fun getMovieById(idMovie: Int): MovieItemDomain {
+    override fun getMovieById(idMovie: Int): MovieItemDomain {
         return moviesDao.getById(idMovie).convertTo()
     }
 

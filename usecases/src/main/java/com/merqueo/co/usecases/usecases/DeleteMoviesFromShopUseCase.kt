@@ -1,23 +1,23 @@
 package com.merqueo.co.usecases.usecases
 
+import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.data.localSource.IMoviesLocalSource
 import kotlinx.coroutines.flow.Flow
 
 interface IDeleteMoviesFromShopUseCase {
-    suspend fun countMovies(): Flow<Int>
-    suspend fun invoke()
+    fun countMovies(): Flow<Int>
+    fun invoke(): Flow<Resource<Boolean>>
 }
 
 
 class DeleteMoviesFromShopUseCase(private val localSource: IMoviesLocalSource) :
     IDeleteMoviesFromShopUseCase {
 
-    override suspend fun countMovies(): Flow<Int> {
+    override fun countMovies(): Flow<Int> {
         return localSource.getCountStoreCart()
     }
 
-    override suspend fun invoke() {
-        localSource.changeAllStore()
-    }
+    override fun invoke() = localSource.changeAllStore()
+
 
 }

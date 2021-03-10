@@ -11,12 +11,14 @@ import androidx.navigation.fragment.findNavController
 import com.merqueo.co.domain.models.MovieItemDomain
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.FragmentHomeBinding
+import com.merqueo.co.merqueoprueba.handlers.AddRemoveListener
+import com.merqueo.co.merqueoprueba.handlers.ClickListener
+import com.merqueo.co.merqueoprueba.handlers.IResearch
 import com.merqueo.co.merqueoprueba.presentation.adapter.MovieAdapter
 import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel
-import com.merqueo.co.merqueoprueba.util.OnClick
-import com.merqueo.co.merqueoprueba.navigateUriWithDefaultOptions
-import com.merqueo.co.merqueoprueba.util.AddRemoveListener
-import com.merqueo.co.merqueoprueba.util.ClickListener
+import com.merqueo.co.merqueoprueba.utils.navigateUriWithDefaultOptions
+import com.merqueo.co.merqueoprueba.utils.setExitToFullScreenTransition
+import com.merqueo.co.merqueoprueba.utils.setReturnFromFullScreenTransition
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -27,7 +29,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @InternalCoroutinesApi
 @ExperimentalCoroutinesApi
-class HomeFragment : Fragment(), AddRemoveListener, ClickListener, OnClick {
+class HomeFragment : Fragment(), AddRemoveListener, ClickListener, IResearch {
 
     private lateinit var homeBinding: FragmentHomeBinding
     private lateinit var mRootView: View
@@ -39,40 +41,61 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, OnClick {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         homeBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_home, container, false
         )
-        mRootView = homeBinding.root
-        homeBinding.lifecycleOwner = this
-        homeBinding.onclick = this
-        setView()
+
+        homeBinding.apply {
+            lifecycleOwner = this@HomeFragment
+            research = this@HomeFragment
+            mRootView = this.root
+            viewModel = moviesViewModel
+        }
+
+
+        setupAdapter()
+
+        moviesViewModel.showData().observe(viewLifecycleOwner, { movieState ->
+            showData(movieState.data)
+        })
+
 
 
         return mRootView
     }
 
 
-    private fun setView() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setExitToFullScreenTransition()
+        setReturnFromFullScreenTransition()
+        setupAdapter()
+    }
+
+
+    private fun setupAdapter() {
         movieAdapter = MovieAdapter(this, this)
-        mRootView.recyclerviewMovies.adapter = movieAdapter
+
+
+        mRootView.recyclerViewMovies.apply {
+            adapter = movieAdapter
+            postponeEnterTransition()
+            viewTreeObserver.addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
+        }
     }
 
 
     private fun showData(movies: List<MovieItemDomain>) {
-        movieAdapter.submitList(movies)
-        movieAdapter.notifyDataSetChanged()
+        movieAdapter.apply {
+            submitList(movies)
+            notifyDataSetChanged()
+        }
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        homeBinding.viewModel = moviesViewModel
-
-        moviesViewModel.movieList.observe(viewLifecycleOwner, {
-            showData(it)
-        })
-    }
-
 
     override fun onClick(movieItemDomain: MovieItemDomain) {
         findNavController().navigateUriWithDefaultOptions(
@@ -90,7 +113,8 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, OnClick {
         }
     }
 
-    override fun onClick() {
+
+    override fun research() {
         moviesViewModel.showData()
     }
 
