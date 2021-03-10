@@ -1,8 +1,9 @@
-package com.merqueo.co.merqueoprueba
+package com.merqueo.co.merqueoprueba.utils
 
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
+import com.merqueo.co.merqueoprueba.R
 
 
 fun View.hide(gone: Boolean = true) {

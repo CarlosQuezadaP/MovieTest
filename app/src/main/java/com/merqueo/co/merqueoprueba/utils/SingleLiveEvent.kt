@@ -1,4 +1,4 @@
-package com.merqueo.co.merqueoprueba
+package com.merqueo.co.merqueoprueba.utils
 
 
 import android.util.Log

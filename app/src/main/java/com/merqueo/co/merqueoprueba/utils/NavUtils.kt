@@ -1,8 +1,9 @@
-package com.merqueo.co.merqueoprueba
+package com.merqueo.co.merqueoprueba.utils
 
 import android.net.Uri
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
+import com.merqueo.co.merqueoprueba.R
 
 fun createDefaultNavOptions(destination: Int) = NavOptions.Builder()
     .setLaunchSingleTop(false)
