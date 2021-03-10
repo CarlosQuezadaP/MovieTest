@@ -11,7 +11,7 @@ interface IMoviesLocalSource {
     fun updateMovieState(id: Int, status: Boolean): Boolean
     fun getCountStoreCart(): Flow<Int>
     fun getAllOnStore(): Flow<Resource<List<MovieItemDomain>>>
-    fun changeAllStore()
+    fun changeAllStore() :Flow<Resource<Boolean>>
     fun getMovieById(idMovie: Int): MovieItemDomain
 }
 

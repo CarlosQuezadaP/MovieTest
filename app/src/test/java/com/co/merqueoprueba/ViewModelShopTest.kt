@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.co.merqueoprueba.utils.MainCoroutineScopeRule
 import com.merqueo.co.CORE.model.Resource
+import com.merqueo.co.merqueoprueba.presentation.states.BooleanViewState
 import com.merqueo.co.merqueoprueba.presentation.states.MovieViewState
 import com.merqueo.co.merqueoprueba.presentation.viewModel.ViewModelShopping
 import com.merqueo.co.usecases.usecases.IDeleteMoviesFromShopUseCase
@@ -37,17 +38,28 @@ class ViewModelShopTest {
     val coroutineScope = MainCoroutineScopeRule()
 
 
-    val flow = flow {
+    val flow_get_movies = flow {
         emit(Resource.Loading)
         delay(10)
         emit(Resource.Success(movieBuilder.buildAsList()))
     }
 
+    val flow_delete_movies = flow {
+        emit(Resource.Loading)
+        delay(10)
+        emit(Resource.Success(true))
+    }
+
+
     lateinit var viewModelShopping: ViewModelShopping
 
 
     @Mock
-    private lateinit var mockObserver: Observer<MovieViewState>
+    private lateinit var mockObserverMovies: Observer<MovieViewState>
+
+
+    @Mock
+    private lateinit var mockObserverDelete: Observer<BooleanViewState>
 
 
     @Before
@@ -61,7 +73,10 @@ class ViewModelShopTest {
     }
 
     @Captor
-    private lateinit var captor: ArgumentCaptor<MovieViewState>
+    private lateinit var captorMovie: ArgumentCaptor<MovieViewState>
+
+    @Captor
+    private lateinit var captorDelete: ArgumentCaptor<BooleanViewState>
 
 
     @Test
@@ -70,28 +85,61 @@ class ViewModelShopTest {
 
             //arrange
             Mockito.`when`(iGetMoviesShopCarUseCase.invoke())
-                .thenReturn(flow)
+                .thenReturn(flow_get_movies)
 
             //Act
             val liveData = viewModelShopping.getFromLocal()
-            liveData.observeForever(mockObserver)
+            liveData.observeForever(mockObserverMovies)
 
 
             //Assert
-            Mockito.verify(mockObserver)
-                .onChanged(captor.capture())
+            Mockito.verify(mockObserverMovies)
+                .onChanged(captorMovie.capture())
 
-            Assert.assertEquals(true, captor.value.loading)
+            Assert.assertEquals(true, captorMovie.value.loading)
 
             coroutineScope.advanceTimeBy(10)
 
-            Mockito.verify(mockObserver, Mockito.times(2))
-                .onChanged(captor.capture()) // onchange has been triggered twice
+            Mockito.verify(mockObserverMovies, Mockito.times(2))
+                .onChanged(captorMovie.capture()) // onchange has been triggered twice
 
 
             Assert.assertEquals(
                 "Los vengadores 4",
-                captor.value.data[0].title
+                captorMovie.value.data[0].title
+            )
+        }
+    }
+
+    @Test
+    fun `delete all movies`() {
+
+        coroutineScope.runBlockingTest {
+
+            //arrange
+            Mockito.`when`(iDeleteMoviesFromShopUseCase.invoke())
+                .thenReturn(flow_delete_movies)
+
+            //Act
+            val liveData = viewModelShopping.deleteAll()
+            liveData.observeForever(mockObserverDelete)
+
+
+            //Assert
+            Mockito.verify(mockObserverDelete)
+                .onChanged(captorDelete.capture())
+
+            Assert.assertEquals(true, captorDelete.value.loading)
+
+            coroutineScope.advanceTimeBy(10)
+
+            Mockito.verify(mockObserverDelete, Mockito.times(2))
+                .onChanged(captorDelete.capture()) // onchange has been triggered twice
+
+
+            Assert.assertEquals(
+                true,
+                captorDelete.value.data
             )
         }
     }

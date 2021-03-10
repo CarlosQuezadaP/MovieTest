@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.merqueo.co.domain.models.MovieItemDomain
@@ -82,7 +83,14 @@ class ShopFragment : Fragment(), IDeleteAll {
     }
 
     override fun deleteAll() {
-        viewModelShopping.deleteAll()
+        viewModelShopping.deleteAll().observe(viewLifecycleOwner, {
+            if (it.data) {
+                Toast.makeText(activity, "Datos eliminados", Toast.LENGTH_SHORT).show()
+            }
+            if (it.loading) {
+
+            }
+        })
     }
 
 

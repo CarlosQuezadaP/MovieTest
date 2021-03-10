@@ -3,14 +3,12 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.merqueo.co.CORE.model.Resource
+import com.merqueo.co.merqueoprueba.presentation.states.BooleanViewState
 import com.merqueo.co.merqueoprueba.presentation.states.MovieViewState
 import com.merqueo.co.merqueoprueba.utils.SingleLiveEvent
 import com.merqueo.co.usecases.usecases.IDeleteMoviesFromShopUseCase
 import com.merqueo.co.usecases.usecases.IGetMoviesShopCarUseCase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 
 class ViewModelShopping(
     private val iGetMoviesShopCarUseCase: IGetMoviesShopCarUseCase,
@@ -18,7 +16,6 @@ class ViewModelShopping(
 ) :
     ViewModel() {
 
-    private var coroutineScope = CoroutineScope(Dispatchers.IO)
     val isEmpty = SingleLiveEvent<Boolean>()
 
     init {
@@ -26,36 +23,54 @@ class ViewModelShopping(
 
     }
 
-    private val viewState =
+    private val movieViewState =
         MovieViewState()
+
+    private val booleanViewState =
+        BooleanViewState()
 
 
     fun getFromLocal() = iGetMoviesShopCarUseCase.invoke()
         .map {
             when (it) {
                 is Resource.Success -> {
-                    viewState.copy(
+                    movieViewState.copy(
                         loading = false,
                         data = it.data
                     )
                 }
                 is Resource.Error -> {
-                    viewState.copy(loading = false, error = "Error")
+                    movieViewState.copy(loading = false, error = "Error")
                 }
                 is Resource.Loading -> {
-                    viewState.copy(loading = true)
+                    movieViewState.copy(loading = true)
                 }
-                else -> viewState.copy(loading = false, error = "Error")
+                else -> movieViewState.copy(loading = false, error = "Error")
 
             }
 
         }.asLiveData()
 
 
-    fun deleteAll() {
-        coroutineScope.launch {
-            iDeleteMoviesFromShopUseCase.invoke()
+    fun deleteAll() = iDeleteMoviesFromShopUseCase.invoke().map {
+        when (it) {
+            is Resource.Success -> {
+                booleanViewState.copy(
+                    loading = false,
+                    data = it.data
+                )
+            }
+            is Resource.Error -> {
+                booleanViewState.copy(loading = false, error = "Error")
+            }
+            is Resource.Loading -> {
+                booleanViewState.copy(loading = true)
+            }
+            else -> booleanViewState.copy(loading = false, error = "Error")
+
         }
-    }
+
+    }.asLiveData()
+
 
 }

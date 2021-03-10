@@ -63,9 +63,9 @@ class MoviesRepo(
         return iMoviesLocalSource.getAllOnStore()
     }
 
-    override fun changeAllStore() {
+    override fun changeAllStore() =
         iMoviesLocalSource.changeAllStore()
-    }
+
 
     override fun getMovieById(idMovie: Int): MovieItemDomain {
         return iMoviesLocalSource.getMovieById(idMovie)
