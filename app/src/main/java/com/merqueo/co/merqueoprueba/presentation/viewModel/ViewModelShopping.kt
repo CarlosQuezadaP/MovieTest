@@ -1,10 +1,13 @@
 package com.merqueo.co.merqueoprueba.presentation.viewModel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.domain.models.MovieItemDomain
+import com.merqueo.co.merqueoprueba.presentation.states.MovieViewState
 import com.merqueo.co.merqueoprueba.utils.SingleLiveEvent
-import com.merqueo.co.merqueoprueba.presentation.states.ShopViewState
 import com.merqueo.co.usecases.usecases.IDeleteMoviesFromShopUseCase
 import com.merqueo.co.usecases.usecases.IGetMoviesShopCarUseCase
 import kotlinx.coroutines.CoroutineScope
@@ -26,40 +29,31 @@ class ViewModelShopping(
         getFromLocal()
     }
 
-    private val viewState =
-        ShopViewState()
+    private val shopViewState =
+        MovieViewState()
 
 
-    fun getFromLocal(): LiveData<ShopViewState> {
+    fun getFromLocal() = iGetMoviesShopCarUseCase.invoke()
+        .map {
 
-        val agl = iGetMoviesShopCarUseCase.invoke()
-            .map {
-
-                when (it) {
-                    is Resource.Success -> {
-                        movieList.value = it.data
-                        isEmpty.value = (it.data.size == 0)
-
-                        viewState.copy(
-                            loading = false,
-                            data = it.data
-                        )
-                    }
-                    is Resource.Error -> {
-                        viewState.copy(loading = false, error = "Error")
-                    }
-                    is Resource.Loading -> {
-                        viewState.copy(loading = true)
-                    }
-                    else -> viewState.copy(loading = false, error = "Error")
-
+            when (it) {
+                is Resource.Success -> {
+                    movieList.value = it.data
+                    isEmpty.value = (it.data.size == 0)
+                    shopViewState.copy(
+                        loading = false,
+                        data = it.data
+                    )
                 }
-
-            }.asLiveData(Dispatchers.Default + viewModelScope.coroutineContext)
-
-        return agl
-
-    }
+                is Resource.Error -> {
+                    shopViewState.copy(loading = false, error = "Error")
+                }
+                is Resource.Loading -> {
+                    shopViewState.copy(loading = true)
+                }
+                else -> shopViewState.copy(loading = false, error = "Error")
+            }
+        }.asLiveData(Dispatchers.Default + viewModelScope.coroutineContext)
 
 
     fun deleteAll() {
@@ -69,4 +63,5 @@ class ViewModelShopping(
     }
 
     fun getMoviesFromShop() = movieList
+
 }

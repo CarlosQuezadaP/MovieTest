@@ -4,11 +4,11 @@ import com.merqueo.co.data.localSource.IMoviesLocalSource
 import com.merqueo.co.domain.models.MovieItemDomain
 
 interface IMovieDetailUseCase {
-    suspend fun invoke(id: Int): MovieItemDomain
+     fun invoke(id: Int): MovieItemDomain
 }
 
 class MovieDetailUseCase(private val localSource: IMoviesLocalSource) : IMovieDetailUseCase {
-    override suspend fun invoke(id: Int): MovieItemDomain {
+    override fun invoke(id: Int): MovieItemDomain {
         return localSource.getMovieById(id)
     }
 }

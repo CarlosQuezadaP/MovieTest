@@ -1,14 +1,16 @@
-package com.co.merqueoprueba
+package com.co.merqueoprueba.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.co.merqueoprueba.MovieBuilder
 import com.co.merqueoprueba.utils.MainCoroutineScopeRule
 import com.merqueo.co.CORE.model.Resource
-import com.merqueo.co.merqueoprueba.presentation.states.ShopViewState
-import com.merqueo.co.merqueoprueba.presentation.viewModel.ViewModelShopping
-import com.merqueo.co.usecases.usecases.IDeleteMoviesFromShopUseCase
-import com.merqueo.co.usecases.usecases.IGetMoviesShopCarUseCase
+import com.merqueo.co.merqueoprueba.presentation.states.MovieViewState
+import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel
+import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
+import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
@@ -20,13 +22,14 @@ import org.junit.rules.TestRule
 import org.mockito.*
 
 @ExperimentalCoroutinesApi
-class ViewModelShopTest {
+@InternalCoroutinesApi
+class ViewModelMovieTest {
 
     @Mock
-    lateinit var iGetMoviesShopCarUseCase: IGetMoviesShopCarUseCase
+    lateinit var iGetMoviesUseCase: IGetMoviesUseCase
 
     @Mock
-    lateinit var iDeleteMoviesFromShopUseCase: IDeleteMoviesFromShopUseCase
+    lateinit var iUpdateMovieUseCase: IUpdateMovieUseCase
 
     lateinit var movieBuilder: MovieBuilder
 
@@ -43,11 +46,11 @@ class ViewModelShopTest {
         emit(Resource.Success(movieBuilder.buildAsList()))
     }
 
-    lateinit var viewModelShopping: ViewModelShopping
+    lateinit var viewModelMovie: MovieViewModel
 
 
     @Mock
-    private lateinit var mockObserver: Observer<ShopViewState>
+    private lateinit var mockObserver: Observer<MovieViewState>
 
 
     @Before
@@ -56,24 +59,26 @@ class ViewModelShopTest {
 
         movieBuilder = MovieBuilder()
 
-        viewModelShopping =
-            ViewModelShopping(iGetMoviesShopCarUseCase, iDeleteMoviesFromShopUseCase)
+        viewModelMovie =
+            MovieViewModel(iGetMoviesUseCase, iUpdateMovieUseCase)
     }
 
     @Captor
-    private lateinit var captor: ArgumentCaptor<ShopViewState>
+    private lateinit var captor: ArgumentCaptor<MovieViewState>
 
 
     @Test
-    fun `get movies from shop return list movieItem success`() {
+    fun `get movies from server return list movieItem success`() {
         coroutineScope.runBlockingTest {
 
             //arrange
-            Mockito.`when`(iGetMoviesShopCarUseCase.invoke())
+            val param_page = 1
+            Mockito.`when`(iGetMoviesUseCase.invoke(param_page))
                 .thenReturn(flow)
 
             //Act
-            val liveData = viewModelShopping.getFromLocal()
+            val liveData = viewModelMovie.showData()
+
             liveData.observeForever(mockObserver)
 
 
@@ -95,8 +100,6 @@ class ViewModelShopTest {
             )
         }
     }
-
-
 
 
 }

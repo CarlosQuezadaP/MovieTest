@@ -6,7 +6,8 @@ import com.merqueo.co.infraestructura.network.api.IMovieApi
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @InternalCoroutinesApi
-class MoviesRemoteSource(
+class
+MoviesRemoteSource(
     private val moviesApi: IMovieApi
 ) : IMoviesRemoteSource {
 
