@@ -1,11 +1,9 @@
 package com.merqueo.co.merqueoprueba.presentation.viewModel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.merqueo.co.CORE.model.Resource
-import com.merqueo.co.domain.models.MovieItemDomain
-import com.merqueo.co.merqueoprueba.presentation.states.ShopViewState
+import com.merqueo.co.merqueoprueba.presentation.states.MovieViewState
 import com.merqueo.co.merqueoprueba.utils.SingleLiveEvent
 import com.merqueo.co.usecases.usecases.IDeleteMoviesFromShopUseCase
 import com.merqueo.co.usecases.usecases.IGetMoviesShopCarUseCase
@@ -29,7 +27,7 @@ class ViewModelShopping(
     }
 
     private val viewState =
-        ShopViewState()
+        MovieViewState()
 
 
     fun getFromLocal() = iGetMoviesShopCarUseCase.invoke()

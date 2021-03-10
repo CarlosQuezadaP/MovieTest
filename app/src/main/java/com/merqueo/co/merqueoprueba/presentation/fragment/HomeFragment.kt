@@ -11,14 +11,14 @@ import androidx.navigation.fragment.findNavController
 import com.merqueo.co.domain.models.MovieItemDomain
 import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.FragmentHomeBinding
-import com.merqueo.co.merqueoprueba.handlers.IResearch
-import com.merqueo.co.merqueoprueba.utils.navigateUriWithDefaultOptions
-import com.merqueo.co.merqueoprueba.presentation.adapter.MovieAdapter
-import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel
-import com.merqueo.co.merqueoprueba.utils.setExitToFullScreenTransition
-import com.merqueo.co.merqueoprueba.utils.setReturnFromFullScreenTransition
 import com.merqueo.co.merqueoprueba.handlers.AddRemoveListener
 import com.merqueo.co.merqueoprueba.handlers.ClickListener
+import com.merqueo.co.merqueoprueba.handlers.IResearch
+import com.merqueo.co.merqueoprueba.presentation.adapter.MovieAdapter
+import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel
+import com.merqueo.co.merqueoprueba.utils.navigateUriWithDefaultOptions
+import com.merqueo.co.merqueoprueba.utils.setExitToFullScreenTransition
+import com.merqueo.co.merqueoprueba.utils.setReturnFromFullScreenTransition
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -57,8 +57,8 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, IResearch {
 
         setupAdapter()
 
-        moviesViewModel.movieList.observe(viewLifecycleOwner, {
-            showData(it)
+        moviesViewModel.showData().observe(viewLifecycleOwner, { movieState ->
+            showData(movieState.data)
         })
 
 

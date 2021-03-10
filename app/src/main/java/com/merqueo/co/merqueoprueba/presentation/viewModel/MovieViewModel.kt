@@ -3,14 +3,16 @@ package com.merqueo.co.merqueoprueba.presentation.viewModel
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.domain.models.MovieItemDomain
+import com.merqueo.co.merqueoprueba.presentation.states.MovieViewState
 import com.merqueo.co.merqueoprueba.utils.SingleLiveEvent
 import com.merqueo.co.merqueoprueba.presentation.viewModel.interfaces.IMovieViewModel
 import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
@@ -31,40 +33,38 @@ class MovieViewModel(
     private var job: Job? = null
     private var coroutineScope = CoroutineScope(Dispatchers.IO)
 
+    private val viewState =
+        MovieViewState()
+
     init {
         showData()
     }
 
-    override fun showData() {
-        isLoading.set(true)
-        failure.set(false)
-        job = coroutineScope.launch {
-            val response = iGetMoviesUseCase.invoke(1)
-            withContext(Dispatchers.Main) {
-                response
-                    .collect {
-                        isLoading.set(false)
-                        when (it) {
-                            is Resource.Success -> {
-                                if (it.data.size == 0) {
-                                    failure.set(true)
-                                } else {
 
-                                    movieList.value = it.data
-                                }
-                            }
-                            is Resource.Error -> {
-                                failure.set(true)
-                            }
 
-                            is Resource.Loading -> {
 
-                            }
-                        }
-                    }
+    override fun showData() = iGetMoviesUseCase.invoke(1)
+        .map {
+            when (it) {
+                is Resource.Success -> {
+                    viewState.copy(
+                        loading = false,
+                        data = it.data
+                    )
+                }
+                is Resource.Error -> {
+                    viewState.copy(loading = false, error = "Error")
+                }
+                is Resource.Loading -> {
+                    viewState.copy(loading = true)
+                }
+                else -> viewState.copy(loading = false, error = "Error")
+
             }
-        }
-    }
+
+        }.asLiveData()
+
+
 
     suspend fun updateMovieState(movieItemDomain: MovieItemDomain) {
         coroutineScope.launch {

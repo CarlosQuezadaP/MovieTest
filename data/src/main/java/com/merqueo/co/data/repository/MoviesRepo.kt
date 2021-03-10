@@ -6,7 +6,9 @@ import com.merqueo.co.data.localSource.IMoviesLocalSource
 import com.merqueo.co.data.remoteSource.IMoviesRemoteSource
 import com.merqueo.co.domain.models.MovieItemDomain
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 @FlowPreview
 class MoviesRepo(
@@ -15,15 +17,20 @@ class MoviesRepo(
     private val converter: IConverter
 ) : IMovieRepo {
 
-    override suspend fun insertAll(data: List<MovieItemDomain>) {
+    override fun insertAll(data: List<MovieItemDomain>) {
         iMoviesLocalSource.insertAll(data)
     }
 
-    override suspend fun getAll(
+    override fun getAll(
         connectivity: Boolean,
         page: Int
     ): Flow<Resource<List<MovieItemDomain>>> {
-        if (connectivity) getFromRemote(page)
+        if (connectivity) {
+            GlobalScope.launch {
+                getFromRemote(page)
+            }
+        }
+
         return iMoviesLocalSource.getAll()
     }
 
@@ -40,15 +47,15 @@ class MoviesRepo(
         insertAll(dataToSave)
     }
 
-    override suspend fun insert(movieItem: MovieItemDomain) {
+    override fun insert(movieItem: MovieItemDomain) {
         iMoviesLocalSource.insert(movieItem)
     }
 
-    override suspend fun updateMovieState(id: Int, status: Boolean): Boolean {
+    override fun updateMovieState(id: Int, status: Boolean): Boolean {
         return iMoviesLocalSource.updateMovieState(id, status)
     }
 
-    override suspend fun getCountStoreCart(): Flow<Int> {
+    override fun getCountStoreCart(): Flow<Int> {
         return iMoviesLocalSource.getCountStoreCart()
     }
 
@@ -56,11 +63,11 @@ class MoviesRepo(
         return iMoviesLocalSource.getAllOnStore()
     }
 
-    override suspend fun changeAllStore() {
+    override fun changeAllStore() {
         iMoviesLocalSource.changeAllStore()
     }
 
-    override suspend fun getMovieById(idMovie: Int): MovieItemDomain {
+    override fun getMovieById(idMovie: Int): MovieItemDomain {
         return iMoviesLocalSource.getMovieById(idMovie)
     }
 }

@@ -14,12 +14,12 @@ class GetMoviesUseCase(
     private val iConnectivity: IConnectivity
 ) : IGetMoviesUseCase {
 
-    override suspend fun invoke(page: Int): Flow<Resource<List<MovieItemDomain>>> {
+    override fun invoke(page: Int): Flow<Resource<List<MovieItemDomain>>> {
         return iMoviesRepo.getAll(iConnectivity.isConnected(), page)
     }
 
 }
 
 interface IGetMoviesUseCase {
-    suspend fun invoke(page: Int): Flow<Resource<List<MovieItemDomain>>>
+    fun invoke(page: Int): Flow<Resource<List<MovieItemDomain>>>
 }
