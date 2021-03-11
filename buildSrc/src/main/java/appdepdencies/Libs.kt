@@ -24,11 +24,15 @@ object Libs {
         const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockito_inline}"
     }
 
+    object MockIO{
+        const val mockio = "io.mockk:mockk:${Versions.mockio}"
+    }
+
     object Koin {
         const val koin = "org.koin:koin-android:${Versions.koin}"
         const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
         const val koinFragment = "org.koin:koin-androidx-fragment:${Versions.koin}"
-        const val koinScope = "org.koin:koin-androidx-scope:${Versions.koin}"
+        const val koinTest = "org.koin:koin-test:${Versions.koin}"
     }
 
     object Lifecycle {

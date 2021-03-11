@@ -12,6 +12,7 @@ object Versions {
 
     const val room = "2.2.5"
     const val mockito = "3.1.0"
+    const val mockio = "1.10.6"
     const val mockito_inline = "2.13.0"
     const val lifecycle = "2.2.0-rc03"
     const val savedstate = "1.0.0-rc01"

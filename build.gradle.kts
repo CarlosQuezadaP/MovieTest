@@ -13,6 +13,7 @@ buildscript {
         classpath(appdependencies.ClassPath.navisafe)
         classpath(appdependencies.ClassPath.kotlin_gradle_plugin)
         classpath(appdependencies.ClassPath.koin_class)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
 
