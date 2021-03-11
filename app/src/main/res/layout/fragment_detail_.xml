@@ -11,6 +11,10 @@
             name="viewModel"
             type="com.merqueo.co.merqueoprueba.presentation.viewModel.DetailViewModel" />
 
+        <variable
+            name="movieClickInterface"
+            type="com.merqueo.co.merqueoprueba.handlers.AddRemoveListener" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -318,27 +322,29 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_add"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:background="@{viewModel.movie.onStore ? @drawable/button_bordered_green : @drawable/button_bordered_blue}"
+                        android:onClick="@{() -> movieClickInterface.onItemClickOnButton(viewModel.movie, true)}"
                         android:text="Agregar"
                         android:textColor="#ffffff"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        app:bindingDrawable="@{viewModel.movie.onStore ? @color/button_green :  @color/button_green}" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_delete"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:background="@{viewModel.movie.onStore ? @drawable/button_bordered_gray : @drawable/button_bordered_red}"
+                        android:onClick="@{() -> movieClickInterface.onItemClickOnButton(viewModel.movie, false)}"
                         android:text="Eliminar"
                         android:textColor="#FFFFFF"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        app:bindingDrawable="@{viewModel.movie.onStore ? @color/button_red : @color/button_red}" />
 
 
                 </LinearLayout>

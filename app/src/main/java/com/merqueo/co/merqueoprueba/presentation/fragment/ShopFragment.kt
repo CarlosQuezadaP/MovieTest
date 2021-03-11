@@ -85,7 +85,7 @@ class ShopFragment : Fragment(), IDeleteAll {
     override fun deleteAll() {
         viewModelShopping.deleteAll().observe(viewLifecycleOwner, {
             if (it.data) {
-                Toast.makeText(activity, "Datos eliminados", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Peliculas eliminadas.", Toast.LENGTH_SHORT).show()
             }
             if (it.loading) {
 

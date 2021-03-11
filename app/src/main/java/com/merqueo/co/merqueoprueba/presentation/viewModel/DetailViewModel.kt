@@ -10,6 +10,7 @@ import com.merqueo.co.merqueoprueba.utils.SingleLiveEvent
 import com.merqueo.co.usecases.usecases.IMovieDetailUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 
 @ExperimentalCoroutinesApi
@@ -23,7 +24,6 @@ class DetailViewModel(
 
     var coroutineScope = CoroutineScope(Dispatchers.IO)
     val showLoading = ObservableBoolean()
-    val movieChangeState = SingleLiveEvent<Boolean>()
 
 
     private val booleanViewState =
@@ -31,13 +31,17 @@ class DetailViewModel(
 
     var movie = SingleLiveEvent<MovieItemDomain>()
 
+
+
     fun getMovie(idMovie: Int) {
         showLoading.set(true)
         job = coroutineScope.launch {
             val response = IMovieDetailUseCase.invoke(idMovie)
             showLoading.set(false)
             withContext(Dispatchers.Main) {
-                movie.value = response
+                response.collect {
+                    movie.value = it
+                }
             }
         }
     }

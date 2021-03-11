@@ -78,7 +78,7 @@ class MoviesRepo(
         iMoviesLocalSource.changeAllStore()
 
 
-    override fun getMovieById(idMovie: Int): MovieItemDomain {
+    override fun getMovieById(idMovie: Int): Flow<MovieItemDomain> {
         return iMoviesLocalSource.getMovieById(idMovie)
     }
 }

@@ -13,6 +13,6 @@ interface IMoviesLocalSource {
     fun getCountStoreCart(): Flow<Int>
     fun getAllOnStore(): Flow<Resource<List<MovieItemDomain>>>
     fun changeAllStore() :Flow<Resource<Boolean>>
-    fun getMovieById(idMovie: Int): MovieItemDomain
+    fun getMovieById(idMovie: Int): Flow<MovieItemDomain>
 }
 

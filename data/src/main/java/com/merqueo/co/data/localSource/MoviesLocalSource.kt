@@ -88,8 +88,10 @@ class MoviesLocalSource(
         return response
     }
 
-    override fun getMovieById(idMovie: Int): MovieItemDomain {
-        return moviesDao.getById(idMovie).convertTo()
+    override fun getMovieById(idMovie: Int): Flow<MovieItemDomain> {
+        return flowOf(moviesDao.getById(idMovie)).map {
+            it.convertTo()
+        }
     }
 
 

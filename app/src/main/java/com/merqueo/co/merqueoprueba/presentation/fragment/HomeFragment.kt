@@ -110,9 +110,7 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, IResearch {
         type: Boolean
     ) {
         movieItemDomain.onStore = type
-        GlobalScope.launch {
-            moviesViewModel.updateMovieState(movieItemDomain)
-        }
+        moviesViewModel.updateMovieState(movieItemDomain)
     }
 
 
