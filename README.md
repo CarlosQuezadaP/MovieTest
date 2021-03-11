@@ -1,32 +1,14 @@
-# Merqueo Test -Amdroid
+# Merqueo Test -Android
 
-# MVVM Multi Modulos
-En este proyecto se utiliza el patron de presentación MVVM, navigation Components y una arquitectura limpia.
+## MAD SCORE
+https://madscorecard.withgoogle.com/scorecards/3831957094/#jetpack
 
-# Modulos
-La correspondiente arquitectura fue una arquitectura en capas la cual contiene los siguientes modulos:
-* app
-contiene la Actividad de punto de entrada para la aplicación. Contiene MainActivity que alberga BottomNavigationView para navegar entre las características
-* CORE
-contiene código compartido en toda la aplicación, como se aplica Gradle Dependency Management (GDM), centraliza todas las dependencias del proyecto.
-* home
-contiene las caracteristicas del modelo. en este caso se encarga de mostrar la lista de pelicula y su detalle.
-* shopping cart
-contiene las caracteristicas del modelo. en este caso se encarga de mostrar la lista de pelicula que se encuentran en el carro de compras.
-* Models
-Provee los diferentes modelos del proyecto, Dominio, Dtos, Entidades.
-* provide
-Provee el repositorio de datos local y remoto.
-* infraestructura
-Obtiene el acceso a los datos remotos y los datos locales. 
-
-![Scheme](images/scheme.png)
+# Clean Architecture - MVVM Multi Modulos
+En este proyecto se utiliza el patron de presentación MVVM, navigation Components y una arquitectura Clean.
 
 
 
-
-# Requisitos tecnicos.
-
+### Librerias
 1) JetPack:
  - ViewModel (https://developer.android.com/topic/libraries/architecture/viewmodel)
  - LiveData (https://developer.android.com/topic/libraries/architecture/livedata)
@@ -43,46 +25,52 @@ Obtiene el acceso a los datos remotos y los datos locales.
 14) Kotlin 1.3.+ with coroutines
 15) Kotlin Flow
 
+2) Otras librerias
+- Inyeccion de dependencias con Koin (https://insert-koin.io/)
+- Carga de imagenes con coil (https://bumptech.github.io/glide/)
+- Consumo de servicios Retrofit (https://square.github.io/retrofit/)
+- Cliente HTTP OkHtt3 (https://square.github.io/okhttp/)
+
+### Requisitos tecnicos
+- Administrador de dependencias GDM con Kotlin Gradle DSL (https://docs.gradle.org/current/dsl/index.html)
+- Koltin 1.4
+- Multi modules project
+- Material design
+- Clean Architecture
+
+
+### Modulos
+1) app
+Modulo encargado de gestionar toda la interfaz de usuario
+2) buildSrc
+Modulo encargo de gestionar las dependencias de los modulos
+3) core
+Modulo encargado de contener los archivos compartidos por todos los modulos
+4) usescases
+Modulo encargado de las orquestar el flujo los flujos de datos relacionados con las entidades y asi cumplir las reglas de negocio requeridas.
+5) domain
+Modulo encargado de tener todos los modelos del dominio de negocio.
+6) infraestructura
+Modulo encargado de interactuar con el hardware del dispositivo.
+7) data
+Modulo encargaado de gestionar la data interna y externa con la cual se trabaja en la app. 
+
+
+### Patrones de diseño involucrados
+1) Patron Handler
+2) Patron repository
+
+### Principios y practicas implementadas
+1) Principios Solid - Stupid
+2) Principio Yagni
+3) Principio KISS
+4) Modulos con alta cohesion Bajo acoplamiento
+5. Principio de menor conocimiento
 
 ### Patron de presentacion MVVM 
 - Modelo: Se encarga de obtener, almacenar y proveer los datos además de la lógica de negocios.
 - Vista: Muestra la información y reacciona ante la interacción del usuario.
 - ViewModel: El el medio que utiliza la vista para acceder a los datos, a la vez, se encarga de notificar la vista cuando los datos han cambiado.
-
-## Responsabilidad de los packages segun modulos
-* app - home - shoppingCart
-    - Presentation: 
-
-    Encontramos los elementos dirigidos a la parte visual categorizados en diferentes carpetas:
-    - Activityes 
-    - Fragments
-    - Adapters
-    - ViewModels
-          
-    Elementos de dominio como  y el respectivo inyeccion de dependencias.
-    - Dominio: 
-         - Di = Permite proveer las instancias de la implementaciones realizadas
-        - Servicios de dominio = servicios que contienen la comunicacion para la capa de datos establecida en infraestructura 
-        
-* infraestructura 
-     - repository: Se utiliza Repository Pattern para abstraer el acceso a la información, de esta manera se separan responsabilidades y se puede cambiar la fuente (DB, API o ambos) sin afectar la implementación.
-         - api: Están las clases encargadas de consumir los recursos del API Rest, utilizamos Retrofit2 para los llamados junto a una clase de utilidad que genera los url para las imágenes.
-         - db: Clases para manejar la base de datos Room, encontramos el Data Access Object, un convertidor de tipos para almacenar objetos propios en la DB, además la clase que inicializa la DB.
-         - deviceHardware: Obtiene las implementaciones relacionadas con el harware de dispositivo, como capa de red, datos, bluetooth etc...
-* Provide
-  - DB = Contiene la implementacion del storoge local que implementa el proyecto.
-  - DI = Permite proveer las instancias de la implementaciones realizadas.
-  - Network = Contiene la implementacion para el acceso a los datos alojados en un repositorio remoto.
-* Models
-   este paquete se incluyen todos los modelos de datos a utilizar en la app clasificados como:
-    - Entities = modelos de datos enfocadas a base de datos.
-    - DTOS = Modelos que se utilizan como un objeto de transferencia entre el cliente y el servidor
-    - Modelos de dominio = Modelos de dominio de caracter de modelado de negocio
-* Core
-  - Activityes
-  - Fragments
-  - Adapters
-  - ViewModels
 
 
 ## Ingeniería de Software
