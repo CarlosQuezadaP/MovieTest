@@ -6,10 +6,10 @@
         android:icon="@drawable/ic_home"
         android:title="@string/home_btn" />
     <item
-        android:id="@+id/moviesFragment"
+        android:id="@+id/seriesFragment"
         android:enabled="true"
         android:icon="@drawable/round_ondemand_video_white_48dp"
-        android:title="Películas" />
+        android:title="Series" />
 
 
     <item

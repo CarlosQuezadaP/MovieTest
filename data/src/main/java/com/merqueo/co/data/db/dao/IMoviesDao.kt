@@ -47,6 +47,10 @@ interface IMoviesDao {
     @Query("SELECT * FROM MovieEntity  WHERE onStore = :onStore")
     fun getAllByStore2(onStore: Boolean = true): Flow<List<MovieEntity>>
 
+
+    @Query("SELECT * FROM MovieEntity")
+    fun getAllList(): List<MovieEntity>
+
     @Query("SELECT * FROM MovieEntity")
     fun getAll(): Flow<List<MovieEntity>>
 

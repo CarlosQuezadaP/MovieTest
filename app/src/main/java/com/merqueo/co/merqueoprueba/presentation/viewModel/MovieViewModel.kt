@@ -1,6 +1,7 @@
 package com.merqueo.co.merqueoprueba.presentation.viewModel
 
 import androidx.databinding.ObservableBoolean
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.merqueo.co.CORE.model.Resource
@@ -27,6 +28,7 @@ class MovieViewModel(
 
     var isLoading = ObservableBoolean()
     var failure = ObservableBoolean()
+    var rv = ObservableBoolean()
 
     private val viewState =
         MovieViewState()
@@ -36,26 +38,42 @@ class MovieViewModel(
     }
 
 
-    override fun showData() = iGetMoviesUseCase.invoke(1)
-        .map {
-            when (it) {
-                is Resource.Success -> {
-                    viewState.copy(
-                        loading = false,
-                        data = it.data
-                    )
-                }
-                is Resource.Error -> {
-                    viewState.copy(loading = false, error = "Error")
-                }
-                is Resource.Loading -> {
-                    viewState.copy(loading = true)
-                }
-                else -> viewState.copy(loading = false, error = "Error")
+    override fun showData(): LiveData<MovieViewState> {
+        isLoading.set(true)
+        failure.set(false)
+        rv.set(false)
 
-            }
-
-        }.asLiveData()
+        return iGetMoviesUseCase.invoke(1)
+            .map {
+                when (it) {
+                    is Resource.Success -> {
+                        isLoading.set(false)
+                        rv.set(false)
+                        viewState.copy(
+                            loading = false,
+                            data = it.data
+                        )
+                    }
+                    is Resource.Error -> {
+                        isLoading.set(false)
+                        rv.set(true)
+                        viewState.copy(loading = false, error = it.message)
+                    }
+                    is Resource.Loading -> {
+                        isLoading.set(true)
+                        failure.set(false)
+                        rv.set(false)
+                        viewState.copy(loading = true)
+                    }
+                    else -> {
+                        isLoading.set(false)
+                        failure.set(true)
+                        rv.set(false)
+                        viewState.copy(loading = false, error = "Error")
+                    }
+                }
+            }.asLiveData()
+    }
 
 
     fun updateMovieState(movieItemDomain: MovieItemDomain) =

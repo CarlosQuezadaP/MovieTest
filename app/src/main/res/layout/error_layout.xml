@@ -5,9 +5,6 @@
 
         <import type="android.view.View" />
 
-        <variable
-            name="research"
-            type="com.merqueo.co.merqueoprueba.handlers.IResearch" />
 
         <variable
             name="isVisible"
@@ -39,7 +36,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="@{isFailure ? View.VISIBLE : View.GONE}">
+            android:visibility="@{isVisible ? View.GONE : View.VISIBLE}">
 
             <TextView
                 android:id="@+id/textView_error_message"
@@ -50,14 +47,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView_reintent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:onClick="@{()-> research.research()}"
-                android:text="@string/reintentarlo"
-                android:textColor="@color/white" />
 
         </LinearLayout>
 
