@@ -6,7 +6,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface IMoviesLocalSource {
     fun insertAll(data: List<MovieItemDomain>)
-    fun getAll(): Flow<Resource<List<MovieItemDomain>>>
+    fun getAll(): Flow<List<MovieItemDomain>>
+    fun getAllList(): List<MovieItemDomain>
     fun insert(movieItem: MovieItemDomain)
     fun updateMovieState(id: Int, status: Boolean) :Flow<Resource<Boolean>>
     fun getCountStoreCart(): Flow<Int>

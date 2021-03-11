@@ -58,7 +58,9 @@ class HomeFragment : Fragment(), AddRemoveListener, ClickListener, IResearch {
         setupAdapter()
 
         moviesViewModel.showData().observe(viewLifecycleOwner, { movieState ->
-            showData(movieState.data)
+            if (!movieState.data.isEmpty()) {
+                showData(movieState.data)
+            }
         })
 
 

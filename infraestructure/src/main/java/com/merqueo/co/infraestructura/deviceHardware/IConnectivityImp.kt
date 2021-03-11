@@ -27,7 +27,7 @@ class IConnectivityImp(private val context: Context) : IConnectivity {
             } else {
                 try {
                     val activeNetworkInfo = connectivityManager.activeNetworkInfo
-                    return activeNetworkInfo != null && activeNetworkInfo.isConnected && isInternetAvailable()
+                    return activeNetworkInfo != null && activeNetworkInfo.isConnected
                 } catch (ex: Exception) {
                    val Aasd = ex
                 }
@@ -38,13 +38,5 @@ class IConnectivityImp(private val context: Context) : IConnectivity {
         return false
     }
 
-    private fun isInternetAvailable(): Boolean {
-        try {
-            val address = InetAddress.getByName("www.google.com")
-            return !address.equals("")
-        } catch (e: UnknownHostException) {
-            // Log
-        }
-        return false
-    }
+
 }

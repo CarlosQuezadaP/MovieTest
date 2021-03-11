@@ -21,19 +21,22 @@ class MoviesLocalSource(
         moviesDao.insertAll(dataa)
     }
 
-    override fun getAll(): Flow<Resource<List<MovieItemDomain>>> {
-        val movies: Flow<Resource<List<MovieItemDomain>>> =
-            moviesDao.getMovieDistinctUntilChanged().map {
-                it.map {
-                    it.convertTo()
-                }
-            }.map {
-                Resource.Success(it)
+    override fun getAll(): Flow<List<MovieItemDomain>> {
+        val movies = moviesDao.getMovieDistinctUntilChanged().map {
+            it.map {
+                it.convertTo()
             }
+        }
         return movies
     }
 
-    override fun changeAllStore():Flow<Resource<Boolean>> {
+    override fun getAllList(): List<MovieItemDomain> {
+        return moviesDao.getAllList().map {
+            it.convertTo()
+        }
+    }
+
+    override fun changeAllStore(): Flow<Resource<Boolean>> {
 
         val response = flowOf(moviesDao.updateAll(getAllStore())).map {
             val response = Resource.Success(true)
