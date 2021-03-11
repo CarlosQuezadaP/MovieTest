@@ -20,7 +20,7 @@
             app:popUpTo="@+id/homeFragment" />
         <action
             android:id="@+id/action_homeFragment_to_moviesFragment"
-            app:destination="@id/moviesFragment" />
+            app:destination="@id/seriesFragment" />
 
     </fragment>
     <fragment
@@ -44,7 +44,7 @@
             app:destination="@id/detailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/moviesFragment"
+        android:id="@+id/seriesFragment"
         android:name="com.merqueo.co.merqueoprueba.presentation.fragment.MoviesFragment"
         android:label="fragment_movies"
         tools:layout="@layout/fragment_movies" >
