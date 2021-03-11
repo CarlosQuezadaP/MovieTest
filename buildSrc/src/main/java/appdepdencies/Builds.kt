@@ -8,8 +8,8 @@ object Builds {
     const val APP_ID = "com.merqueo.co.merqueoprueba"
 
     object App {
-        const val VERSION_CODE = 10004
-        const val VERSION_NAME = "1.0.4"
+        const val VERSION_CODE = 11000
+        const val VERSION_NAME = "1.1.0"
     }
 
     object Core {
