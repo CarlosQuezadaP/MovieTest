@@ -29,9 +29,9 @@ dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", appdepdencies.Versions.kotlin))
 
-    api(project(":data"))
-    api(project(":CORE"))
-    api(project(":domain"))
+    api(project(appdepdencies.Modules.data))
+    api(project(appdepdencies.Modules.core))
+    api(project(appdepdencies.Modules.domain))
 
     testImplementation(appdepdencies.Libs.MockIO.mockio)
     testImplementation(appdepdencies.Libs.Koin.koinTest)

@@ -65,10 +65,9 @@ dependencies {
     implementation(kotlin("stdlib-jdk8", appdepdencies.Versions.kotlin))
 
     implementation(project(appdepdencies.Modules.core))
-    implementation(project(":infraestructure"))
-    implementation(project(":data"))
-    implementation(project(":usecases"))
-
+    implementation(project(appdepdencies.Modules.infraestructure))
+    implementation(project(appdepdencies.Modules.data))
+    implementation(project(appdepdencies.Modules.usecases))
 
     implementation(Libs.Core.paging)
     implementation(Libs.Core.appcompat)

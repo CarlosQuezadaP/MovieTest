@@ -32,9 +32,11 @@ android {
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", Versions.kotlin))
-    api(project(":CORE"))
-    api(project(":infraestructure"))
-    api(project(":domain"))
+
+    api(project(appdepdencies.Modules.infraestructure))
+    api(project(appdepdencies.Modules.core))
+    api(project(appdepdencies.Modules.domain))
+
 
     api(Libs.Retrofit.core)
     api(Libs.Retrofit.adapter)
