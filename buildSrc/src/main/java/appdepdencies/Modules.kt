@@ -1,0 +1,4 @@
+package appdepdencies
+
+object Modules {
+}
