@@ -28,6 +28,7 @@ object Versions {
     const val viewPager2 = "1.0.0"
     const val swipeRefresh = "1.0.0"
     const val paging = "2.1.1"
+    const val coroutines = "1.4.2"
 
     const val coil = "0.9.1"
 

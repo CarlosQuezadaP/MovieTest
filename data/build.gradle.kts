@@ -33,20 +33,19 @@ dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(kotlin("stdlib-jdk8", Versions.kotlin))
 
-    api(project(appdepdencies.Modules.infraestructure))
-    api(project(appdepdencies.Modules.core))
-    api(project(appdepdencies.Modules.domain))
+    implementation(project(appdepdencies.Modules.infraestructure))
+    implementation(project(appdepdencies.Modules.core))
+    implementation(project(appdepdencies.Modules.domain))
 
+    implementation(Libs.Retrofit.core)
+    implementation(Libs.Retrofit.adapter)
+    implementation(Libs.Retrofit.gson)
 
-    api(Libs.Retrofit.core)
-    api(Libs.Retrofit.adapter)
-    api(Libs.Retrofit.gson)
+    implementation(Libs.Okhttp.okhttp)
+    implementation(Libs.Okhttp.logging)
 
-    api(Libs.Okhttp.okhttp)
-    api(Libs.Okhttp.logging)
-
-    api(Libs.Room.runtime)
-    api(Libs.Room.ktx)
+    implementation(Libs.Room.runtime)
+    implementation(Libs.Room.ktx)
     kapt(Libs.Room.kaptcompiler)
 
     testImplementation(Libs.Tests.junit)

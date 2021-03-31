@@ -81,6 +81,8 @@ object Libs {
         const val swipeRefreshLayout =
             "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefresh}"
         const val paging = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
+        const val kotlin_coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+
     }
 
     object ImageLoading {

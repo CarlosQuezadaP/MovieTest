@@ -73,7 +73,6 @@ dependencies {
     implementation(Libs.Core.paging)
     implementation(Libs.Core.appcompat)
 
-    kapt(Libs.Lifecycle.kapt_compiler)
     implementation(Libs.Lifecycle.livedataKtx)
     implementation(Libs.Lifecycle.viewmodelKtx)
     implementation(Libs.Lifecycle.savedStateViewModel)
@@ -92,14 +91,17 @@ dependencies {
     implementation(Libs.Core.navigationUiKtx)
     implementation(Libs.Core.material)
 
-    testImplementation("io.mockk:mockk:1.10.6")
-    testImplementation("junit:junit:4.13.2")
+    kapt(Libs.Lifecycle.kapt_compiler)
+
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.3.0")
     androidTestImplementation("androidx.test:core-ktx:1.3.0")
     androidTestImplementation("androidx.test:rules:1.3.0")
     androidTestImplementation("io.mockk:mockk-android:1.10.2")
+
+    testImplementation("io.mockk:mockk:1.10.6")
+    testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.9")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
 }

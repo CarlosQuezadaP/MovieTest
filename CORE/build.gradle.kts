@@ -33,5 +33,5 @@ dependencies {
     implementation(kotlin("stdlib-jdk8", appdepdencies.Versions.kotlin))
 
     api(appdepdencies.Libs.Koin.koin)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
+    api(appdepdencies.Libs.Core.kotlin_coroutines)
 }
