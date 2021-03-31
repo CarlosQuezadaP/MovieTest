@@ -3,7 +3,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven { url = uri("https://plugins.gradle.org/m2/") }
+        maven { url = uri(appdepdencies.ClassPath.Uri.plugins_gradle) }
 
     }
     dependencies {
@@ -13,7 +13,6 @@ buildscript {
         classpath(appdepdencies.ClassPath.navisafe)
         classpath(appdepdencies.ClassPath.kotlin_gradle_plugin)
         classpath(appdepdencies.ClassPath.koin_class)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
 
@@ -21,8 +20,8 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url = uri("https://www.jitpack.io") }
-        maven { url = uri("https://plugins.gradle.org/m2/") }
+        maven { url = uri(appdepdencies.ClassPath.Uri.jitpack) }
+        maven { url = uri(appdepdencies.ClassPath.Uri.plugins_gradle) }
     }
 }
 

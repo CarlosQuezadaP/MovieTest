@@ -5,14 +5,15 @@ import appdepdencies.Builds.MIN_VERSION
 import appdepdencies.Builds.TARGET_VERSION
 import appdepdencies.Libs
 
+
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("androidx.navigation.safeargs.kotlin")
-    kotlin("android")
-    kotlin("android.extensions")
-    kotlin("kapt")
-    "koin"
+    id(appdepdencies.Plugins.id_android_app)
+    id(appdepdencies.Plugins.id_kotlin_android)
+    id(appdepdencies.Plugins.id_navigation_safeargs)
+    kotlin(appdepdencies.Plugins.kotlin_android)
+    kotlin(appdepdencies.Plugins.kotlin_android_extensions)
+    kotlin(appdepdencies.Plugins.kotlin_kapt)
+    appdepdencies.Plugins.koin
 }
 
 

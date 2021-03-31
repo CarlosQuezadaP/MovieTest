@@ -8,4 +8,11 @@ object ClassPath {
     const val navisafe = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navisafe}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val koin_class = "org.koin:koin-gradle-plugin:${Versions.koin}"
+
+
+    object Uri {
+        const val plugins_gradle = "https://plugins.gradle.org/m2/"
+        const val jitpack = "https://www.jitpack.io"
+    }
+
 }
