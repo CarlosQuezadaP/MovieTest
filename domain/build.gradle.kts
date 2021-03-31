@@ -1,3 +1,7 @@
+import appdepdencies.Builds
+import appdepdencies.Versions
+
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -6,13 +10,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(appdependencies.Builds.COMPILE_VERSION)
-    buildToolsVersion = appdependencies.Builds.BUILD_TOOLS
+    compileSdkVersion(Builds.COMPILE_VERSION)
+    buildToolsVersion = Builds.BUILD_TOOLS
     defaultConfig {
-        minSdkVersion(appdependencies.Builds.MIN_VERSION)
-        targetSdkVersion(appdependencies.Builds.TARGET_VERSION)
-        versionCode = appdependencies.Builds.Core.VERSION_CODE
-        versionName = appdependencies.Builds.Core.VERSION_NAME
+        minSdkVersion(Builds.MIN_VERSION)
+        targetSdkVersion(Builds.TARGET_VERSION)
+        versionCode = Builds.Core.VERSION_CODE
+        versionName = Builds.Core.VERSION_NAME
     }
 
     compileOptions {
@@ -27,5 +31,5 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
+    implementation(kotlin("stdlib-jdk8", Versions.kotlin))
 }

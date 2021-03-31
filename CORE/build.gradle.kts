@@ -7,13 +7,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(appdependencies.Builds.COMPILE_VERSION)
-    buildToolsVersion = appdependencies.Builds.BUILD_TOOLS
+    compileSdkVersion(appdepdencies.Builds.COMPILE_VERSION)
+    buildToolsVersion = appdepdencies.Builds.BUILD_TOOLS
     defaultConfig {
-        minSdkVersion(appdependencies.Builds.MIN_VERSION)
-        targetSdkVersion(appdependencies.Builds.TARGET_VERSION)
-        versionCode = appdependencies.Builds.Core.VERSION_CODE
-        versionName = appdependencies.Builds.Core.VERSION_NAME
+        minSdkVersion(appdepdencies.Builds.MIN_VERSION)
+        targetSdkVersion(appdepdencies.Builds.TARGET_VERSION)
+        versionCode = appdepdencies.Builds.Core.VERSION_CODE
+        versionName = appdepdencies.Builds.Core.VERSION_NAME
         buildConfigField("String", "IMAGES_URL", "\"https://image.tmdb.org/t/p/w500\"")
         buildConfigField("String", "IMAGES_BACKDROP_URL", "\"https://image.tmdb.org/t/p/original\"")
         buildConfigField("String", "SERVER_URL", "\"https://api.themoviedb.org/3/\"")
@@ -30,8 +30,8 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
+    implementation(kotlin("stdlib-jdk8", appdepdencies.Versions.kotlin))
 
-    api(appdependencies.Libs.Koin.koin)
+    api(appdepdencies.Libs.Koin.koin)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
 }

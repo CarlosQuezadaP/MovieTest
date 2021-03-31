@@ -7,12 +7,12 @@ buildscript {
 
     }
     dependencies {
-        classpath(appdependencies.ClassPath.gradle)
-        classpath(appdependencies.ClassPath.kotlingradle)
-        classpath(appdependencies.ClassPath.google)
-        classpath(appdependencies.ClassPath.navisafe)
-        classpath(appdependencies.ClassPath.kotlin_gradle_plugin)
-        classpath(appdependencies.ClassPath.koin_class)
+        classpath(appdepdencies.ClassPath.gradle)
+        classpath(appdepdencies.ClassPath.kotlingradle)
+        classpath(appdepdencies.ClassPath.google)
+        classpath(appdepdencies.ClassPath.navisafe)
+        classpath(appdepdencies.ClassPath.kotlin_gradle_plugin)
+        classpath(appdepdencies.ClassPath.koin_class)
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }

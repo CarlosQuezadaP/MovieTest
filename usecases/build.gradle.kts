@@ -7,13 +7,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(appdependencies.Builds.COMPILE_VERSION)
-    buildToolsVersion = appdependencies.Builds.BUILD_TOOLS
+    compileSdkVersion(appdepdencies.Builds.COMPILE_VERSION)
+    buildToolsVersion = appdepdencies.Builds.BUILD_TOOLS
     defaultConfig {
-        minSdkVersion(appdependencies.Builds.MIN_VERSION)
-        targetSdkVersion(appdependencies.Builds.TARGET_VERSION)
-        versionCode = appdependencies.Builds.Core.VERSION_CODE
-        versionName = appdependencies.Builds.Core.VERSION_NAME
+        minSdkVersion(appdepdencies.Builds.MIN_VERSION)
+        targetSdkVersion(appdepdencies.Builds.TARGET_VERSION)
+        versionCode = appdepdencies.Builds.Core.VERSION_CODE
+        versionName = appdepdencies.Builds.Core.VERSION_NAME
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -27,13 +27,13 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
+    implementation(kotlin("stdlib-jdk8", appdepdencies.Versions.kotlin))
 
     api(project(":data"))
     api(project(":CORE"))
     api(project(":domain"))
 
-    testImplementation(appdependencies.Libs.MockIO.mockio)
-    testImplementation(appdependencies.Libs.Koin.koinTest)
-    testImplementation(appdependencies.Libs.Tests.junit)
+    testImplementation(appdepdencies.Libs.MockIO.mockio)
+    testImplementation(appdepdencies.Libs.Koin.koinTest)
+    testImplementation(appdepdencies.Libs.Tests.junit)
 }

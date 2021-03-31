@@ -1,4 +1,4 @@
-package appdependencies
+package appdepdencies
 
 object Versions {
 

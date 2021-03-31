@@ -1,9 +1,9 @@
-import appdependencies.Builds.APP_ID
-import appdependencies.Builds.BUILD_TOOLS
-import appdependencies.Builds.COMPILE_VERSION
-import appdependencies.Builds.MIN_VERSION
-import appdependencies.Builds.TARGET_VERSION
-import appdependencies.Libs
+import appdepdencies.Builds.APP_ID
+import appdepdencies.Builds.BUILD_TOOLS
+import appdepdencies.Builds.COMPILE_VERSION
+import appdepdencies.Builds.MIN_VERSION
+import appdepdencies.Builds.TARGET_VERSION
+import appdepdencies.Libs
 
 plugins {
     id("com.android.application")
@@ -24,8 +24,8 @@ android {
         applicationId = APP_ID
         minSdkVersion(MIN_VERSION)
         targetSdkVersion(TARGET_VERSION)
-        versionCode = appdependencies.Builds.App.VERSION_CODE
-        versionName = appdependencies.Builds.App.VERSION_NAME
+        versionCode = appdepdencies.Builds.App.VERSION_CODE
+        versionName = appdepdencies.Builds.App.VERSION_NAME
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions.annotationProcessorOptions {
             includeCompileClasspath = true
@@ -62,9 +62,9 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
+    implementation(kotlin("stdlib-jdk8", appdepdencies.Versions.kotlin))
 
-    implementation(project(":CORE"))
+    implementation(project(appdepdencies.Modules.core))
     implementation(project(":infraestructure"))
     implementation(project(":data"))
     implementation(project(":usecases"))
@@ -102,7 +102,4 @@ dependencies {
     androidTestImplementation("io.mockk:mockk-android:1.10.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.9")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
-    implementation(kotlin("reflect"))
-
-
 }

@@ -1,3 +1,8 @@
+import appdepdencies.Builds
+import appdepdencies.Versions
+import appdepdencies.Libs
+
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -6,13 +11,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(appdependencies.Builds.COMPILE_VERSION)
-    buildToolsVersion = appdependencies.Builds.BUILD_TOOLS
+    compileSdkVersion(Builds.COMPILE_VERSION)
+    buildToolsVersion = Builds.BUILD_TOOLS
     defaultConfig {
-        minSdkVersion(appdependencies.Builds .MIN_VERSION)
-        targetSdkVersion(appdependencies.Builds.TARGET_VERSION)
-        versionCode = appdependencies.Builds.Core.VERSION_CODE
-        versionName = appdependencies.Builds.Core.VERSION_NAME
+        minSdkVersion(Builds .MIN_VERSION)
+        targetSdkVersion(Builds.TARGET_VERSION)
+        versionCode = Builds.Core.VERSION_CODE
+        versionName = Builds.Core.VERSION_NAME
     }
 
     compileOptions {
@@ -26,21 +31,21 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
+    implementation(kotlin("stdlib-jdk8", Versions.kotlin))
     api(project(":CORE"))
     api(project(":infraestructure"))
     api(project(":domain"))
 
-    api(appdependencies.Libs.Retrofit.core)
-    api(appdependencies.Libs.Retrofit.adapter)
-    api(appdependencies.Libs.Retrofit.gson)
+    api(Libs.Retrofit.core)
+    api(Libs.Retrofit.adapter)
+    api(Libs.Retrofit.gson)
 
-    api(appdependencies.Libs.Okhttp.okhttp)
-    api(appdependencies.Libs.Okhttp.logging)
+    api(Libs.Okhttp.okhttp)
+    api(Libs.Okhttp.logging)
 
-    api(appdependencies.Libs.Room.runtime)
-    api(appdependencies.Libs.Room.ktx)
-    kapt(appdependencies.Libs.Room.kaptcompiler)
+    api(Libs.Room.runtime)
+    api(Libs.Room.ktx)
+    kapt(Libs.Room.kaptcompiler)
 
-    testImplementation(appdependencies.Libs.Tests.junit)
+    testImplementation(Libs.Tests.junit)
 }
