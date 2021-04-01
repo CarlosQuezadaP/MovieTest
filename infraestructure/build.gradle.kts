@@ -1,5 +1,7 @@
 import appdepdencies.Builds
 import appdepdencies.Versions
+import appdepdencies.Libs
+import appdepdencies.Modules
 
 plugins {
     id(appdepdencies.Plugins.id_android_library)
@@ -25,7 +27,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Versions.jvmTarget
     }
 
 
@@ -34,8 +36,8 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(kotlin("stdlib-jdk8", Versions.kotlin))
+    implementation(kotlin(Libs.jdk8, Versions.kotlin))
     
-    api(project(appdepdencies.Modules.core))
+    api(project(Modules.core))
 
 }

@@ -1,6 +1,5 @@
 package com.merqueo.co.domain.models
 
-
 data class MovieItemDomain(
     val id: Int,
     val voteCount: Int,

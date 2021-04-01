@@ -6,7 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface IMovieApi {
-
     @GET("movie/upcoming")
     suspend fun getUpcomingMovies(@Query("page") page: Int = 1): Response<UpcomingResponse>
 }

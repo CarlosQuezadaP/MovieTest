@@ -1,5 +1,2 @@
-include(":usecases")
-include(":domain")
-include(":data")
-include(":app",":CORE", ":infraestructure",":provide",":models",":home")
+include(":app",":CORE", ":infraestructure",":usecases",":domain",":data")
 rootProject.name = "MerqueoPrueba"

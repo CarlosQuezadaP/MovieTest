@@ -4,6 +4,8 @@ import appdepdencies.Builds.COMPILE_VERSION
 import appdepdencies.Builds.MIN_VERSION
 import appdepdencies.Builds.TARGET_VERSION
 import appdepdencies.Libs
+import appdepdencies.Versions
+import appdepdencies.Modules
 
 
 plugins {
@@ -55,7 +57,7 @@ android {
         viewBinding = true
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Versions.jvmTarget
     }
 
 
@@ -63,14 +65,13 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(kotlin("stdlib-jdk8", appdepdencies.Versions.kotlin))
+    implementation(kotlin(Libs.jdk8, appdepdencies.Versions.kotlin))
 
-    implementation(project(appdepdencies.Modules.core))
-    implementation(project(appdepdencies.Modules.infraestructure))
-    implementation(project(appdepdencies.Modules.data))
-    implementation(project(appdepdencies.Modules.usecases))
+    implementation(project(Modules.core))
+    implementation(project(Modules.infraestructure))
+    implementation(project(Modules.data))
+    implementation(project(Modules.usecases))
 
-    implementation(Libs.Core.paging)
     implementation(Libs.Core.appcompat)
 
     implementation(Libs.Lifecycle.livedataKtx)

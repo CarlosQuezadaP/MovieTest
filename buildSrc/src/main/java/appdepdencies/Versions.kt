@@ -3,6 +3,7 @@ package appdepdencies
 object Versions {
 
     const val legacy = "1.0.0"
+    const val jvmTarget = "1.8"
     const val gradle = "4.0.1"
     const val kotlin = "1.4.10"
     const val kotlinGradle = "1.3.2"

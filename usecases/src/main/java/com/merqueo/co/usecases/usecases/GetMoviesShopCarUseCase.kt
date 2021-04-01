@@ -11,7 +11,7 @@ interface IGetMoviesShopCarUseCase {
 
 class GetMoviesShopCarUseCase(private val localSource: IMoviesLocalSource) :
     IGetMoviesShopCarUseCase {
-    override fun invoke():Flow<Resource<List<MovieItemDomain>>> {
+    override fun invoke(): Flow<Resource<List<MovieItemDomain>>> {
         return localSource.getAllOnStore()
     }
 }
