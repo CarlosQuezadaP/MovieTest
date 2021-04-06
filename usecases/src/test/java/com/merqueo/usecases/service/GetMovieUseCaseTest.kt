@@ -11,8 +11,6 @@ import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.unmockkAll
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
@@ -22,8 +20,6 @@ import org.junit.Before
 import org.junit.Test
 
 
-@InternalCoroutinesApi
-@FlowPreview
 class GetMovieUseCaseTest {
 
     lateinit var movieBuilder: MovieBuilder

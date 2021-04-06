@@ -4,11 +4,9 @@ import com.merqueo.co.CORE.IConnectivity
 import com.merqueo.co.CORE.model.Resource
 import com.merqueo.co.data.repository.IMovieRepo
 import com.merqueo.co.domain.models.MovieItemDomain
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 
 
-@FlowPreview
 class GetMoviesUseCase(
     private val iMoviesRepo: IMovieRepo,
     private val iConnectivity: IConnectivity

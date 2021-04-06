@@ -1,4 +1,4 @@
-package com.merqueo.co.merqueoprueba.domain.di
+package com.merqueo.co.merqueoprueba.di
 
 import com.merqueo.co.usecases.usecases.DeleteMoviesFromShopUseCase
 import com.merqueo.co.usecases.usecases.IDeleteMoviesFromShopUseCase

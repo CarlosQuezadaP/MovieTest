@@ -8,22 +8,12 @@ object Libs {
 
     object Tests {
         const val junit = "junit:junit:${Versions.junit}"
-        const val test_ext_junit = "androidx.test.ext:junit:${Versions.test_ext}"
-        const val test_rules = "androidx.test:rules:${Versions.test_rules}"
-        const val test_runner = "androidx.test:runner:${Versions.test_rules}"
-        const val test_espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
-        const val espresso_espresso = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
     }
 
     object Room {
         const val runtime = "androidx.room:room-runtime:${Versions.room}"
         const val ktx = "androidx.room:room-ktx:${Versions.room}"
         const val kaptcompiler = "androidx.room:room-compiler:${Versions.room}"
-    }
-
-    object Mockito {
-        const val mockito_core = "org.mockito:mockito-core:${Versions.mockito}"
-        const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockito_inline}"
     }
 
     object MockIO{
@@ -70,7 +60,6 @@ object Libs {
         const val navigationUiKtx =
             "androidx.navigation:navigation-ui-ktx:${Versions.Navigation.ui}"
         const val material = "com.google.android.material:material:${Versions.material}"
-        const val paging = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
         const val kotlin_coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
 
     }

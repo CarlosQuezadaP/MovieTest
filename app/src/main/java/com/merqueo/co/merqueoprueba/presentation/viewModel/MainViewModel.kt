@@ -7,7 +7,6 @@ import com.merqueo.co.usecases.usecases.IDeleteMoviesFromShopUseCase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
-@InternalCoroutinesApi
 class MainViewModel(private val iDeleteMoviesFromShopUseCase: IDeleteMoviesFromShopUseCase) :
     ViewModel() {
 

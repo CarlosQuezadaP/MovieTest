@@ -16,8 +16,6 @@ class ViewModelShopping(
 ) :
     ViewModel() {
 
-    val isEmpty = SingleLiveEvent<Boolean>()
-
     init {
         getFromLocal()
 

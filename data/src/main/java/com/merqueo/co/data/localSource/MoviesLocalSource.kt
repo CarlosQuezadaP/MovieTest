@@ -5,10 +5,8 @@ import com.merqueo.co.data.anticorruption.IConverter
 import com.merqueo.co.data.db.dao.IMoviesDao
 import com.merqueo.co.data.db.entities.MovieEntity
 import com.merqueo.co.domain.models.MovieItemDomain
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 
-@ExperimentalCoroutinesApi
 class MoviesLocalSource(
     private val moviesDao: IMoviesDao,
     private val converter: IConverter,

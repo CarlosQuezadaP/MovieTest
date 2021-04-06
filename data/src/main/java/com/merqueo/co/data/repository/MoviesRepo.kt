@@ -5,12 +5,8 @@ import com.merqueo.co.data.anticorruption.IConverter
 import com.merqueo.co.data.localSource.IMoviesLocalSource
 import com.merqueo.co.data.remoteSource.IMoviesRemoteSource
 import com.merqueo.co.domain.models.MovieItemDomain
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 
-@FlowPreview
-@ExperimentalCoroutinesApi
 class MoviesRepo(
     private val iMoviesLocalSource: IMoviesLocalSource,
     private val iMoviesRemoteSource: IMoviesRemoteSource,

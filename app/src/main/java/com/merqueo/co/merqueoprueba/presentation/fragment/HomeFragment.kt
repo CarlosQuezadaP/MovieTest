@@ -20,15 +20,9 @@ import com.merqueo.co.merqueoprueba.utils.navigateUriWithDefaultOptions
 import com.merqueo.co.merqueoprueba.utils.setExitToFullScreenTransition
 import com.merqueo.co.merqueoprueba.utils.setReturnFromFullScreenTransition
 import kotlinx.android.synthetic.main.fragment_home.view.*
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-@InternalCoroutinesApi
-@ExperimentalCoroutinesApi
 class HomeFragment : Fragment(), AddRemoveListener, ClickListener, IResearch {
 
     private lateinit var homeBinding: FragmentHomeBinding

@@ -7,6 +7,7 @@ import com.merqueo.co.data.db.converters.FromListOfIntToStringConverter
 import com.merqueo.co.data.db.converters.FromListOfStringsToStringConverter
 import com.merqueo.co.data.db.dao.IMoviesDao
 import com.merqueo.co.data.db.entities.MovieEntity
+
 @Database(
     entities = [
         MovieEntity::class

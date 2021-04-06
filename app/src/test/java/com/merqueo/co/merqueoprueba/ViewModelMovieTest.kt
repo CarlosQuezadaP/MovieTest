@@ -9,8 +9,6 @@ import com.merqueo.co.merqueoprueba.presentation.states.MovieViewState
 import com.merqueo.co.merqueoprueba.presentation.viewModel.MovieViewModel
 import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
@@ -21,8 +19,6 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import org.mockito.*
 
-@InternalCoroutinesApi
-@ExperimentalCoroutinesApi
 class ViewModelMovieTest {
 
     @Mock
