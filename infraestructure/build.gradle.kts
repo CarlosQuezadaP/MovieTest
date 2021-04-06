@@ -19,9 +19,6 @@ android {
         versionCode = Builds.Core.VERSION_CODE
         versionName = Builds.Core.VERSION_NAME
     }
-
-
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -29,8 +26,6 @@ android {
     kotlinOptions {
         jvmTarget = Versions.jvmTarget
     }
-
-
 
 }
 

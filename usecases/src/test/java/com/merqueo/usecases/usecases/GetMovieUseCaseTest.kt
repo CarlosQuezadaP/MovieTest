@@ -1,4 +1,4 @@
-package com.merqueo.usecases.service
+package com.merqueo.usecases.usecases
 
 import com.merqueo.co.CORE.IConnectivity
 import com.merqueo.co.CORE.model.Resource
@@ -18,7 +18,6 @@ import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-
 
 class GetMovieUseCaseTest {
 

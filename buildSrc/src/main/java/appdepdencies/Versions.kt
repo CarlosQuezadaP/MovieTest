@@ -25,6 +25,8 @@ object Versions {
 
     const val coil = "0.9.1"
 
+    const val material = "1.2.0-alpha01"
+
     object Navigation {
         const val fragment = "2.2.0-rc02"
         const val ui = "2.2.0-rc02"
