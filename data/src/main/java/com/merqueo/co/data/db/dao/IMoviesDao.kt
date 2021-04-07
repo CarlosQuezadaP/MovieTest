@@ -2,7 +2,6 @@ package com.merqueo.co.data.db.dao
 
 import androidx.room.*
 import com.merqueo.co.data.db.entities.MovieEntity
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -54,7 +53,6 @@ interface IMoviesDao {
     @Query("SELECT * FROM MovieEntity")
     fun getAll(): Flow<List<MovieEntity>>
 
-    @ExperimentalCoroutinesApi
     fun getMovieDistinctUntilChanged() =
         getAll()
 

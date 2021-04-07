@@ -1,18 +1,21 @@
-import appdependencies.Builds.APP_ID
-import appdependencies.Builds.BUILD_TOOLS
-import appdependencies.Builds.COMPILE_VERSION
-import appdependencies.Builds.MIN_VERSION
-import appdependencies.Builds.TARGET_VERSION
-import appdependencies.Libs
+import appdepdencies.Builds.APP_ID
+import appdepdencies.Builds.BUILD_TOOLS
+import appdepdencies.Builds.COMPILE_VERSION
+import appdepdencies.Builds.MIN_VERSION
+import appdepdencies.Builds.TARGET_VERSION
+import appdepdencies.Libs
+import appdepdencies.Versions
+import appdepdencies.Modules
+
 
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("androidx.navigation.safeargs.kotlin")
-    kotlin("android")
-    kotlin("android.extensions")
-    kotlin("kapt")
-    "koin"
+    id(appdepdencies.Plugins.id_android_app)
+    id(appdepdencies.Plugins.id_kotlin_android)
+    id(appdepdencies.Plugins.id_navigation_safeargs)
+    kotlin(appdepdencies.Plugins.kotlin_android)
+    kotlin(appdepdencies.Plugins.kotlin_android_extensions)
+    kotlin(appdepdencies.Plugins.kotlin_kapt)
+    appdepdencies.Plugins.koin
 }
 
 
@@ -24,8 +27,8 @@ android {
         applicationId = APP_ID
         minSdkVersion(MIN_VERSION)
         targetSdkVersion(TARGET_VERSION)
-        versionCode = appdependencies.Builds.App.VERSION_CODE
-        versionName = appdependencies.Builds.App.VERSION_NAME
+        versionCode = appdepdencies.Builds.App.VERSION_CODE
+        versionName = appdepdencies.Builds.App.VERSION_NAME
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions.annotationProcessorOptions {
             includeCompileClasspath = true
@@ -54,7 +57,7 @@ android {
         viewBinding = true
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Versions.jvmTarget
     }
 
 
@@ -62,18 +65,15 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
+    implementation(kotlin(Libs.jdk8, appdepdencies.Versions.kotlin))
 
-    implementation(project(":CORE"))
-    implementation(project(":infraestructure"))
-    implementation(project(":data"))
-    implementation(project(":usecases"))
+    implementation(project(Modules.core))
+    implementation(project(Modules.infraestructure))
+    implementation(project(Modules.data))
+    implementation(project(Modules.usecases))
 
-
-    implementation(Libs.Core.paging)
     implementation(Libs.Core.appcompat)
 
-    kapt(Libs.Lifecycle.kapt_compiler)
     implementation(Libs.Lifecycle.livedataKtx)
     implementation(Libs.Lifecycle.viewmodelKtx)
     implementation(Libs.Lifecycle.savedStateViewModel)
@@ -92,17 +92,17 @@ dependencies {
     implementation(Libs.Core.navigationUiKtx)
     implementation(Libs.Core.material)
 
-    testImplementation("io.mockk:mockk:1.10.6")
-    testImplementation("junit:junit:4.13.2")
+    kapt(Libs.Lifecycle.kapt_compiler)
+
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.3.0")
     androidTestImplementation("androidx.test:core-ktx:1.3.0")
     androidTestImplementation("androidx.test:rules:1.3.0")
     androidTestImplementation("io.mockk:mockk-android:1.10.2")
+
+    testImplementation("io.mockk:mockk:1.10.6")
+    testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.9")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
-    implementation(kotlin("reflect"))
-
-
 }

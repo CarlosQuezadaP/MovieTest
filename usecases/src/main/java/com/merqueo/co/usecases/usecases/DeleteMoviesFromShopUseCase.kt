@@ -9,7 +9,6 @@ interface IDeleteMoviesFromShopUseCase {
     fun invoke(): Flow<Resource<Boolean>>
 }
 
-
 class DeleteMoviesFromShopUseCase(private val localSource: IMoviesLocalSource) :
     IDeleteMoviesFromShopUseCase {
 
@@ -18,6 +17,5 @@ class DeleteMoviesFromShopUseCase(private val localSource: IMoviesLocalSource) :
     }
 
     override fun invoke() = localSource.changeAllStore()
-
 
 }

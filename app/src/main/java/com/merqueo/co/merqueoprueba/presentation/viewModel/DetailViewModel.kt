@@ -13,7 +13,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 
-@ExperimentalCoroutinesApi
 class DetailViewModel(
     private val IMovieDetailUseCase: IMovieDetailUseCase,
     private val iUpdateMovieUseCase: IUpdateMovieUseCase

@@ -1,18 +1,24 @@
+import appdepdencies.Builds
+import appdepdencies.Versions
+import appdepdencies.Libs
+import appdepdencies.Modules
+
+
 plugins {
-    id("com.android.library")
-    kotlin("android")
-    kotlin("android.extensions")
-    kotlin("kapt")
+    id(appdepdencies.Plugins.id_android_library)
+    kotlin(appdepdencies.Plugins.kotlin_android)
+    kotlin(appdepdencies.Plugins.kotlin_android_extensions)
+    kotlin(appdepdencies.Plugins.kotlin_kapt)
 }
 
 android {
-    compileSdkVersion(appdependencies.Builds.COMPILE_VERSION)
-    buildToolsVersion = appdependencies.Builds.BUILD_TOOLS
+    compileSdkVersion(Builds.COMPILE_VERSION)
+    buildToolsVersion = Builds.BUILD_TOOLS
     defaultConfig {
-        minSdkVersion(appdependencies.Builds .MIN_VERSION)
-        targetSdkVersion(appdependencies.Builds.TARGET_VERSION)
-        versionCode = appdependencies.Builds.Core.VERSION_CODE
-        versionName = appdependencies.Builds.Core.VERSION_NAME
+        minSdkVersion(Builds .MIN_VERSION)
+        targetSdkVersion(Builds.TARGET_VERSION)
+        versionCode = Builds.Core.VERSION_CODE
+        versionName = Builds.Core.VERSION_NAME
     }
 
     compileOptions {
@@ -20,27 +26,28 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Versions.jvmTarget
     }
 }
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(kotlin("stdlib-jdk8", appdependencies.Versions.kotlin))
-    api(project(":CORE"))
-    api(project(":infraestructure"))
-    api(project(":domain"))
+    implementation(kotlin(Libs.jdk8, Versions.kotlin))
 
-    api(appdependencies.Libs.Retrofit.core)
-    api(appdependencies.Libs.Retrofit.adapter)
-    api(appdependencies.Libs.Retrofit.gson)
+    implementation(project(Modules.infraestructure))
+    implementation(project(Modules.core))
+    implementation(project(Modules.domain))
 
-    api(appdependencies.Libs.Okhttp.okhttp)
-    api(appdependencies.Libs.Okhttp.logging)
+    implementation(Libs.Retrofit.core)
+    implementation(Libs.Retrofit.adapter)
+    implementation(Libs.Retrofit.gson)
 
-    api(appdependencies.Libs.Room.runtime)
-    api(appdependencies.Libs.Room.ktx)
-    kapt(appdependencies.Libs.Room.kaptcompiler)
+    implementation(Libs.Okhttp.okhttp)
+    implementation(Libs.Okhttp.logging)
 
-    testImplementation(appdependencies.Libs.Tests.junit)
+    implementation(Libs.Room.runtime)
+    implementation(Libs.Room.ktx)
+    kapt(Libs.Room.kaptcompiler)
+
+    testImplementation(Libs.Tests.junit)
 }

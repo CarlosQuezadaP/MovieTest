@@ -1,4 +1,4 @@
-package com.co.merqueo.shoppingcart.dominio.di
+package com.merqueo.co.merqueoprueba.di
 
 import com.merqueo.co.merqueoprueba.presentation.viewModel.ViewModelShopping
 import org.koin.androidx.viewmodel.dsl.viewModel

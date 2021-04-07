@@ -5,8 +5,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import com.merqueo.co.CORE.IConnectivity
-import java.net.InetAddress
-import java.net.UnknownHostException
 
 class IConnectivityImp(private val context: Context) : IConnectivity {
 
@@ -29,7 +27,6 @@ class IConnectivityImp(private val context: Context) : IConnectivity {
                     val activeNetworkInfo = connectivityManager.activeNetworkInfo
                     return activeNetworkInfo != null && activeNetworkInfo.isConnected
                 } catch (ex: Exception) {
-                   val Aasd = ex
                 }
             }
         }

@@ -11,12 +11,8 @@ import com.merqueo.co.merqueoprueba.presentation.states.MovieViewState
 import com.merqueo.co.merqueoprueba.presentation.viewModel.interfaces.IMovieViewModel
 import com.merqueo.co.usecases.usecases.IGetMoviesUseCase
 import com.merqueo.co.usecases.usecases.IUpdateMovieUseCase
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.map
 
-@ExperimentalCoroutinesApi
-@InternalCoroutinesApi
 class MovieViewModel(
     private val iGetMoviesUseCase: IGetMoviesUseCase,
     private val iUpdateMovieUseCase: IUpdateMovieUseCase

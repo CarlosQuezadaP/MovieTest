@@ -1,19 +1,17 @@
 buildscript {
-    val kotlin_version by extra("1.4.10")
     repositories {
         google()
         jcenter()
-        maven { url = uri("https://plugins.gradle.org/m2/") }
+        maven { url = uri(appdepdencies.ClassPath.Uri.plugins_gradle) }
 
     }
     dependencies {
-        classpath(appdependencies.ClassPath.gradle)
-        classpath(appdependencies.ClassPath.kotlingradle)
-        classpath(appdependencies.ClassPath.google)
-        classpath(appdependencies.ClassPath.navisafe)
-        classpath(appdependencies.ClassPath.kotlin_gradle_plugin)
-        classpath(appdependencies.ClassPath.koin_class)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+        classpath(appdepdencies.ClassPath.gradle)
+        classpath(appdepdencies.ClassPath.kotlingradle)
+        classpath(appdepdencies.ClassPath.google)
+        classpath(appdepdencies.ClassPath.navisafe)
+        classpath(appdepdencies.ClassPath.kotlin_gradle_plugin)
+        classpath(appdepdencies.ClassPath.koin_class)
     }
 }
 
@@ -21,8 +19,8 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url = uri("https://www.jitpack.io") }
-        maven { url = uri("https://plugins.gradle.org/m2/") }
+        maven { url = uri(appdepdencies.ClassPath.Uri.jitpack) }
+        maven { url = uri(appdepdencies.ClassPath.Uri.plugins_gradle) }
     }
 }
 

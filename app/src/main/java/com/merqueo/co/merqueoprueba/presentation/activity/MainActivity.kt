@@ -9,12 +9,10 @@ import com.merqueo.co.merqueoprueba.R
 import com.merqueo.co.merqueoprueba.databinding.ActivityMainBinding
 import com.merqueo.co.merqueoprueba.presentation.viewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-@InternalCoroutinesApi
 class MainActivity : AppCompatActivity() {
 
     var mainBinding: ActivityMainBinding? = null

@@ -13,10 +13,8 @@ import com.merqueo.co.merqueoprueba.databinding.FragmentDetailBinding
 import com.merqueo.co.merqueoprueba.handlers.AddRemoveListener
 import com.merqueo.co.merqueoprueba.presentation.viewModel.DetailViewModel
 import kotlinx.android.synthetic.main.fragment_detail_.view.*
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@ExperimentalCoroutinesApi
 class DetailFragment : Fragment(), AddRemoveListener {
 
     private val args: DetailFragmentArgs by navArgs()

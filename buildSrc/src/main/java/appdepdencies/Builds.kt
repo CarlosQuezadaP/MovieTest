@@ -1,4 +1,4 @@
-package appdependencies
+package appdepdencies
 
 object Builds {
     const val MIN_VERSION = 24

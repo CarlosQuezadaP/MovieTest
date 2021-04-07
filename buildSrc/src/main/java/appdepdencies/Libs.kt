@@ -1,27 +1,22 @@
-package appdependencies
+package appdepdencies
 
 
 object Libs {
 
+    const val jdk8 = "stdlib-jdk8"
+    const val toasty = "com.github.GrenderG:Toasty:${Versions.toasty}"
+
 
     object Tests {
         const val junit = "junit:junit:${Versions.junit}"
-        const val test_ext_junit = "androidx.test.ext:junit:${Versions.test_ext}"
-        const val test_rules = "androidx.test:rules:${Versions.test_rules}"
-        const val test_runner = "androidx.test:runner:${Versions.test_rules}"
-        const val test_espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
-        const val espresso_espresso = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
+        const val androidTest_junit = "junit:junit:${Versions.junit}"
+        const val testImplementation_ = "junit:junit:${Versions.junit}"
     }
 
     object Room {
         const val runtime = "androidx.room:room-runtime:${Versions.room}"
         const val ktx = "androidx.room:room-ktx:${Versions.room}"
         const val kaptcompiler = "androidx.room:room-compiler:${Versions.room}"
-    }
-
-    object Mockito {
-        const val mockito_core = "org.mockito:mockito-core:${Versions.mockito}"
-        const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockito_inline}"
     }
 
     object MockIO{
@@ -40,16 +35,9 @@ object Libs {
         const val kapt_compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
         const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
 
-        //const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle}"
         const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-
-        // kotlin live data extensions
         const val livedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-
-        // alternately - if using Java8, use the following instead of lifecycle-compiler
         const val common = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
-
-        // view model saved state handler
         const val savedStateViewModel =
             "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.savedstate}"
     }
@@ -68,19 +56,15 @@ object Libs {
 
     object Core {
         const val appcompat = "androidx.appcompat:appcompat:${Versions.appCompatX}"
-        const val legacy_ = "androidx.legacy:legacy-support-v4:1.0.0:${Versions.legacy}"
         const val constraintlayout =
             "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-        const val coreKtx = "androidx.core:core-ktx:${Versions.appCoreX}"
         const val navigationFragmentKtx =
             "androidx.navigation:navigation-fragment-ktx:${Versions.Navigation.fragment}"
         const val navigationUiKtx =
             "androidx.navigation:navigation-ui-ktx:${Versions.Navigation.ui}"
         const val material = "com.google.android.material:material:${Versions.material}"
-        const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
-        const val swipeRefreshLayout =
-            "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefresh}"
-        const val paging = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
+        const val kotlin_coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+
     }
 
     object ImageLoading {
@@ -88,5 +72,4 @@ object Libs {
     }
 
 
-    const val toasty = "com.github.GrenderG:Toasty:${Versions.toasty}"
 }

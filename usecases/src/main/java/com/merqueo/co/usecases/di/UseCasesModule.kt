@@ -1,10 +1,8 @@
 package com.merqueo.co.merqueoprueba.domain.di
 
 import com.merqueo.co.usecases.usecases.*
-import kotlinx.coroutines.FlowPreview
 import org.koin.dsl.module
 
-@FlowPreview
 val usecaseGetMovieModule = module {
     single<IGetMoviesUseCase> {
         GetMoviesUseCase(
