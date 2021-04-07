@@ -32,7 +32,15 @@ object Versions {
         const val ui = "2.2.0-rc02"
     }
 
-    const val junit = "4.12"
+    const val junit = "4.13.2"
+    const val androidTest_junit = "1.1.2"
+    const val androidTest_espresso = "3.3.0"
+    const val androidTest_androidxtest = "1.3.0"
+    const val androidTest_mockkio = "1.10.2"
+
+    const val testImplementation_ = "1.10.2"
+
+
     const val espresso = "3.3.0"
 
     const val toasty = "1.5.0"

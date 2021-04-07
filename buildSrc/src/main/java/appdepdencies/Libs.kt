@@ -6,8 +6,11 @@ object Libs {
     const val jdk8 = "stdlib-jdk8"
     const val toasty = "com.github.GrenderG:Toasty:${Versions.toasty}"
 
+
     object Tests {
         const val junit = "junit:junit:${Versions.junit}"
+        const val androidTest_junit = "junit:junit:${Versions.junit}"
+        const val testImplementation_ = "junit:junit:${Versions.junit}"
     }
 
     object Room {
